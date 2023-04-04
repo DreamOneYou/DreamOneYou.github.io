@@ -4,9 +4,38 @@
   
   
   <entry>
+    <title>hexo搭建github博客</title>
+    <link href="/iBook/2023/04/04/hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/"/>
+    <url>/iBook/2023/04/04/hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<p>1、你必须建一个存储库，这个存储库要和你的github名称一致（不然就会404），如下图：</p><p>2、如果是window配置，需要安装git和node.js</p><p>3、下载hexo</p><p>npm config set registry <a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a>  #换源，下载hexo快一点<br>npm install hexo-cli -g  #进行下载<br>4、在本地进行hexo部署。</p><p>hexo init<br>5、执行 npm install，如果不行，可以执行这句：npm install - save</p><p>6、执行这段代码：npm install hexo-deployer-git –save</p><p>7、分别输入  git config –global user.name “你的昵称”  和  git config –global user.email “你的邮箱”  并替换为你的昵称（我的就是DreamOneYou）和邮箱</p><p>8、获取ssh，可以在Git GUI Here进行查看。然后到你的github设置下，找到ssh key设置。</p><p>9、找到你安装博客的文件夹找到_config.yml配置文件并打开（可以用Notepad++也可以用记事本打开）</p><p>deploy:<br>  type: git<br>  repository: 你复制的ssh<br>  branch: master<br>10、之后依次执行进行上传：hexo clean;hexo g;hexo d;如果你想本地看一下效果，可以执行：hexo s</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>github</category>
+      
+      <category>hexo</category>
+      
+      <category>博客搭建</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>github</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>视频软件介绍</title>
-    <link href="/2023/04/03/%E5%90%84%E7%A7%8D%E8%A7%86%E9%A2%91%E7%89%B9%E6%95%88%E6%80%BB%E7%BB%93/"/>
-    <url>/2023/04/03/%E5%90%84%E7%A7%8D%E8%A7%86%E9%A2%91%E7%89%B9%E6%95%88%E6%80%BB%E7%BB%93/</url>
+    <link href="/iBook/2023/04/03/%E5%90%84%E7%A7%8D%E8%A7%86%E9%A2%91%E7%89%B9%E6%95%88%E6%80%BB%E7%BB%93/"/>
+    <url>/iBook/2023/04/03/%E5%90%84%E7%A7%8D%E8%A7%86%E9%A2%91%E7%89%B9%E6%95%88%E6%80%BB%E7%BB%93/</url>
     
     <content type="html"><![CDATA[<h1 id="视频软件常用特效"><a href="#视频软件常用特效" class="headerlink" title="视频软件常用特效"></a>视频软件常用特效</h1><ul><li><p>颜色校正：可以调整视频的色彩、对比度、曝光度等，使视频效果更好。</p></li><li><p>转场特效：通过添加转场特效来改变视频段之间的平滑度和流畅度，常见的转场特效包括淡入淡出、擦除、扭曲等。</p></li><li><p>滤镜特效：通过添加不同的滤镜特效来改变视频的色彩、亮度、对比度等，常见的滤镜特效包括黑白、冷色、暖色等。</p></li><li><p>文字和标题：可以在视频中添加文字和标题，以增强视频的信息传达效果。</p></li><li><p>图片和音乐：可以将图片和音乐添加到视频中，以增强视频的视觉和听觉效果。</p></li><li><p>特殊效果：如动画、形状、粒子等特殊效果，可以为视频增添创意和艺术性。</p></li></ul><h1 id="整体最佳、功能最强的视频编辑软件：Adobe-Premiere-Pro-CC"><a href="#整体最佳、功能最强的视频编辑软件：Adobe-Premiere-Pro-CC" class="headerlink" title="整体最佳、功能最强的视频编辑软件：Adobe Premiere Pro CC"></a>整体最佳、功能最强的视频编辑软件：Adobe Premiere Pro CC</h1><h1 id="物美价廉的中文视频编辑软件：蜜蜂剪辑（Beecut）"><a href="#物美价廉的中文视频编辑软件：蜜蜂剪辑（Beecut）" class="headerlink" title="物美价廉的中文视频编辑软件：蜜蜂剪辑（Beecut）"></a>物美价廉的中文视频编辑软件：蜜蜂剪辑（Beecut）</h1><h1 id="最适合Apple-Mac的视频编辑软件：Apple-Final-Cut-Pro-X"><a href="#最适合Apple-Mac的视频编辑软件：Apple-Final-Cut-Pro-X" class="headerlink" title="最适合Apple Mac的视频编辑软件：Apple Final Cut Pro X"></a>最适合Apple Mac的视频编辑软件：Apple Final Cut Pro X</h1><h1 id="适合初学者的视频编辑软件：Corel-VideoStudio-Ultimate"><a href="#适合初学者的视频编辑软件：Corel-VideoStudio-Ultimate" class="headerlink" title="适合初学者的视频编辑软件：Corel VideoStudio Ultimate"></a>适合初学者的视频编辑软件：Corel VideoStudio Ultimate</h1><h1 id="价格实惠的视频剪辑软件：Adobe-Premiere-Elements-2020"><a href="#价格实惠的视频剪辑软件：Adobe-Premiere-Elements-2020" class="headerlink" title="价格实惠的视频剪辑软件：Adobe Premiere Elements 2020"></a>价格实惠的视频剪辑软件：Adobe Premiere Elements 2020</h1><h1 id="适合制作电影效果的视频编辑软件：CyberLink-PowerDirector"><a href="#适合制作电影效果的视频编辑软件：CyberLink-PowerDirector" class="headerlink" title="适合制作电影效果的视频编辑软件：CyberLink PowerDirector"></a>适合制作电影效果的视频编辑软件：CyberLink PowerDirector</h1><h1 id="编辑速度快的视频编辑软件：Ulead-Video-Studio"><a href="#编辑速度快的视频编辑软件：Ulead-Video-Studio" class="headerlink" title="编辑速度快的视频编辑软件：Ulead Video Studio"></a>编辑速度快的视频编辑软件：Ulead Video Studio</h1><h1 id="一款适合Mac的视频剪辑软件：DaVinci-Resolve"><a href="#一款适合Mac的视频剪辑软件：DaVinci-Resolve" class="headerlink" title="一款适合Mac的视频剪辑软件：DaVinci Resolve"></a>一款适合Mac的视频剪辑软件：DaVinci Resolve</h1><h1 id="最受欢迎的家庭视频剪辑软件：Magix-Movie-Edit-Pro-Premium"><a href="#最受欢迎的家庭视频剪辑软件：Magix-Movie-Edit-Pro-Premium" class="headerlink" title="最受欢迎的家庭视频剪辑软件：Magix Movie Edit Pro Premium"></a>最受欢迎的家庭视频剪辑软件：Magix Movie Edit Pro Premium</h1><h1 id="免费的苹果系统视频编辑软件：Apple-iMovie"><a href="#免费的苹果系统视频编辑软件：Apple-iMovie" class="headerlink" title="免费的苹果系统视频编辑软件：Apple iMovie"></a>免费的苹果系统视频编辑软件：Apple iMovie</h1><h1 id="最佳快速视频编辑软件：Movavi-Video-Editor"><a href="#最佳快速视频编辑软件：Movavi-Video-Editor" class="headerlink" title="最佳快速视频编辑软件：Movavi Video Editor"></a>最佳快速视频编辑软件：Movavi Video Editor</h1><h1 id="最佳预算视频编辑软件：Wondershare-Filmora"><a href="#最佳预算视频编辑软件：Wondershare-Filmora" class="headerlink" title="最佳预算视频编辑软件：Wondershare Filmora"></a>最佳预算视频编辑软件：Wondershare Filmora</h1><h1 id="最佳细节调整视频编辑软件：Vegas-Pro"><a href="#最佳细节调整视频编辑软件：Vegas-Pro" class="headerlink" title="最佳细节调整视频编辑软件：Vegas Pro"></a>最佳细节调整视频编辑软件：Vegas Pro</h1><h1 id="最佳移动客户端视频编辑软件：Adobe-Premiere-Rush"><a href="#最佳移动客户端视频编辑软件：Adobe-Premiere-Rush" class="headerlink" title="最佳移动客户端视频编辑软件：Adobe Premiere Rush"></a>最佳移动客户端视频编辑软件：Adobe Premiere Rush</h1><h1 id="最佳小型企业适用视频编辑软件：Vimeo"><a href="#最佳小型企业适用视频编辑软件：Vimeo" class="headerlink" title="最佳小型企业适用视频编辑软件：Vimeo"></a>最佳小型企业适用视频编辑软件：Vimeo</h1><h1 id="录屏-视频编辑软件二合一：Camtasia"><a href="#录屏-视频编辑软件二合一：Camtasia" class="headerlink" title="录屏+视频编辑软件二合一：Camtasia"></a>录屏+视频编辑软件二合一：Camtasia</h1><h1 id="最佳免费视频剪辑软件：Lightworks"><a href="#最佳免费视频剪辑软件：Lightworks" class="headerlink" title="最佳免费视频剪辑软件：Lightworks"></a>最佳免费视频剪辑软件：Lightworks</h1><h1 id="免费好用的视频剪辑软件：OpenShot"><a href="#免费好用的视频剪辑软件：OpenShot" class="headerlink" title="免费好用的视频剪辑软件：OpenShot"></a>免费好用的视频剪辑软件：OpenShot</h1><h1 id="最佳简洁界面视频编辑软件：Shotcut"><a href="#最佳简洁界面视频编辑软件：Shotcut" class="headerlink" title="最佳简洁界面视频编辑软件：Shotcut"></a>最佳简洁界面视频编辑软件：Shotcut</h1><h1 id="最佳性价比专业级视频编辑软件：Blender"><a href="#最佳性价比专业级视频编辑软件：Blender" class="headerlink" title="最佳性价比专业级视频编辑软件：Blender"></a>最佳性价比专业级视频编辑软件：Blender</h1><h1 id="最佳Windows自带视频编辑软件：Windows-Video-Editor"><a href="#最佳Windows自带视频编辑软件：Windows-Video-Editor" class="headerlink" title="最佳Windows自带视频编辑软件：Windows Video Editor"></a>最佳Windows自带视频编辑软件：Windows Video Editor</h1><h1 id="最佳在线视频编辑软件：WeVideo"><a href="#最佳在线视频编辑软件：WeVideo" class="headerlink" title="最佳在线视频编辑软件：WeVideo"></a>最佳在线视频编辑软件：WeVideo</h1><h1 id="最佳专业性移动视频编辑软件：KineMaster"><a href="#最佳专业性移动视频编辑软件：KineMaster" class="headerlink" title="最佳专业性移动视频编辑软件：KineMaster"></a>最佳专业性移动视频编辑软件：KineMaster</h1><h1 id="最适合社交媒体使用者的视频编辑软件：Magisto"><a href="#最适合社交媒体使用者的视频编辑软件：Magisto" class="headerlink" title="最适合社交媒体使用者的视频编辑软件：Magisto"></a>最适合社交媒体使用者的视频编辑软件：Magisto</h1><h1 id="最佳画面色彩视频编辑软件：Pinnacle-Studio-Ultimate"><a href="#最佳画面色彩视频编辑软件：Pinnacle-Studio-Ultimate" class="headerlink" title="最佳画面色彩视频编辑软件：Pinnacle Studio Ultimate"></a>最佳画面色彩视频编辑软件：Pinnacle Studio Ultimate</h1><h1 id="最佳业余爱好者适用视频编辑软件：-HitFilm-Pro-和-HitFilm-Express"><a href="#最佳业余爱好者适用视频编辑软件：-HitFilm-Pro-和-HitFilm-Express" class="headerlink" title="最佳业余爱好者适用视频编辑软件： HitFilm Pro 和 HitFilm Express"></a>最佳业余爱好者适用视频编辑软件： HitFilm Pro 和 HitFilm Express</h1><h1 id="最佳Windows系统适用视频编辑软件：VideoPad"><a href="#最佳Windows系统适用视频编辑软件：VideoPad" class="headerlink" title="最佳Windows系统适用视频编辑软件：VideoPad"></a>最佳Windows系统适用视频编辑软件：VideoPad</h1>]]></content>
     
@@ -18,19 +47,6 @@
       <category>特效</category>
       
     </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2023/04/03/hello-world/"/>
-    <url>/2023/04/03/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><span class="label label-primary">text</span> <span class="label label-info">机器学习</span> <span class="label label-warning">deep学习</span> <span class="label label-danger">对抗学习</span><div class="note note-success">            <p>文字 或者 <code>markdown</code> 均可</p>          </div>            <input type="checkbox" disabled checked="checked">text          <section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>参考资料1<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>参考资料2<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
-    
     
     
   </entry>
