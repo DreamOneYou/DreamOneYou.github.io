@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>使用Git LFS上传大文件步骤</title>
+    <link href="/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/"/>
+    <url>/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/</url>
+    
+    <content type="html"><![CDATA[<div class="cnblogs_Highlighter">&nbsp;</div><p>1.首先我们要先下载git lfs。<a href="https://git-lfs.github.com/" target="_blank">链接地址</a></p><p>2.我们需要安装git lfs，但是必须安装到git/bin下面。就是你安装git的时候，那个路径。可以看我的git安装路径：</p><p><img src="https://img2023.cnblogs.com/blog/1218402/202303/1218402-20230318212103264-1945101564.png" alt="" width="548" height="143" /></p><p>3.我们可以使用以下步骤进行大文件上传，因为github上传有大文件有100M的限制。但是在上传的过程中，可能会出现443：timeout，或者refused等错误，可以看我<a href="https://www.cnblogs.com/peixu/p/17231781.html" target="_blank">之前的一个博客</a>，里面写了解决方案。</p><div class="cnblogs_Highlighter"><pre class="brush:python;gutter:true;">首先进入到你的项目下，可以直接cmd。git init #创建本地仓库环境git lfs install # 安装大文件上传应用<br />#如果你之前已经向远端git过文件，并且已经安装使用过lfs。那么上述两个语句可以不用写git lfs track * #追踪要上传的大文件，*表示路劲下的所有文件。我们如果只上传nii文件，可以使用*.niigit add .gitattributes #添加上传的属性文件（要先上传属性文件，不然可能会失败）ps：我没写这句话，但是也上传成功了git commit -m "first commit"git remote add origin git@github.com:DreamOneYou/Liver_Tumor.gitgit push origin master #将本地仓库origin分支更新到远程仓库master分支下。这一步字第一次上传是很可能会报错：error：failed to push some refs to &ldquo;...&rdquo;。我们不用管，直接按照下面步骤继续就行git add * #添加要上传的大文件，*表示路劲下的所有文件git commit -m "first commit"# 添加大文件上传说明git push origin master #上传大文件</pre></div><p>　4、我们在上传大文件的过程中，可能会遇到已经执行&nbsp; git lfs track *.zip&nbsp; 等文件，之后使用&nbsp; git add * 向本地库添加文件。但是发现使用&nbsp; git lfs status&nbsp; 时发现，没有跟踪到任何文件。对于这种情况。我采用了最原始的方法，就是单个大文件上传。</p><div class="cnblogs_Highlighter"><pre class="brush:python;gutter:true;">git lfs track *.zipgit add models/LITS_UNet_MAT_HDC/20221003_121927_MAT_HDC_Centerline/model.zipgit commit -m "upload best model"git push origin master #有时候会遇到这一步执行成功了，但是远端没有更新。我们只需要在执行一次这个语句就行</pre></div><p>5、当需要clone远端文件和大文件时，可以按照以下步骤：</p><div class="cnblogs_Highlighter"><pre class="brush:python;gutter:true;">git clone git@github.com:DreamOneYous/Hepatic_vessel.gitgit lfs pull # 拉取所有lfs上传的大文件<p>git lfs pull –include&#x3D;&lt;file_path&gt; # 可以指定拉取某个大文件<br></pre></p></div><p>&nbsp;6、如果克隆远端仓库的同时，还要克隆远端仓库中的子模块（其他仓库文件），可以采用下面语句：</p><div class="cnblogs_Highlighter"><pre class="brush:python;gutter:true;">git clone --recursive URL # 第一种：让 Git 在克隆仓库时同时下载所有子模块的代码git submodule update #第二种：进入每个子模块的目录中，分别执行 git submodule update 命令来下载子模块中的代码</pre></div><p>　　</p><p>&nbsp;</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>视频编辑软件特效</title>
     <link href="/2023/%E8%A7%86%E5%B1%8F%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%E7%89%B9%E6%95%88/"/>
     <url>/2023/%E8%A7%86%E5%B1%8F%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%E7%89%B9%E6%95%88/</url>
