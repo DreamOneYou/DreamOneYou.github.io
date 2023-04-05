@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -13,16 +13,16 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Peixu Wang">
+  <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta name="description" content="为什么选择Waline刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。  选择国际版的缺点：就是只能用外网评论，很尴尬啊，我面向的是国内啊。等我的域名备案了，在转向国内吧。  开始配置（基于">
+    <meta name="description" content="为什么选择Waline评论刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。  选择国际版的缺点：就是只能用外网评论，很尴尬啊，我面向的是国内啊。等我的域名备案了，在转向国内吧。  开始配置（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用Waline评论">
 <meta property="og:url" content="https://dreamoneyou.github.io/2023/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Waline%E8%AF%84%E8%AE%BA/">
-<meta property="og:site_name" content="九叶草 Blog">
-<meta property="og:description" content="为什么选择Waline刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。  选择国际版的缺点：就是只能用外网评论，很尴尬啊，我面向的是国内啊。等我的域名备案了，在转向国内吧。  开始配置（基于">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="九叶草的Blog">
+<meta property="og:description" content="为什么选择Waline评论刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。  选择国际版的缺点：就是只能用外网评论，很尴尬啊，我面向的是国内啊。等我的域名备案了，在转向国内吧。  开始配置（">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/1.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/2.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/3.png">
@@ -32,8 +32,8 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/7.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/8.png">
 <meta property="article:published_time" content="2023-04-05T01:43:42.000Z">
-<meta property="article:modified_time" content="2023-04-05T03:03:54.137Z">
-<meta property="article:author" content="Peixu Wang">
+<meta property="article:modified_time" content="2023-04-05T09:00:53.757Z">
+<meta property="article:author" content="九叶草">
 <meta property="article:tag" content="waline">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/img/post/Waline%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/1.png">
@@ -42,7 +42,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>如何使用Waline评论 - 九叶草 Blog</title>
+  <title>如何使用Waline评论 - 九叶草的Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -151,18 +151,6 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
@@ -187,9 +175,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
+              <a class="nav-link" href="/movies/">
+                <i class="iconfont icon-youtube-fill"></i>
+                <span>影视</span>
               </a>
             </li>
           
@@ -211,9 +199,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/movies/">
-                <i class="iconfont icon-youtube-fill"></i>
-                <span>影视</span>
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
               </a>
             </li>
           
@@ -259,7 +247,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-04-05 09:43" pubdate>
-          April 5, 2023 am
+          2023年4月5日 上午
         </time>
       </span>
     
@@ -270,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          1.6k 字
         
       </span>
     
@@ -281,7 +269,7 @@
         
         
         
-          14 mins
+          14 分钟
         
       </span>
     
@@ -291,7 +279,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -326,13 +314,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
+
+  <!-- 培旭更改：添加监听 -->
+  
+  
+  <!-- 培旭更改：添加监听 -->
+
+
             <!-- SEO header -->
-            <h1 style="display: none">如何使用Waline评论</h1>
+            <h1 style="display: none">如何使用Waline评论</h1>  
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月5日 下午
+                  
+                
+              </p>
             
             
               <div class="markdown-body">
                 
-                <h2 id="为什么选择Waline"><a href="#为什么选择Waline" class="headerlink" title="为什么选择Waline"></a>为什么选择Waline</h2><p>刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。</p>
+                <h2 id="为什么选择Waline评论"><a href="#为什么选择Waline评论" class="headerlink" title="为什么选择Waline评论"></a>为什么选择Waline评论</h2><p>刚开始选择valine，但是网上有人说valine评论不安全，比如：评论者和自己的IP和邮箱等信息容易被泄露（ps：这是我从valine换到waline的重点原因）。还有一个原因就是很容易被发送垃圾信息，因为他没有一个注册功能，只要是个人，就可以随便发评论。</p>
 <ul>
 <li>选择国际版的<strong>缺点</strong>：就是只能用外网评论，很尴尬啊，我面向的是国内啊。等我的域名备案了，在转向国内吧。</li>
 </ul>
@@ -364,6 +367,26 @@
 
                 
               </div>
+              <!-- 个人修改:打赏模块 -->
+              <!--自己添加的打赏模块：开始-->
+              <div style="text-align: center; margin: auto;">
+                <!--如果主题的  _config.yml 中开启打赏-->
+                  <hr><!--放一条水平线与文章正文内容区分-->
+                  <div style="background-color: #663399; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+                   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+                    打赏支持
+                  	
+                </div>
+                  <div style="font-size: 14px;margin-bottom: 10px;">
+                  “如果你觉得我的文章不错，不妨鼓励我继续写作。” <!--在主题的 _config.yml 中设置打赏提示语-->
+                </div>
+                  <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+                  <img src="/img/ali_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/weixin_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+                </div>
+                
+              </div> 
+              <!--自己添加的打赏模块：结束-->
+
             
             <hr/>
             <div>
@@ -379,15 +402,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/github/" class="category-chain-item">github</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/github/waline/" class="category-chain-item">waline</a>
-  
-  
-
   
 
       </span>
@@ -419,26 +435,31 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
-          <div>Peixu Wang</div>
+          <div>作者</div>
+          <div>九叶草</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>April 5, 2023</div>
+          <div>发布于</div>
+          <div>2023年4月5日</div>
         </div>
       
       
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年4月5日</div>
+        </div>
+      
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>许可协议</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -458,13 +479,19 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/%E8%A7%86%E5%B1%8F%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%E7%89%B9%E6%95%88/" title="视频编辑软件特效">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">视频编辑软件特效</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
                       <a href="/2023/hexo%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/" title="hexo搭建github博客">
                         <span class="hidden-mobile">hexo搭建github博客</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -517,7 +544,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
+    <span>目录</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -573,7 +600,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -581,7 +608,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -786,7 +813,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>
