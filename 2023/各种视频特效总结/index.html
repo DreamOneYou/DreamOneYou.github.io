@@ -24,7 +24,7 @@
 <meta property="og:description" content="视频软件常用特效 颜色校正：可以调整视频的色彩、对比度、曝光度等，使视频效果更好。  转场特效：通过添加转场特效来改变视频段之间的平滑度和流畅度，常见的转场特效包括淡入淡出、擦除、扭曲等。  滤镜特效：通过添加不同的滤镜特效来改变视频的色彩、亮度、对比度等，常见的滤镜特效包括黑白、冷色、暖色等。  文字和标题：可以在视频中添加文字和标题，以增强视频的信息传达效果。  图片和音乐：可以将图片和音乐添">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-03T15:02:58.688Z">
-<meta property="article:modified_time" content="2023-04-04T04:31:23.196Z">
+<meta property="article:modified_time" content="2023-04-05T01:44:42.901Z">
 <meta property="article:author" content="Peixu Wang">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -446,20 +446,21 @@
   
     <article id="comments" lazyload>
       
-  <div id="valine"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.14.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.14.1/waline.min.js', function() {
         var options = Object.assign(
-          {"appId":"PYFSnfR0TfX23uSMrVUduoXQ-gzGzoHsz","appKey":"rHWoMx7LVQVSAY0q8jYhrxTA","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"serverURL":"https://peixu-waline.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus","https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
           {
-            el: "#valine",
+            el: '#waline',
             path: window.location.pathname
           }
         )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })
