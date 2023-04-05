@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>argmax经过sigmoid和不经过sigmoid区别</title>
+    <link href="/2023/argmax%E7%BB%8F%E8%BF%87sigmoid%E5%92%8C%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid%E5%8C%BA%E5%88%AB/"/>
+    <url>/2023/argmax%E7%BB%8F%E8%BF%87sigmoid%E5%92%8C%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid%E5%8C%BA%E5%88%AB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>今天和同组讨论了一下网络输出时，在torch.argmax之前经过torch.sigmoid和不经过sigmoid的区别。<br>主要起因是实验结果图像不同</p><!-- * **不经过sigmoid**  --><div align=center><img src="/2023/argmax%E7%BB%8F%E8%BF%87sigmoid%E5%92%8C%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid%E5%8C%BA%E5%88%AB/%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid.png" class="" title="不经过sigmoid"><p><font>图1 不经过sigmoid</font></p><img src="/2023/argmax%E7%BB%8F%E8%BF%87sigmoid%E5%92%8C%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid%E5%8C%BA%E5%88%AB/%E7%BB%8F%E8%BF%87sigmoid.png" class="" title="不经过sigmoid"><p><font>图2 经过sigmoid</font></p></div><p>我们发现经过sigmoid预测的图像更加严格（实验结果证明，经过sigmoid效果好），会将一些<code>不经过sigmoid</code>预测的前景分为背景。</p><h2 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> torch<br>a = torch.tensor([<br>    [[<span class="hljs-number">8.0</span>,<span class="hljs-number">5.0</span>,-<span class="hljs-number">20000.0</span>],[<span class="hljs-number">4.0</span>,<span class="hljs-number">1.0</span>,<span class="hljs-number">2.0</span>],[<span class="hljs-number">1.0</span>,<span class="hljs-number">6.0</span>,<span class="hljs-number">7.0</span>]],<br>    [[-<span class="hljs-number">6.0</span>,<span class="hljs-number">11.0</span>,-<span class="hljs-number">20000.0</span>],[<span class="hljs-number">5.0</span>,<span class="hljs-number">7.0</span>,<span class="hljs-number">9.0</span>],[<span class="hljs-number">8.0</span>,<span class="hljs-number">9.0</span>,<span class="hljs-number">10.0</span>]],<br>    [[-<span class="hljs-number">6.0</span>,<span class="hljs-number">10.0</span>,-<span class="hljs-number">20001.0</span>],[<span class="hljs-number">5.0</span>,<span class="hljs-number">7.0</span>,<span class="hljs-number">9.0</span>],[<span class="hljs-number">8.0</span>,<span class="hljs-number">9.0</span>,<span class="hljs-number">10.0</span>]]<br>])<br>b = torch.argmax(a,dim=<span class="hljs-number">0</span>)<br>d = torch.sigmoid(a)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;as:\n&quot;</span>,d)<br>ds = torch.argmax(d,dim=<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;没经过sig:\n&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(b))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;经过sig:\n&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(ds))<br></code></pre></td></tr></table></figure><ul><li>结果<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lua">as:<br> tensor(<span class="hljs-string">[[[0.9997, 0.9933, 0.0000],</span><br><span class="hljs-string">         [0.9820, 0.7311, 0.8808],</span><br><span class="hljs-string">         [0.7311, 0.9975, 0.9991]]</span>,<br><br>        <span class="hljs-string">[[0.0025, 1.0000, 0.0000],</span><br><span class="hljs-string">         [0.9933, 0.9991, 0.9999],</span><br><span class="hljs-string">         [0.9997, 0.9999, 1.0000]]</span>,<br><br>        <span class="hljs-string">[[0.0025, 1.0000, 0.0000],</span><br><span class="hljs-string">         [0.9933, 0.9991, 0.9999],</span><br><span class="hljs-string">         [0.9997, 0.9999, 1.0000]]</span>])<br></code></pre></td></tr></table></figure><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lua">没经过sig:<br>tensor(<span class="hljs-string">[[0, 1, 1],</span><br><span class="hljs-string">        [2, 2, 2],</span><br><span class="hljs-string">        [2, 2, 2]]</span>)<br>经过sig:<br>tensor(<span class="hljs-string">[[0, 1, 2],</span><br><span class="hljs-string">        [2, 2, 2],</span><br><span class="hljs-string">        [2, 2, 2]]</span>)<br></code></pre></td></tr></table></figure></li><li>我们可以发现其中-20000.0，-20000.0，-20001.0分别出现在第1,2,3通道上。但是由于经过sigmoid,我们看到<strong>as</strong>结果都为0，所以导致我们最终argmax最大索引到2通道。但是如果我们不经过sigmoid，发现argmax最大索引是1。这也就证实了上面两张预测图为什么会不一样。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>argmax</tag>
+      
+      <tag>sigmoid</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo图片管理</title>
+    <link href="/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/"/>
+    <url>/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h3 id="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。"><a href="#选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。" class="headerlink" title="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。"></a>选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。</h3><hr><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="hljs">npm install hexo-asset-img --save</code></pre><h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>如果你之前已经安装了hexo，那么默认_config.yml文件中有<code>post_asset_folder</code>这个选项，将其值设置为<strong>true</strong></p><h2 id="创建一个-md文章试试"><a href="#创建一个-md文章试试" class="headerlink" title="创建一个.md文章试试"></a>创建一个.md文章试试</h2><pre><code class="hljs">hexo new &quot;hexo图片管理&quot;</code></pre><p>那么目录结构应该是这样的<br>    <img src="/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/mulujigou.png" class="" title="目录"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo-asset-img图片管理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用Git LFS上传大文件步骤</title>
     <link href="/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/"/>
     <url>/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/</url>

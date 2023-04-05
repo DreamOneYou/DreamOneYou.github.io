@@ -16,26 +16,26 @@
   <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.首先我们要先下载git lfs。链接地址2.我们需要安装git lfs，但是必须安装到git&#x2F;bin下面。就是你安装git的时候，那个路径。可以看我的git安装路径：  3.我们可以使用以下步骤进行大文件上传，因为github上传有大文件有100M的限制。但是在上传的过程中，可能会出现443：timeout，或者refused等错误，可以看我博客园里的一篇文章，里面写了解决方案。首先">
+    <meta name="description" content="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。 安装npm install hexo-asset-img --save  _config.yml配置如果你之前已经安装了hexo，那么默认_config.yml文件中有post_asset_folder这个选项，将其值设置为tru">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Git LFS上传大文件步骤">
-<meta property="og:url" content="https://dreamoneyou.github.io/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/">
+<meta property="og:title" content="hexo图片管理">
+<meta property="og:url" content="https://dreamoneyou.github.io/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/">
 <meta property="og:site_name" content="九叶草的Blog">
-<meta property="og:description" content="1.首先我们要先下载git lfs。链接地址2.我们需要安装git lfs，但是必须安装到git&#x2F;bin下面。就是你安装git的时候，那个路径。可以看我的git安装路径：  3.我们可以使用以下步骤进行大文件上传，因为github上传有大文件有100M的限制。但是在上传的过程中，可能会出现443：timeout，或者refused等错误，可以看我博客园里的一篇文章，里面写了解决方案。首先">
+<meta property="og:description" content="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。 安装npm install hexo-asset-img --save  _config.yml配置如果你之前已经安装了hexo，那么默认_config.yml文件中有post_asset_folder这个选项，将其值设置为tru">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://dreamoneyou.github.io/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/1.png">
-<meta property="article:published_time" content="2023-04-05T10:43:27.000Z">
-<meta property="article:modified_time" content="2023-04-05T12:36:43.830Z">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/mulujigou.png">
+<meta property="article:published_time" content="2023-04-05T12:42:06.000Z">
+<meta property="article:modified_time" content="2023-04-05T13:47:58.018Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="lfs">
+<meta property="article:tag" content="hexo-asset-img图片管理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://dreamoneyou.github.io/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/1.png">
+<meta name="twitter:image" content="https://dreamoneyou.github.io/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/mulujigou.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>使用Git LFS上传大文件步骤 - 九叶草的Blog</title>
+  <title>hexo图片管理 - 九叶草的Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用Git LFS上传大文件步骤"></span>
+            <span id="subtitle" data-typed-text="hexo图片管理"></span>
           
         </div>
 
@@ -239,7 +239,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-05 18:43" pubdate>
+        <time datetime="2023-04-05 20:42" pubdate>
           2023年4月5日 晚上
         </time>
       </span>
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          245 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          13 分钟
+          3 分钟
         
       </span>
     
@@ -308,7 +308,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">使用Git LFS上传大文件步骤</h1>  
+            <h1 style="display: none">hexo图片管理</h1>  
             
               <p class="note note-info">
                 
@@ -321,17 +321,14 @@
             
               <div class="markdown-body">
                 
-                <p>1.首先我们要先下载git lfs。<a target="_blank" rel="noopener" href="https://git-lfs.github.com/">链接地址</a><br>2.我们需要安装git lfs，但是必须安装到git&#x2F;bin下面。就是你安装git的时候，那个路径。可以看我的git安装路径：</p>
-<img src="/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/1.png" srcset="/img/loading.gif" lazyload class="" title="image">
-<p>3.我们可以使用以下步骤进行大文件上传，因为github上传有大文件有100M的限制。但是在上传的过程中，可能会出现443：timeout，或者refused等错误，可以看我<a target="_blank" rel="noopener" href="https://www.cnblogs.com/peixu/p/17231781.html">博客园里的一篇文章</a>，里面写了解决方案。<br>首先进入到你的项目下，可以直接cmd。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">git init <span class="hljs-comment">#创建本地仓库环境</span><br><br>git lfs install <span class="hljs-comment"># 安装大文件上传应用&lt;br /&gt;#如果你之前已经向远端git过文件，并且已经安装使用过lfs。那么上述两个语句可以不用写</span><br><br>git lfs track * <span class="hljs-comment">#追踪要上传的大文件，*表示路劲下的所有文件。我们如果只上传nii文件，可以使用*.nii</span><br><br>git add .gitattributes <span class="hljs-comment">#添加上传的属性文件（要先上传属性文件，不然可能会失败）ps：我没写这句话，但是也上传成功了</span><br><br>git commit -m <span class="hljs-string">&quot;first commit&quot;</span><br><br>git remote add origin git@github.com:DreamOneYou/Liver_Tumor.git<br><br>git push origin master <span class="hljs-comment">#将本地仓库origin分支更新到远程仓库master分支下。这一步字第一次上传是很可能会报错：error：failed to push some refs to &amp;ldquo;...&amp;rdquo;。我们不用管，直接按照下面步骤继续就行</span><br><br>git add * <span class="hljs-comment">#添加要上传的大文件，*表示路劲下的所有文件</span><br>git commit -m <span class="hljs-string">&quot;first commit&quot;</span><span class="hljs-comment"># 添加大文件上传说明</span><br>git push origin master <span class="hljs-comment">#上传大文件</span><br></code></pre></td></tr></table></figure>
-<p>　4、我们在上传大文件的过程中，可能会遇到已经执行&amp;nbsp; git lfs track *.zip&amp;nbsp; 等文件，之后使用&amp;nbsp; git add * 向本地库添加文件。但是发现使用&amp;nbsp; git lfs status&amp;nbsp; 时发现，没有跟踪到任何文件。对于这种情况。我采用了最原始的方法，就是单个大文件上传。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">git lfs track *.<span class="hljs-built_in">zip</span><br>git add models/LITS_UNet_MAT_HDC/<span class="hljs-number">2022</span>1003_121927_MAT_HDC_Centerline/model.<span class="hljs-built_in">zip</span><br>git commit -m <span class="hljs-string">&quot;upload best model&quot;</span><br>git push origin master <span class="hljs-comment">#有时候会遇到这一步执行成功了，但是远端没有更新。我们只需要在执行一次这个语句就行</span><br></code></pre></td></tr></table></figure>
+                <h3 id="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。"><a href="#选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。" class="headerlink" title="选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。"></a>选择使用hexo-asset-img进行Hexo博客图片管理。因为这个可以在你创建文章的目录下自动新建一个存储当前文章所用到的图片文件夹，感觉比较方便，也便于后续备份。</h3><hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="hljs">npm install hexo-asset-img --save
+</code></pre>
+<h2 id="config-yml配置"><a href="#config-yml配置" class="headerlink" title="_config.yml配置"></a>_config.yml配置</h2><p>如果你之前已经安装了hexo，那么默认_config.yml文件中有<code>post_asset_folder</code>这个选项，将其值设置为<strong>true</strong></p>
+<h2 id="创建一个-md文章试试"><a href="#创建一个-md文章试试" class="headerlink" title="创建一个.md文章试试"></a>创建一个.md文章试试</h2><pre><code class="hljs">hexo new &quot;hexo图片管理&quot;
+</code></pre>
+<p>那么目录结构应该是这样的<br>    <img src="/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/mulujigou.png" srcset="/img/loading.gif" lazyload class="" title="目录"></p>
 
-<p>5、当需要clone远端文件和大文件时，可以按照以下步骤：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">git clone git@github.com:DreamOneYous/Hepatic_vessel.git<br>git lfs pull <span class="hljs-comment"># 拉取所有lfs上传的大文件</span><br><br>git lfs pull --include=&amp;lt;file_path&amp;gt; <span class="hljs-comment"># 可以指定拉取某个大文件</span><br></code></pre></td></tr></table></figure>
-<p>&amp;nbsp;6、如果克隆远端仓库的同时，还要克隆远端仓库中的子模块（其他仓库文件），可以采用下面语句：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">git clone --recursive URL <span class="hljs-comment"># 第一种：让 Git 在克隆仓库时同时下载所有子模块的代码</span><br><br>git submodule update <span class="hljs-comment">#第二种：进入每个子模块的目录中，分别执行 git submodule update 命令来下载子模块中的代码</span><br></code></pre></td></tr></table></figure>
                 
               </div>
               <!-- 个人修改:打赏模块 -->
@@ -384,7 +381,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/lfs/">#lfs</a>
+        <a href="/tags/hexo-asset-img%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/">#hexo-asset-img图片管理</a>
       
     </div>
   
@@ -396,8 +393,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用Git LFS上传大文件步骤</div>
-      <div>https://dreamoneyou.github.io/2023/使用Git-LFS上传大文件步骤/</div>
+      <div>hexo图片管理</div>
+      <div>https://dreamoneyou.github.io/2023/hexo图片管理/</div>
     </div>
     <div class="license-meta">
       
@@ -446,9 +443,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/" title="hexo图片管理">
+                      <a href="/2023/argmax%E7%BB%8F%E8%BF%87sigmoid%E5%92%8C%E4%B8%8D%E7%BB%8F%E8%BF%87sigmoid%E5%8C%BA%E5%88%AB/" title="argmax经过sigmoid和不经过sigmoid区别">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo图片管理</span>
+                        <span class="hidden-mobile">argmax经过sigmoid和不经过sigmoid区别</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -456,8 +453,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Waline%E8%AF%84%E8%AE%BA/" title="如何使用Waline评论">
-                        <span class="hidden-mobile">如何使用Waline评论</span>
+                      <a href="/2023/%E4%BD%BF%E7%94%A8Git-LFS%E4%B8%8A%E4%BC%A0%E5%A4%A7%E6%96%87%E4%BB%B6%E6%AD%A5%E9%AA%A4/" title="使用Git LFS上传大文件步骤">
+                        <span class="hidden-mobile">使用Git LFS上传大文件步骤</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
