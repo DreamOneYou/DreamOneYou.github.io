@@ -184,5 +184,30 @@
   
   
   
+  <entry>
+    <title>传统图像分割方法（基于阈值分割）</title>
+    <link href="/2022/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95%EF%BC%88%E5%9F%BA%E4%BA%8E%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2%EF%BC%89/"/>
+    <url>/2022/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95%EF%BC%88%E5%9F%BA%E4%BA%8E%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>阈值法：基本思想是基于图像的<span style="color: #ff0000;">灰度特征</span>来计算一个或多个灰度阈值，并将图像中<span style="color: #ff0000;">每个像素的灰度值与阈值相比较</span>，最后将像素根据比较结果分到合适的类别中。因此，<span style="color: #ff0000;">该类方法最为关键的一步就是按照某个准则函数来求解最佳灰度阈值。</span></p><p>&nbsp;</p><p><img src="/image/1218402-20221031142818940-51960334.png" alt="" /></p><p>&nbsp;一个简单实现：</p><div class="cnblogs_code"><pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> cv2</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy as np</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> matplotlib.pyplot as plt</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> collections as colpath </span>= r<span style="color: #800000;">"</span><span style="color: #800000;">laohu.jpg</span><span style="color: #800000;">"</span><span style="color: #000000;">path1 </span>= r<span style="color: #800000;">"</span><span style="color: #800000;">laohu1.jpg</span><span style="color: #800000;">"</span><span style="color: #000000;">image </span>=<span style="color: #000000;"> cv2.imread(path)temp </span>= np.zeros((image.shape[0], image.shape[1], 1<span style="color: #000000;">))<br /># gray=0.3 * r + 0.59*g + 0.11 * btemp[:,:, 0] </span>= image[:,:, 0] * 0.11 + image[:,:, 1] * 0.59 + image[:,:, 2] * 0.3<span style="color: #008000;">#</span><span style="color: #008000;"> 绘制双峰图</span>y =<span style="color: #000000;"> list()</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(image.shape[0]):    </span><span style="color: #0000ff;">for</span> j <span style="color: #0000ff;">in</span> range(image.shape[1<span style="color: #000000;">]):        y.append(int(temp[i, j, 0]))yy </span>=<span style="color: #000000;"> col.Counter(y)yyy </span>=<span style="color: #000000;"> list()xxx </span>=<span style="color: #000000;"> list()</span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> sorted(yy):    xxx.append(i)    yyy.append(yy[i])</span><span style="color: #0000ff;">print</span><span style="color: #000000;">(yyy)<p>x </span>&#x3D; [i <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span> range(256<span style="color: #000000;">)]<br>plt.bar(xxx, yyy, width</span>&#x3D;2, fc&#x3D;<span style="color: #800000;">“</span><span style="color: #800000;">gray</span><span style="color: #800000;">“</span><span style="color: #000000;">)<br>plt.show()<br>plt.savefig(</span><span style="color: #800000;">“</span><span style="color: #800000;">bar.jpg</span><span style="color: #800000;">“</span><span style="color: #000000;">)<br></span><span style="color: #008000;">#</span><span style="color: #008000;"> 找到最低点，设置阈值</span><br>temp &#x3D; np.where(temp &gt; 115<span style="color: #000000;">, temp, 0)<br>cv2.imwrite(path1, temp)</span></pre></p></div><p>&nbsp;</p><p>结果：</p><table border="0"><tbody><tr><td>before</td><td>after</td><td>&nbsp;</td></tr><tr><td><img src="/image/1218402-20221111220313900-1998068712.jpg" alt="" /><p>&nbsp;</p></td><td><img src="/image/1218402-20221111223818410-7371975.jpg" alt="" /><br /><br /><p>&nbsp;</p></td><td><p><img src="/image/1218402-20221111223833390-881251902.png" alt="" width="461" height="234" /></p></td></tr><tr><td><p><img src="/image/1218402-20221111224947534-2116380485.jpg" alt="" /></p><p>&nbsp;</p></td><td>&nbsp;<img src="/image/1218402-20221111224958107-846218826.jpg" alt="" /><p>&nbsp;</p></td><td>&nbsp;<img src="/image/1218402-20221111225008172-1550009781.png" alt="" width="581" height="297" /><p>&nbsp;</p></td></tr></tbody></table><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>categories10245</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tags10245</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
