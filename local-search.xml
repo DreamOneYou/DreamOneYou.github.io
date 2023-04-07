@@ -8,7 +8,7 @@
     <link href="/2023/image/"/>
     <url>/2023/image/</url>
     
-    <content type="html"><![CDATA[<p>相关代码来自<a href="https://xie.infoq.cn/article/2b77c142f8753e30218230879">这里</a>。</p><h2 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h2><p>1、登录这个<a href="https://i1.cnblogs.com/BlogBackup.aspx">地址下载</a>xml博客备份文件。因为当前博客园后台备份是.db文件格式。没法用上面那个代码。ps：那个链接只能在规定时间备份。如果这个链接不能用了，那你需要联系博客园客服（我发邮件问的），问他有什么方式可以下载xml博客备份文件不。<br>2、首先使用：<code>main.py``,，当然你需要将你的xml文件名称改一下。代码中写的是 </code>backup.xml<code>。 3、然后使用:</code>image.py&#96;&#96;，下载你博客里的图片。这里可能会出现下载失败的问题，那很有可能是你的开了VPN了。ps：我不会告诉你我就是开了vpn，导致下载不下来。<br>4、 用正则表达式替换图片的网址链接，我使用的visual studio code。<br>正则表达式：</p><pre><code class="hljs">1）https://img2020.cnblogs.com/blog/(.*?)/(.*?)/2）https://images2020.cnblogs.com/blog/(.*?)/(.*?)/3）https://img.*.cnblogs.com/blog/(.*?)/(.*?)/</code></pre><p>选择合适的一个替换为：&#x2F;2023&#x2F;image&#x2F;<br>至于为什么替换为 <code>/2023/image/ </code>。因为我看了一下编译之后的<code>public</code>文件夹，发现图片都在<code>public/2023/image</code>这个目录里。</p><p>5、由于我不想把<code>image</code>目录下的图片放到<strong>Fluid</strong>主题下的img里面，因此我在博客里面，即<code>source/_posts/image</code>创建了image文件夹，将所有迁移过来的图片放在了这个下面，但是要想页面顺利链接上图片，你还需要执行这个<a href="https://opencc.icu/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/">操作</a>。<br>6、由于迁移过来之后，tags和categories类型都变为一个，所以很不幸，你只能一个文件一个文件的修改为你认为对的标签和分类。如果有自动化实现，希望评论区各位大佬基于意见。</p>]]></content>
+    <content type="html"><![CDATA[<p>相关代码来自<a href="https://xie.infoq.cn/article/2b77c142f8753e30218230879">这里</a>。</p><h2 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h2><p>1、登录这个<a href="https://i1.cnblogs.com/BlogBackup.aspx">地址下载</a>xml博客备份文件。因为当前博客园后台备份是.db文件格式。没法用上面那个代码。ps：那个链接只能在规定时间备份。如果这个链接不能用了，那你需要联系博客园客服（我发邮件问的），问他有什么方式可以下载xml博客备份文件不。<br>2、首先使用：<code>main.py</code>,，当然你需要将你的xml文件名称改一下。代码中写的是 <code>backup.xml</code>。<br>3、然后使用:<code>image.py</code>，下载你博客里的图片。这里可能会出现下载失败的问题，那很有可能是你的开了VPN了。ps：我不会告诉你我就是开了vpn，导致下载不下来。<br>4、 用正则表达式替换图片的网址链接，我使用的visual studio code。<br>正则表达式：</p><pre><code class="hljs">1）https://img2020.cnblogs.com/blog/(.*?)/(.*?)/2）https://images2020.cnblogs.com/blog/(.*?)/(.*?)/3）https://img.*.cnblogs.com/blog/(.*?)/(.*?)/</code></pre><p>选择合适的一个替换为：<code>/2023/image/ </code><br>至于为什么替换为 <code>/2023/image/ </code>。因为我看了一下编译之后的<code>public</code>文件夹，发现图片都在<code>public/2023/image</code>这个目录里。</p><p>5、由于我不想把<code>image</code>目录下的图片放到<strong>Fluid</strong>主题下的img里面，因此我在博客里面，即<code>source/_posts/image</code>创建了image文件夹，将所有迁移过来的图片放在了这个下面，但是要想页面顺利链接上图片，你还需要执行这个<a href="https://opencc.icu/2023/hexo%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/">操作</a>。<br>6、由于迁移过来之后，tags和categories类型都变为一个，所以很不幸，你只能一个文件一个文件的修改为你认为对的标签和分类。如果有自动化实现，希望评论区各位大佬基于意见。</p>]]></content>
     
     
     <categories>
@@ -2768,31 +2768,6 @@
   
   
   <entry>
-    <title>K近邻算法（KNN）</title>
-    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
-    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
-    
-    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>KNN</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>HierarchicalClustering分层集群</title>
     <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
     <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
@@ -2810,6 +2785,31 @@
     <tags>
       
       <tag>分层集群</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>K近邻算法（KNN）</title>
+    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
+    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>KNN</tag>
       
     </tags>
     
