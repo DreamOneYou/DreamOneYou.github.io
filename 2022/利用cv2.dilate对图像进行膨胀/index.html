@@ -27,9 +27,10 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220521161413788-355952186.png">
 <meta property="og:image" content="chrome-extension://fapgabkkfcaejckbfmfcdgnfefbmlion/static/sound.svg">
 <meta property="article:published_time" content="2022-05-21T08:14:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:57:29.865Z">
+<meta property="article:modified_time" content="2023-04-07T04:55:04.912Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="opencv">
+<meta property="article:tag" content="图像膨胀">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220521161402224-1022967343.png">
   
@@ -264,7 +265,7 @@
         
         
         
-          9 分钟
+          10 分钟
         
       </span>
     
@@ -315,7 +316,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -323,16 +324,8 @@
             
               <div class="markdown-body">
                 
-                <pre>cv2.getStructuringElement(cv2.MORPH_RECT, (7,7))介绍，<a href="https://blog.csdn.net/duwangthefirst/article/details/80001590" target="_blank">请看这个博客</a>。<br />我简要说一下cv2.getStructuringElement，可用于构造一个特定大小和形状的结构元素，用于图像形态学处理。其中 MORPH_RECT 就是构造一个全1方形矩阵。<br />代码如下：</pre>
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;">coding:utf-8</span>
-<span style="color: #0000ff;">import</span><span style="color: #000000;"> SimpleITK as sitk
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy as np
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> cv2
-
-<p></span><span style="color: #0000ff;">def</span><span style="color: #000000;"> dilateion(image):<br>    kernel </span>&#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (7,7<span style="color: #000000;">))<br>    dilate </span>&#x3D; cv2.dilate(image, kernel, iterations&#x3D;1<span style="color: #000000;">)<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> dilate</p>
-<p></span><span style="color: #0000ff;">def</span><span style="color: #000000;"> save(x, path):<br>    predict_seg </span>&#x3D;<span style="color: #000000;"> sitk.GetImageFromArray(x)<br>    sitk.WriteImage(predict_seg, path)<br></span><span style="color: #0000ff;">def</span><span style="color: #000000;"> read_nii(path):<br>    image </span>&#x3D;<span style="color: #000000;"> sitk.ReadImage(path)<br>    img_num </span>&#x3D;<span style="color: #000000;"> sitk.GetArrayFromImage(image)<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> img_num<br></span><span style="color: #0000ff;">if</span> <span style="color: #800080;"><strong>name</strong></span> &#x3D;&#x3D; <span style="color: #800000;">“</span><span style="color: #800000;"><strong>main</strong></span><span style="color: #800000;">“</span><span style="color: #000000;">:<br>    path </span>&#x3D; r<span style="color: #800000;">“</span><span style="color: #800000;">D:\myProject\HDC_vessel_seg\datasets\nii\vessel_1.nii</span><span style="color: #800000;">“</span><span style="color: #000000;"><br>    img_num </span>&#x3D;<span style="color: #000000;"> read_nii(path)<br>    img_num </span>&#x3D; img_num[20:84<span style="color: #000000;">,…]<br>    slices </span>&#x3D;<span style="color: #000000;"> img_num.shape[0]<br>    result </span>&#x3D;<span style="color: #000000;"> np.zeros(img_num.shape)<br>    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(slices):<br>        sli </span>&#x3D; img_num[i:i+1<span style="color: #000000;">, …]<br>        s </span>&#x3D;<span style="color: #000000;"> sli[0,…]<br>        slice </span>&#x3D;<span style="color: #000000;"> dilateion(s)<br>        result[i,…] </span>&#x3D;<span style="color: #000000;"> slice<br>    save(result, path.replace(</span><span style="color: #800000;">“</span><span style="color: #800000;">vessel_1</span><span style="color: #800000;">“</span>, <span style="color: #800000;">“</span><span style="color: #800000;">dilate_vessel_1</span><span style="color: #800000;">“</span><span style="color: #000000;">))<br>    save(img_num, path.replace(</span><span style="color: #800000;">“</span><span style="color: #800000;">vessel_1</span><span style="color: #800000;">“</span>, <span style="color: #800000;">“pre_</span><span style="color: #800000;">vessel_1</span><span style="color: #800000;">“</span><span style="color: #000000;">))<br>    </span><span style="color: #0000ff;">print</span>(slices)</pre></p>
-</div>
+                <p>cv2.getStructuringElement(cv2.MORPH_RECT, (7,7))介绍，<a href="https://blog.csdn.net/duwangthefirst/article/details/80001590" target="_blank">请看这个博客</a>。我简要说一下cv2.getStructuringElement，可用于构造一个特定大小和形状的结构元素，用于图像形态学处理。其中 MORPH_RECT 就是构造一个全1方形矩阵。<br><br />代码如下：</pre></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> SimpleITK <span class="hljs-keyword">as</span> sitk<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dilateion</span>(<span class="hljs-params">image</span>):<br>    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">7</span>,<span class="hljs-number">7</span>))<br>    dilate = cv2.dilate(image, kernel, iterations=<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> dilate<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save</span>(<span class="hljs-params">x, path</span>):<br>    predict_seg = sitk.GetImageFromArray(x)<br>    sitk.WriteImage(predict_seg, path)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_nii</span>(<span class="hljs-params">path</span>):<br>    image = sitk.ReadImage(path)<br>    img_num = sitk.GetArrayFromImage(image)<br>    <span class="hljs-keyword">return</span> img_num<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    path = <span class="hljs-string">r&quot;D:\myProject\HDC_vessel_seg\datasets\nii\vessel_1.nii&quot;</span><br>    img_num = read_nii(path)<br>    img_num = img_num[<span class="hljs-number">20</span>:<span class="hljs-number">84</span>,...]<br>    slices = img_num.shape[<span class="hljs-number">0</span>]<br>    result = np.zeros(img_num.shape)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(slices):<br>        sli = img_num[i:i+<span class="hljs-number">1</span>, ...]<br>        s = sli[<span class="hljs-number">0</span>,...]<br>        <span class="hljs-built_in">slice</span> = dilateion(s)<br>        result[i,...] = <span class="hljs-built_in">slice</span><br>    save(result, path.replace(<span class="hljs-string">&quot;vessel_1&quot;</span>, <span class="hljs-string">&quot;dilate_vessel_1&quot;</span>))<br>    save(img_num, path.replace(<span class="hljs-string">&quot;vessel_1&quot;</span>, <span class="hljs-string">&quot;pre_vessel_1&quot;</span>))<br>    <span class="hljs-built_in">print</span>(slices)<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
 <p>未扩张之前：</p>
 <p><img src="/2023/image/1218402-20220521161402224-1022967343.png" srcset="/img/loading.gif" lazyload alt="" /></p>
@@ -389,7 +382,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -404,7 +397,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/opencv/">#opencv</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E8%86%A8%E8%83%80/">#图像膨胀</a>
       
     </div>
   

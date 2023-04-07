@@ -25,9 +25,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220504123559355-111855367.png">
 <meta property="article:published_time" content="2022-05-04T04:36:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:57:17.486Z">
+<meta property="article:modified_time" content="2023-04-07T05:06:35.604Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="nii">
+<meta property="article:tag" content="3D">
+<meta property="article:tag" content="nii2png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220504123559355-111855367.png">
   
@@ -262,7 +264,7 @@
         
         
         
-          12 分钟
+          11 分钟
         
       </span>
     
@@ -313,7 +315,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -322,42 +324,9 @@
               <div class="markdown-body">
                 
                 <p>为了便于直观的看到2D标签，通常会将其转化为png图像，具体代码如下：</p>
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;"> coding:utf-8</span>
-<span style="color: #0000ff;">from</span> glob <span style="color: #0000ff;">import</span><span style="color: #000000;"> glob
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> os
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> SimpleITK as sitk
-</span><span style="color: #0000ff;">from</span> pathlib <span style="color: #0000ff;">import</span><span style="color: #000000;"> Path
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy as np
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> imageio
-path </span>= glob(r<span style="color: #800000;">"</span><span style="color: #800000;">D:\compation\kaggle\3D_preprocess\a\*</span><span style="color: #800000;">"</span>) <span style="color: #008000;">#</span><span style="color: #008000;"> 获取到该文件夹下所有的标签（3D nii文件）</span>
-save = Path(r<span style="color: #800000;">"</span><span style="color: #800000;">D:\compation\kaggle\3D_preprocess\a</span><span style="color: #800000;">"</span>)  <span style="color: #008000;">#</span><span style="color: #008000;"> 保存路径</span>
-<span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(len(path)):
-    file </span>=<span style="color: #000000;"> path[i]
-    file_name </span>= file.split(<span style="color: #800000;">"</span><span style="color: #800000;">\\</span><span style="color: #800000;">"</span>)[-1].split(<span style="color: #800000;">"</span><span style="color: #800000;">_seg</span><span style="color: #800000;">"</span><span style="color: #000000;">)[0]
-    case </span>= file_name.split(<span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span><span style="color: #000000;">)[0]
-    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">case:{}, file_name:{}</span><span style="color: #800000;">"</span><span style="color: #000000;">.format(case, file_name))
-    seg </span>=<span style="color: #000000;"> sitk.ReadImage(file)
-    seg </span>=<span style="color: #000000;"> sitk.GetArrayFromImage(seg)
-    </span><span style="color: #0000ff;">for</span> j <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(seg.shape[0]):
-        </span><span style="color: #008000;">#</span><span style="color: #008000;"> png = np.zeros((seg.shape[1:]))</span>
-        <span style="color: #008000;">#</span><span style="color: #008000;"> print("j:",j)</span>
-        save_path = save / case / file_name /<span style="color: #800000;">"</span><span style="color: #800000;">scans</span><span style="color: #800000;">"</span><span style="color: #000000;">
-        name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">slice_</span><span style="color: #800000;">"</span>+str(j)+str(seg.shape[1]) +<span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span>+str(seg.shape[2])+<span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span>+str(1.5)+<span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span>+str(1.5<span style="color: #000000;">)
-        output </span>=<span style="color: #000000;"> seg[j, ...]
-        Snapshot_img </span>= np.zeros(shape=(seg.shape[1],seg.shape[2],3), dtype=np.uint8)  <span style="color: #008000;">#</span><span style="color: #008000;"> png设置为3通道</span>
-        Snapshot_img[:, :, 0][np.where(output == 1)] = 255   <span style="color: #008000;">#</span><span style="color: #008000;">我们也有3个标签，其中值分别为1,2,3，所以我们需要给每个标签都赋予不同的通道</span>
-        Snapshot_img[:, :, 1][np.where(output == 2)] = 255<span style="color: #000000;">
-        Snapshot_img[:, :, </span>2][np.where(output == 3)] = 255<span style="color: #000000;">
-
-
-<pre><code class="hljs">    os.makedirs(save_path, exist_ok&lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt;True)
-    imageio.imwrite(os.path.join(save_path, name &lt;/span&gt;+ &lt;span style=&quot;color: #800000;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;.png&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&#39;&lt;/span&gt;), Snapshot_img[:, :, :])&lt;/pre&gt;
-</code></pre>
-</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># coding:utf-8</span><br><span class="hljs-keyword">from</span> glob <span class="hljs-keyword">import</span> glob<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> SimpleITK <span class="hljs-keyword">as</span> sitk<br><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> imageio<br>path = glob(<span class="hljs-string">r&quot;D:\compation\kaggle\3D_preprocess\a\*&quot;</span>) <span class="hljs-comment"># 获取到该文件夹下所有的标签（3D nii文件）</span><br>save = Path(<span class="hljs-string">r&quot;D:\compation\kaggle\3D_preprocess\a&quot;</span>)  <span class="hljs-comment"># 保存路径</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(path)):<br>    file = path[i]<br>    file_name = file.split(<span class="hljs-string">&quot;\\&quot;</span>)[-<span class="hljs-number">1</span>].split(<span class="hljs-string">&quot;_seg&quot;</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">case</span> = file_name.split(<span class="hljs-string">&quot;_&quot;</span>)[<span class="hljs-number">0</span>]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;case:&#123;&#125;, file_name:&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-keyword">case</span>, file_name))<br>    seg = sitk.ReadImage(file)<br>    seg = sitk.GetArrayFromImage(seg)<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(seg.shape[<span class="hljs-number">0</span>]):<br>        <span class="hljs-comment"># png = np.zeros((seg.shape[1:]))</span><br>        <span class="hljs-comment"># print(&quot;j:&quot;,j)</span><br>        save_path = save / <span class="hljs-keyword">case</span> / file_name /<span class="hljs-string">&quot;scans&quot;</span><br>        name = <span class="hljs-string">&quot;slice_&quot;</span>+<span class="hljs-built_in">str</span>(j)+<span class="hljs-built_in">str</span>(seg.shape[<span class="hljs-number">1</span>]) +<span class="hljs-string">&quot;_&quot;</span>+<span class="hljs-built_in">str</span>(seg.shape[<span class="hljs-number">2</span>])+<span class="hljs-string">&quot;_&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-number">1.5</span>)+<span class="hljs-string">&quot;_&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-number">1.5</span>)<br>        output = seg[j, ...]<br>        Snapshot_img = np.zeros(shape=(seg.shape[<span class="hljs-number">1</span>],seg.shape[<span class="hljs-number">2</span>],<span class="hljs-number">3</span>), dtype=np.uint8)  <span class="hljs-comment"># png设置为3通道</span><br>        Snapshot_img[:, :, <span class="hljs-number">0</span>][np.where(output == <span class="hljs-number">1</span>)] = <span class="hljs-number">255</span>   <span class="hljs-comment">#我们也有3个标签，其中值分别为1,2,3，所以我们需要给每个标签都赋予不同的通道</span><br>        Snapshot_img[:, :, <span class="hljs-number">1</span>][np.where(output == <span class="hljs-number">2</span>)] = <span class="hljs-number">255</span><br>        Snapshot_img[:, :, <span class="hljs-number">2</span>][np.where(output == <span class="hljs-number">3</span>)] = <span class="hljs-number">255</span><br><br><br>        os.makedirs(save_path, exist_ok=<span class="hljs-literal">True</span>)<br>        imageio.imwrite(os.path.join(save_path, name + <span class="hljs-string">&#x27;.png&#x27;</span>), Snapshot_img[:, :, :])<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
 <p><img src="/2023/image/1218402-20220504123559355-111855367.png" srcset="/img/loading.gif" lazyload alt="" /></p>
-<p>&nbsp;</p>
                 
               </div>
               <!-- 个人修改:打赏模块 -->
@@ -395,7 +364,7 @@ save = Path(r<span style="color: #800000;">"</span><span style="color: #800000;"
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -410,7 +379,11 @@ save = Path(r<span style="color: #800000;">"</span><span style="color: #800000;"
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/nii/">#nii</a>
+      
+        <a href="/tags/3D/">#3D</a>
+      
+        <a href="/tags/nii2png/">#nii2png</a>
       
     </div>
   

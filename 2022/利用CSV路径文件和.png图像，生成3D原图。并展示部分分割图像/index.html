@@ -28,9 +28,11 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220502115210720-2137362928.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220502115423691-1459085922.png">
 <meta property="article:published_time" content="2022-05-02T03:55:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:57:22.962Z">
+<meta property="article:modified_time" content="2023-04-07T05:08:35.302Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="csv路径文件">
+<meta property="article:tag" content="2Dto3D">
+<meta property="article:tag" content="分割图像">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220504123953403-781016233.png">
   
@@ -254,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          556 字
+          605 字
         
       </span>
     
@@ -265,7 +267,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -316,7 +318,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -325,17 +327,7 @@
               <div class="markdown-body">
                 
                 <p>具体代码 ，请看的的<a href="https://gist.github.com/DreamOneYou/4f39272299055183f42cb03b8e98e4e0" target="_blank">github</a></p>
-<div class="cnblogs_code">
-<pre><span style="color: #0000ff;">if</span> <span style="color: #800080;">__name__</span> == <span style="color: #800000;">"</span><span style="color: #800000;">__main__</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-  df </span>= pd.read_csv(r<span style="color: #800000;">'</span><span style="color: #800000;">D:/compation/kaggle/train.csv/train.csv</span><span style="color: #800000;">'</span>)  <span style="color: #008000;">#</span><span style="color: #008000;"> 路径文件</span>
-  list_images = glob(r<span style="color: #800000;">'</span><span style="color: #800000;">D:\\compation\\kaggle\\train\\*\\*\\scans\\*.png</span><span style="color: #800000;">'</span>)  <span style="color: #008000;">#</span><span style="color: #008000;"> 利用glob列出所有.png文件</span>
-  <span style="color: #008000;">#</span><span style="color: #008000;"> print(df.head())</span>
-  mask_data_not_null = df[df[<span style="color: #800000;">'</span><span style="color: #800000;">segmentation</span><span style="color: #800000;">'</span>].notnull()]  <span style="color: #008000;">#</span><span style="color: #008000;"> 只提取有分割结果的mask</span>
-  <span style="color: #0000ff;">print</span><span style="color: #000000;">(mask_data_not_null)
-  index_list </span>=<span style="color: #000000;"> list(mask_data_not_null.index)
-  image_details </span>= show_image(list_images,show=True,create_nii=False)   <span style="color: #008000;">#</span><span style="color: #008000;"> 展示image,可以选择是否保存成nii文件（3D文件）</span>
-  show_mask(index_list, image_details,mask_data_not_null, show=True)   <span style="color: #008000;">#</span><span style="color: #008000;">展示mask，暂时不知道怎么搞成3D，有会的帮忙补充一下。</span></pre>
-</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>  df = pd.read_csv(<span class="hljs-string">r&#x27;D:/compation/kaggle/train.csv/train.csv&#x27;</span>)  <span class="hljs-comment"># 路径文件</span><br>  list_images = glob(<span class="hljs-string">r&#x27;D:\\compation\\kaggle\\train\\*\\*\\scans\\*.png&#x27;</span>)  <span class="hljs-comment"># 利用glob列出所有.png文件</span><br>  <span class="hljs-comment"># print(df.head())</span><br>  mask_data_not_null = df[df[<span class="hljs-string">&#x27;segmentation&#x27;</span>].notnull()]  <span class="hljs-comment"># 只提取有分割结果的mask</span><br>  <span class="hljs-built_in">print</span>(mask_data_not_null)<br>  index_list = <span class="hljs-built_in">list</span>(mask_data_not_null.index)<br>  image_details = show_image(list_images,show=<span class="hljs-literal">True</span>,create_nii=<span class="hljs-literal">False</span>)   <span class="hljs-comment"># 展示image,可以选择是否保存成nii文件（3D文件）</span><br>  show_mask(index_list, image_details,mask_data_not_null, show=<span class="hljs-literal">True</span>)   <span class="hljs-comment">#展示mask，暂时不知道怎么搞成3D，有会的帮忙补充一下。</span><br></code></pre></td></tr></table></figure>
 <p>train.csv:</p>
 <p><img src="/2023/image/1218402-20220504123953403-781016233.png" srcset="/img/loading.gif" lazyload alt="" /></p>
 <p>&nbsp;</p>
@@ -382,7 +374,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -397,7 +389,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/csv%E8%B7%AF%E5%BE%84%E6%96%87%E4%BB%B6/">#csv路径文件</a>
+      
+        <a href="/tags/2Dto3D/">#2Dto3D</a>
+      
+        <a href="/tags/%E5%88%86%E5%89%B2%E5%9B%BE%E5%83%8F/">#分割图像</a>
       
     </div>
   
@@ -469,8 +465,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/%E4%BD%BF%E7%94%A8nnUNet%E8%B7%91BraTS%E8%84%91%E8%82%BF%E7%98%A4%E5%88%86%E5%89%B2%E9%A2%84%E6%B5%8BTC%E5%92%8CET%E9%9D%9E%E5%B8%B8%E4%BD%8E%E7%9A%84%E5%8E%9F%E5%9B%A0%E3%80%82/" title="使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低的原因。">
-                        <span class="hidden-mobile">使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低的原因。</span>
+                      <a href="/2022/%E4%BD%BF%E7%94%A8nnUNet%E8%B7%91BraTS%E8%84%91%E8%82%BF%E7%98%A4%E5%88%86%E5%89%B2%E9%A2%84%E6%B5%8BTC%E5%92%8CET%E9%9D%9E%E5%B8%B8%E4%BD%8E%E7%9A%84%E5%8E%9F%E5%9B%A0%E3%80%82/" title="使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低的原因">
+                        <span class="hidden-mobile">使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低的原因</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

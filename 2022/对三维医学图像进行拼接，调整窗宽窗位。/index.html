@@ -17,16 +17,18 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="article">
-<meta property="og:title" content="对三维医学图像进行拼接，调整窗宽窗位。">
+<meta property="og:title" content="对三维医学图像进行拼接，调整窗宽窗位">
 <meta property="og:url" content="https://dreamoneyou.github.io/2022/%E5%AF%B9%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E6%8B%BC%E6%8E%A5%EF%BC%8C%E8%B0%83%E6%95%B4%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D%E3%80%82/">
 <meta property="og:site_name" content="九叶草的Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220304170330988-1916118888.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220304170359156-1519632988.png">
 <meta property="article:published_time" content="2022-03-04T09:06:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:55:56.701Z">
+<meta property="article:modified_time" content="2023-04-07T05:19:40.029Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="三维医学图像">
+<meta property="article:tag" content="窗宽窗位">
+<meta property="article:tag" content="图像拼接">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220304170330988-1916118888.png">
   
@@ -34,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>对三维医学图像进行拼接，调整窗宽窗位。 - 九叶草的Blog</title>
+  <title>对三维医学图像进行拼接，调整窗宽窗位 - 九叶草的Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="对三维医学图像进行拼接，调整窗宽窗位。"></span>
+            <span id="subtitle" data-typed-text="对三维医学图像进行拼接，调整窗宽窗位"></span>
           
         </div>
 
@@ -250,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          1.9k 字
         
       </span>
     
@@ -261,7 +263,7 @@
         
         
         
-          41 分钟
+          16 分钟
         
       </span>
     
@@ -307,12 +309,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">对三维医学图像进行拼接，调整窗宽窗位。</h1>  
+            <h1 style="display: none">对三维医学图像进行拼接，调整窗宽窗位</h1>  
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -320,66 +322,7 @@
             
               <div class="markdown-body">
                 
-                <div class="cnblogs_code">
-<pre></pre>
-<p><br /><span style="color: #ff0000;">窗宽</span>指CT图像所显示的<span style="color: #ff0000;">CT 值范围</span>，在此CT值范围内的组织和病变均以不同的模拟灰度显示<br /><span style="color: #ff0000;">窗位（窗中心）</span>指窗宽范围内均值或中心值，如果窗宽为100Hu，<span style="color: #ff0000;">当窗位为中心 0Hu，则CT值的范围为-50Hu ~ +50Hu；当窗位为中心 +35Hu，则CT值的范围为-15Hu ~ +85Hu；</span></p>
-<pre><span style="color: #0000ff;"><br /><br />def</span> infer_tumorandliver(model, ct_array_nor, cube_shape=(129, 512, 512<span style="color: #000000;">)):
-    patch_size </span>= cube_shape  <span style="color: #008000;">#</span><span style="color: #008000;"> 送入网络时的patch大小</span>
-    patch_stride = [60, 256, 256] <span style="color: #008000;">#</span><span style="color: #008000;"> 重叠部位大小</span>
-<span style="color: #000000;">
-    locations, image_shape </span>= generate_test_locations(ct_array_nor, patch_size, patch_stride)  <span style="color: #008000;">#</span><span style="color: #008000;"> 生成步长与图像shape</span>
-    <span style="color: #0000ff;">print</span>(<span style="color: #800000;">'</span><span style="color: #800000;">location</span><span style="color: #800000;">'</span><span style="color: #000000;">, locations, image_shape)
-
-<pre><code class="hljs">image &lt;/span&gt;= np.zeros((1,) + (ct_array_nor.shape)).astype(np.float32) &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 生成与原图对应大小的全0体积图像，用于保存预测结果图&lt;/span&gt;
-seg = np.zeros((ct_array_nor.shape)).astype(np.float32)&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 生成与原图对应大小的全0体积图像，用于除去重叠部位&lt;/span&gt;
-
-
-&lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #800000;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image shape&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;, image.shape)
-
-&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; z &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; range(0, locations[0]):
-    zs &lt;/span&gt;= min(patch_stride[0] * z, image_shape[0] -&lt;span style=&quot;color: #000000;&quot;&gt; patch_size[0])
-    &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; x &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt; range(0, locations[1&lt;span style=&quot;color: #000000;&quot;&gt;]):
-        xs &lt;/span&gt;= min(patch_stride[1] * x, image_shape[1] - patch_size[1&lt;span style=&quot;color: #000000;&quot;&gt;])
-        &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; y &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt; range(0, locations[2&lt;span style=&quot;color: #000000;&quot;&gt;]):
-            ys &lt;/span&gt;= min(patch_stride[2] * y, image_shape[2] - patch_size[2&lt;span style=&quot;color: #000000;&quot;&gt;])
-
-            patch &lt;/span&gt;= ct_array_nor[zs:zs +&lt;span style=&quot;color: #000000;&quot;&gt; patch_size[0],
-                    xs:xs &lt;/span&gt;+ patch_size[1&lt;span style=&quot;color: #000000;&quot;&gt;],
-                    ys:ys &lt;/span&gt;+ patch_size[2&lt;span style=&quot;color: #000000;&quot;&gt;]]
-            &lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; print(&#39;patch&#39;,patch)&lt;/span&gt;
-            patch = np.expand_dims(np.expand_dims(patch, axis=0), axis=&lt;span style=&quot;color: #000000;&quot;&gt;0).astype(np.float32)
-
-            &lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 适用于深度学习预测&lt;/span&gt;
-            &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; patch_tensor = torch.from_numpy(patch).cuda()&lt;/span&gt;
-            &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; output = model(patch_tensor)&lt;/span&gt;
-            &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; output = output.cpu().data.numpy()&lt;/span&gt;
-
-            &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 适用于正常拼接&lt;/span&gt;
-            patch_tensor =&lt;span style=&quot;color: #000000;&quot;&gt; torch.from_numpy(patch).cuda()
-            output &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; patch_tensor.cpu().data.numpy()
-
-            image[:, zs:zs &lt;/span&gt;+ patch_size[0], xs:xs + patch_size[1], ys:ys + patch_size[2&lt;span style=&quot;color: #000000;&quot;&gt;]] \
-                &lt;/span&gt;= image[:, zs:zs + patch_size[0], xs:xs + patch_size[1], ys:ys + patch_size[2]] +&lt;span style=&quot;color: #000000;&quot;&gt; output[0, 0,
-                                                                                                      :, :, :]
-
-            seg[zs:zs &lt;/span&gt;+ patch_size[0], xs:xs + patch_size[1], ys:ys + patch_size[2&lt;span style=&quot;color: #000000;&quot;&gt;]] \
-                &lt;/span&gt;= seg[zs:zs + patch_size[0], xs:xs + patch_size[1], ys:ys + patch_size[2]] + 1&lt;span style=&quot;color: #000000;&quot;&gt;
-
-
-image &lt;/span&gt;= image / np.expand_dims(seg, axis=&lt;span style=&quot;color: #000000;&quot;&gt;0)
-
-
-image &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; np.squeeze(image)
-
-&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 可以对图像进行窗宽窗位调整&lt;/span&gt;
-image[image&amp;lt;50] =&lt;span style=&quot;color: #000000;&quot;&gt; 0
-image[image&lt;/span&gt;&amp;gt;400] =400&lt;span style=&quot;color: #000000;&quot;&gt;
-mask_pred_containers &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; image
-
-&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 弄回pad前大小&lt;/span&gt;
-&lt;span style=&quot;color: #0000ff;&quot;&gt;return&lt;/span&gt; mask_pred_containers&lt;/pre&gt;
-</code></pre>
-</div>
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs python">窗宽指CT图像所显示的CT 值范围，在此CT值范围内的组织和病变均以不同的模拟灰度显示窗位（窗中心）指窗宽范围内均值或中心值，如果窗宽为100Hu，当窗位为中心 0Hu，则CT值的范围为-50Hu ~ +50Hu；当窗位为中心 +35Hu，则CT值的范围为-15Hu ~ +85Hu；<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">infer_tumorandliver</span>(<span class="hljs-params">model, ct_array_nor, cube_shape=(<span class="hljs-params"><span class="hljs-number">129</span>, <span class="hljs-number">512</span>, <span class="hljs-number">512</span></span>)</span>):<br>    patch_size = cube_shape  <span class="hljs-comment"># 送入网络时的patch大小</span><br>    patch_stride = [<span class="hljs-number">60</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>] <span class="hljs-comment"># 重叠部位大小</span><br><br>    locations, image_shape = generate_test_locations(ct_array_nor, patch_size, patch_stride)  <span class="hljs-comment"># 生成步长与图像shape</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;location&#x27;</span>, locations, image_shape)<br><br>    image = np.zeros((<span class="hljs-number">1</span>,) + (ct_array_nor.shape)).astype(np.float32) <span class="hljs-comment"># 生成与原图对应大小的全0体积图像，用于保存预测结果图</span><br>    seg = np.zeros((ct_array_nor.shape)).astype(np.float32)<span class="hljs-comment"># 生成与原图对应大小的全0体积图像，用于除去重叠部位</span><br><br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;image shape&#x27;</span>, image.shape)<br><br>    <span class="hljs-keyword">for</span> z <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, locations[<span class="hljs-number">0</span>]):<br>        zs = <span class="hljs-built_in">min</span>(patch_stride[<span class="hljs-number">0</span>] * z, image_shape[<span class="hljs-number">0</span>] - patch_size[<span class="hljs-number">0</span>])<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, locations[<span class="hljs-number">1</span>]):<br>            xs = <span class="hljs-built_in">min</span>(patch_stride[<span class="hljs-number">1</span>] * x, image_shape[<span class="hljs-number">1</span>] - patch_size[<span class="hljs-number">1</span>])<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, locations[<span class="hljs-number">2</span>]):<br>                ys = <span class="hljs-built_in">min</span>(patch_stride[<span class="hljs-number">2</span>] * y, image_shape[<span class="hljs-number">2</span>] - patch_size[<span class="hljs-number">2</span>])<br><br>                patch = ct_array_nor[zs:zs + patch_size[<span class="hljs-number">0</span>],<br>                        xs:xs + patch_size[<span class="hljs-number">1</span>],<br>                        ys:ys + patch_size[<span class="hljs-number">2</span>]]<br>                <span class="hljs-comment"># print(&#x27;patch&#x27;,patch)</span><br>                patch = np.expand_dims(np.expand_dims(patch, axis=<span class="hljs-number">0</span>), axis=<span class="hljs-number">0</span>).astype(np.float32)<br><br>                <span class="hljs-comment"># 适用于深度学习预测</span><br>                <span class="hljs-comment"># patch_tensor = torch.from_numpy(patch).cuda()</span><br>                <span class="hljs-comment"># output = model(patch_tensor)</span><br>                <span class="hljs-comment"># output = output.cpu().data.numpy()</span><br><br>                <span class="hljs-comment"># 适用于正常拼接</span><br>                patch_tensor = torch.from_numpy(patch).cuda()<br>                output = patch_tensor.cpu().data.numpy()<br><br>                image[:, zs:zs + patch_size[<span class="hljs-number">0</span>], xs:xs + patch_size[<span class="hljs-number">1</span>], ys:ys + patch_size[<span class="hljs-number">2</span>]] \<br>                    = image[:, zs:zs + patch_size[<span class="hljs-number">0</span>], xs:xs + patch_size[<span class="hljs-number">1</span>], ys:ys + patch_size[<span class="hljs-number">2</span>]] + output[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>,<br>                                                                                                          :, :, :]<br><br>                seg[zs:zs + patch_size[<span class="hljs-number">0</span>], xs:xs + patch_size[<span class="hljs-number">1</span>], ys:ys + patch_size[<span class="hljs-number">2</span>]] \<br>                    = seg[zs:zs + patch_size[<span class="hljs-number">0</span>], xs:xs + patch_size[<span class="hljs-number">1</span>], ys:ys + patch_size[<span class="hljs-number">2</span>]] + <span class="hljs-number">1</span><br><br><br>    image = image / np.expand_dims(seg, axis=<span class="hljs-number">0</span>)<br><br><br>    image = np.squeeze(image)<br>    <br>    <span class="hljs-comment"># 可以对图像进行窗宽窗位调整</span><br>    image[image&lt;<span class="hljs-number">50</span>] = <span class="hljs-number">0</span><br>    image[image&gt;<span class="hljs-number">400</span>] =<span class="hljs-number">400</span><br>    mask_pred_containers = image<br><br>    <span class="hljs-comment"># 弄回pad前大小</span><br>    <span class="hljs-keyword">return</span> mask_pred_containers<br></code></pre></td></tr></table></figure>
 <p>因为我做了图像强度变化，所以前后存在一些不一致，但是不影响拼接结果。</p>
 <p>图像拼接前：</p>
 <p><img src="/2023/image/1218402-20220304170330988-1916118888.png" srcset="/img/loading.gif" lazyload alt="" /></p>
@@ -423,7 +366,7 @@ mask_pred_containers &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -438,7 +381,11 @@ mask_pred_containers &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F/">#三维医学图像</a>
+      
+        <a href="/tags/%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/">#窗宽窗位</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E6%8B%BC%E6%8E%A5/">#图像拼接</a>
       
     </div>
   
@@ -450,7 +397,7 @@ mask_pred_containers &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>对三维医学图像进行拼接，调整窗宽窗位。</div>
+      <div>对三维医学图像进行拼接，调整窗宽窗位</div>
       <div>https://dreamoneyou.github.io/2022/对三维医学图像进行拼接，调整窗宽窗位。/</div>
     </div>
     <div class="license-meta">

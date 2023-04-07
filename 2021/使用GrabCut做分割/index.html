@@ -27,9 +27,10 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20210304105238931-661512430.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20210304105306020-90110381.png">
 <meta property="article:published_time" content="2021-03-04T02:54:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T02:14:02.833Z">
+<meta property="article:modified_time" content="2023-04-07T05:29:09.943Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="GrabCut">
+<meta property="article:tag" content="图像分割">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20210304105159932-1478558264.png">
   
@@ -253,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.6k 字
         
       </span>
     
@@ -264,7 +265,7 @@
         
         
         
-          20 分钟
+          22 分钟
         
       </span>
     
@@ -315,7 +316,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -324,102 +325,8 @@
               <div class="markdown-body">
                 
                 <p>主要完成了界面化设计，代码如下</p>
-<div class="cnblogs_Highlighter">
-<pre class="brush:python;gutter:true;">import cv2 as cv
-import numpy as np
-import sys
-from PyQt5.Qt import *
-class MyWediget(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("分割烟草")
-        self.setWindowIcon(QIcon("2.jpg"))
-        self.setFixedSize(800, 430)
-        self.setup_ui()
-        self.arg = ""
-    def setup_ui(self):
-        def test():
-            fd = QFileDialog(window, "选择一个文件", "../", "All(*.*);;Images(*.png *.jpg);;Python文件(*.py)")
-            fd.move(200,0)
-            fd.setLabelText(QFileDialog.FileName, "我的文件")
-            fd.setLabelText(QFileDialog.Accept, "接受")
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> PyQt5.Qt <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyWediget</span>(<span class="hljs-title class_ inherited__">QWidget</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.setWindowTitle(<span class="hljs-string">&quot;分割烟草&quot;</span>)<br>        self.setWindowIcon(QIcon(<span class="hljs-string">&quot;2.jpg&quot;</span>))<br>        self.setFixedSize(<span class="hljs-number">800</span>, <span class="hljs-number">430</span>)<br>        self.setup_ui()<br>        self.arg = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">setup_ui</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">test</span>():<br>            fd = QFileDialog(window, <span class="hljs-string">&quot;选择一个文件&quot;</span>, <span class="hljs-string">&quot;../&quot;</span>, <span class="hljs-string">&quot;All(*.*);;Images(*.png *.jpg);;Python文件(*.py)&quot;</span>)<br>            fd.move(<span class="hljs-number">200</span>,<span class="hljs-number">0</span>)<br>            fd.setLabelText(QFileDialog.FileName, <span class="hljs-string">&quot;我的文件&quot;</span>)<br>            fd.setLabelText(QFileDialog.Accept, <span class="hljs-string">&quot;接受&quot;</span>)<br><br>            fd.setLabelText(QFileDialog.Reject, <span class="hljs-string">&quot;拒绝&quot;</span>)<br>            fd.setFileMode(QFileDialog.ExistingFiles)<br>            <span class="hljs-keyword">def</span> <span class="hljs-title function_">path</span>(<span class="hljs-params">val</span>):<br>                inputPath.setText(val)<br>                self.segmentation(val)<br>            fd.fileSelected.connect(path)<br>            fd.<span class="hljs-built_in">open</span>()<br>        inputPath = QLineEdit(self)<br>        inputPath.resize(<span class="hljs-number">300</span>,<span class="hljs-number">30</span>)<br>        btn = QPushButton(self)<br>        btn.setText(<span class="hljs-string">&quot;选择文件&quot;</span>)<br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">click</span>():<br>            btn.isDefault()<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(inputPath.text()) &amp;gt; <span class="hljs-number">0</span>:<br>            evt = QKeyEvent()<br>            <span class="hljs-keyword">if</span> evt.modifiers() == Qt.EnterKeyGo:<br>                btn.pressed.connect(click)<br>        btn.move(<span class="hljs-number">300</span>,<span class="hljs-number">0</span>)<br>        btn.clicked.connect(test)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">segmentation</span>(<span class="hljs-params">self,val</span>):<br>        windows = QWidget(self)<br>        windows.resize(<span class="hljs-number">400</span>,<span class="hljs-number">400</span>)<br>        windows.move(<span class="hljs-number">0</span>,<span class="hljs-number">30</span>)<br><br>        w2 = QWidget(self)<br>        w2.move(<span class="hljs-number">400</span>,<span class="hljs-number">30</span>)<br>        w2.resize(<span class="hljs-number">400</span>,<span class="hljs-number">400</span>)<br><br>        self.arg = val<br>        inputPath = QLineEdit(self)<br>        inputPath.setText(self.arg)<br><br>        src = cv.imread(self.arg)<br>        <span class="hljs-built_in">print</span>(src.shape)<br>        w = <span class="hljs-built_in">int</span>(src.shape[<span class="hljs-number">1</span>])<br>        h = <span class="hljs-built_in">int</span>(src.shape[<span class="hljs-number">0</span>])<br><br>        <span class="hljs-keyword">if</span> w&amp;gt;<span class="hljs-number">1000</span> <span class="hljs-keyword">or</span> h&amp;gt;<span class="hljs-number">800</span>:<br>            w = <span class="hljs-built_in">int</span>(w/<span class="hljs-number">2</span>)<br>            h = <span class="hljs-built_in">int</span>(h/<span class="hljs-number">2</span>)<br>        <span class="hljs-comment"># print(w+&quot;  &quot;+h)</span><br>        src = cv.resize(src, (w, h), interpolation=cv.INTER_CUBIC)<br>        r = cv.selectROI(<span class="hljs-string">&#x27;Draw a rectangle&#x27;</span>, src, <span class="hljs-literal">False</span>)  <span class="hljs-comment"># 返回 (x_min, y_min, w, h)\</span><br><br>        roi = src[<span class="hljs-built_in">int</span>(r[<span class="hljs-number">1</span>]):<span class="hljs-built_in">int</span>(r[<span class="hljs-number">1</span>] + r[<span class="hljs-number">3</span>]), <span class="hljs-built_in">int</span>(r[<span class="hljs-number">0</span>]):<span class="hljs-built_in">int</span>(r[<span class="hljs-number">0</span>] + r[<span class="hljs-number">2</span>])]<br><br>        <span class="hljs-comment"># 原图mask</span><br>        mask = np.zeros(src.shape[:<span class="hljs-number">2</span>], dtype=np.uint8)<br><br>        <span class="hljs-comment"># 矩形roi</span><br>        rect = (<span class="hljs-built_in">int</span>(r[<span class="hljs-number">0</span>]), <span class="hljs-built_in">int</span>(r[<span class="hljs-number">1</span>]), <span class="hljs-built_in">int</span>(r[<span class="hljs-number">2</span>]), <span class="hljs-built_in">int</span>(r[<span class="hljs-number">3</span>]))  <span class="hljs-comment"># 包括前景的矩形，格式为(x,y,w,h)</span><br><br>        bgdmodel = np.zeros((<span class="hljs-number">1</span>, <span class="hljs-number">65</span>), np.float64)  <span class="hljs-comment"># bg模型的临时数组</span><br>        fgdmodel = np.zeros((<span class="hljs-number">1</span>, <span class="hljs-number">65</span>), np.float64)  <span class="hljs-comment"># fg模型的临时数组</span><br><br>        cv.grabCut(src, mask, rect, bgdmodel, fgdmodel, <span class="hljs-number">11</span>, mode=cv.GC_INIT_WITH_RECT)<br><br>        <span class="hljs-comment"># 提取前景和可能的前景区域</span><br>        mask2 = np.where((mask == <span class="hljs-number">1</span>) + (mask == <span class="hljs-number">3</span>), <span class="hljs-number">255</span>, <span class="hljs-number">0</span>).astype(<span class="hljs-string">&#x27;uint8&#x27;</span>)<br><br>        <span class="hljs-built_in">print</span>(mask2.shape)<br><br>        result = cv.bitwise_and(src, src, mask=mask2)<br>        cv.imwrite(<span class="hljs-string">&#x27;result.jpg&#x27;</span>, result)<br>        cv.imwrite(<span class="hljs-string">&#x27;roi.jpg&#x27;</span>, roi)<br><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;over&quot;</span>)<br>        w2.setStyleSheet(<span class="hljs-string">&quot;border-image:url(roi.jpg)&quot;</span>)<br>        windows.setStyleSheet(<span class="hljs-string">&quot;border-image:url(result.jpg)&quot;</span>)<br><br>        w2.show()<br>        windows.show()<br><br><br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    app = QApplication(sys.argv)<br>    window = MyWediget()<br>    window.show()<br>    sys.exit(app.exec_())<br></code></pre></td></tr></table></figure>
 
-<pre><code class="hljs">        fd.setLabelText(QFileDialog.Reject, &quot;拒绝&quot;)
-        fd.setFileMode(QFileDialog.ExistingFiles)
-        def path(val):
-            inputPath.setText(val)
-            self.segmentation(val)
-        fd.fileSelected.connect(path)
-        fd.open()
-    inputPath = QLineEdit(self)
-    inputPath.resize(300,30)
-    btn = QPushButton(self)
-    btn.setText(&quot;选择文件&quot;)
-    def click():
-        btn.isDefault()
-    if len(inputPath.text()) &amp;gt; 0:
-        evt = QKeyEvent()
-        if evt.modifiers() == Qt.EnterKeyGo:
-            btn.pressed.connect(click)
-    btn.move(300,0)
-    btn.clicked.connect(test)
-
-def segmentation(self,val):
-    windows = QWidget(self)
-    windows.resize(400,400)
-    windows.move(0,30)
-
-    w2 = QWidget(self)
-    w2.move(400,30)
-    w2.resize(400,400)
-
-    self.arg = val
-    inputPath = QLineEdit(self)
-    inputPath.setText(self.arg)
-
-    src = cv.imread(self.arg)
-    print(src.shape)
-    w = int(src.shape[1])
-    h = int(src.shape[0])
-
-    if w&amp;gt;1000 or h&amp;gt;800:
-        w = int(w/2)
-        h = int(h/2)
-    # print(w+&quot;  &quot;+h)
-    src = cv.resize(src, (w, h), interpolation=cv.INTER_CUBIC)
-    r = cv.selectROI(&#39;Draw a rectangle&#39;, src, False)  # 返回 (x_min, y_min, w, h)\
-
-    roi = src[int(r[1]):int(r[1] + r[3]), int(r[0]):int(r[0] + r[2])]
-
-    # 原图mask
-    mask = np.zeros(src.shape[:2], dtype=np.uint8)
-
-    # 矩形roi
-    rect = (int(r[0]), int(r[1]), int(r[2]), int(r[3]))  # 包括前景的矩形，格式为(x,y,w,h)
-
-    bgdmodel = np.zeros((1, 65), np.float64)  # bg模型的临时数组
-    fgdmodel = np.zeros((1, 65), np.float64)  # fg模型的临时数组
-
-    cv.grabCut(src, mask, rect, bgdmodel, fgdmodel, 11, mode=cv.GC_INIT_WITH_RECT)
-
-    # 提取前景和可能的前景区域
-    mask2 = np.where((mask == 1) + (mask == 3), 255, 0).astype(&#39;uint8&#39;)
-
-    print(mask2.shape)
-
-    result = cv.bitwise_and(src, src, mask=mask2)
-    cv.imwrite(&#39;result.jpg&#39;, result)
-    cv.imwrite(&#39;roi.jpg&#39;, roi)
-
-    print(&quot;over&quot;)
-    w2.setStyleSheet(&quot;border-image:url(roi.jpg)&quot;)
-    windows.setStyleSheet(&quot;border-image:url(result.jpg)&quot;)
-
-    w2.show()
-    windows.show()
-</code></pre>
-<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    app &#x3D; QApplication(sys.argv)<br>    window &#x3D; MyWediget()<br>    window.show()<br>    sys.exit(app.exec_())　　</pre></p>
-</div>
 <p>第一、选择图像文件</p>
 <p><img src="/2023/image/1218402-20210304105159932-1478558264.png" srcset="/img/loading.gif" lazyload alt="" loading="lazy" /></p>
 <p>第二、画出矩形框</p>
@@ -464,7 +371,7 @@ def segmentation(self,val):
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -479,7 +386,9 @@ def segmentation(self,val):
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/GrabCut/">#GrabCut</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/">#图像分割</a>
       
     </div>
   

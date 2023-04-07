@@ -25,9 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220807122426552-813168882.jpg">
 <meta property="article:published_time" content="2022-08-07T04:25:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:58:32.615Z">
+<meta property="article:modified_time" content="2023-04-07T04:41:53.593Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="Eigen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220807122426552-813168882.jpg">
   
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          562 字
+          523 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -324,20 +324,8 @@
                 <p>看了网上很多帖子，很多都没有说Eigen如何做矩阵除法。我这里补充一下。其他运算一般都可以查到；</p>
 <p>对于Matrix来说，我们需要先将其转换成数组，因为Eigen矩阵不能做除法（很烦）。</p>
 <p>比如我们一个2x4的矩阵，除以1x4的矩阵，python是可以使用numpy实现的（其实也是用的数组形式）。</p>
-<div class="cnblogs_Highlighter">
-<pre class="brush:cpp;gutter:true;">Eigen::Matrix&lt;double, 2, 4&gt; mat; // 生成两行四列的矩阵
-    Eigen::Matrix&lt;double, 1, 4&gt; v;   // 生成一行四列的矩阵，主要目的是为了存储mat中要除的某一行，或者某一列。我这里主要是为了除以某一行
-
-<pre><code class="hljs">mat &amp;lt;&amp;lt; 2,2,2,2,
-        2,4,6,8;
-v &amp;lt;&amp;lt; mat.row(0);      // 假设我们需要mat除以mat第一行所有数据。    
-mat.array().rowwise() /= v.array().row(0);  //这里先转成数组，然后再除。
-std::cout &amp;lt;&amp;lt; &quot;Broadcasting result: &quot; &amp;lt;&amp;lt; std::endl;
-std::cout &amp;lt;&amp;lt; mat &amp;lt;&amp;lt; std::endl;
-</code></pre>
-<p></pre></p>
-</div>
-<p>　　结果：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++">Eigen::Matrix&lt;<span class="hljs-type">double</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>&gt; mat; <span class="hljs-comment">// 生成两行四列的矩阵</span><br>    Eigen::Matrix&lt;<span class="hljs-type">double</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>&gt; v;   <span class="hljs-comment">// 生成一行四列的矩阵，主要目的是为了存储mat中要除的某一行，或者某一列。我这里主要是为了除以某一行</span><br> <br>    mat &lt;&lt; <span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<br>            <span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>;<br>    v &lt;&lt; mat.<span class="hljs-built_in">row</span>(<span class="hljs-number">0</span>);      <span class="hljs-comment">// 假设我们需要mat除以mat第一行所有数据。   </span><br>    mat.<span class="hljs-built_in">array</span>().<span class="hljs-built_in">rowwise</span>() /= v.<span class="hljs-built_in">array</span>().<span class="hljs-built_in">row</span>(<span class="hljs-number">0</span>);  <span class="hljs-comment">//这里先转成数组，然后再除。</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Broadcasting result: &quot;</span> &lt;&lt; std::endl;<br>    std::cout &lt;&lt; mat &lt;&lt; std::endl;<br></code></pre></td></tr></table></figure>
+<p>结果：</p>
 <p><img src="/2023/image/1218402-20220807122426552-813168882.jpg" srcset="/img/loading.gif" lazyload alt="" /></p>
 <p>&nbsp;</p>
                 
@@ -377,7 +365,7 @@ std::cout &amp;lt;&amp;lt; mat &amp;lt;&amp;lt; std::endl;
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -392,7 +380,7 @@ std::cout &amp;lt;&amp;lt; mat &amp;lt;&amp;lt; std::endl;
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/Eigen/">#Eigen</a>
       
     </div>
   

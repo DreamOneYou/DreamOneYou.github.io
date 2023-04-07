@@ -16,17 +16,17 @@
   <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta name="description" content="&amp;nbsp;">
+    <meta name="description" content="近期看了一些关于GIL的一些内容，敲一下代码看看效果。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对于python中GIL的一些理解与代码实现">
 <meta property="og:url" content="https://dreamoneyou.github.io/2022/%E5%AF%B9%E4%BA%8Epython%E4%B8%ADGIL%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">
 <meta property="og:site_name" content="九叶草的Blog">
-<meta property="og:description" content="&amp;nbsp;">
+<meta property="og:description" content="近期看了一些关于GIL的一些内容，敲一下代码看看效果。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-03T03:25:00.000Z">
-<meta property="article:modified_time" content="2023-04-06T13:40:36.928Z">
+<meta property="article:modified_time" content="2023-04-07T04:44:35.174Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="GIL">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          1.1k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          27 分钟
+          10 分钟
         
       </span>
     
@@ -311,7 +311,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月6日 晚上
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -321,47 +321,7 @@
                 
                 <p>&nbsp;</p>
 <p>近期看了一些关于<a href="https://www.oschina.net/translate/pythons-hardest-problem" target="_blank">GIL的一些内容</a>，敲一下代码看看效果。</p>
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;"> coding:utf-8</span><span style="color: #008000;">
-#</span><span style="color: #008000;"> GIL(Global Interpreter Lock):他只允许任何时刻只有一个线程处于执行状态，即使是在具有多个CPU内核的多线程架构中。</span><span style="color: #008000;">
-#</span><span style="color: #008000;"> 为什么没有删除GIL，因为现在的python已经严重依赖GIL提供的解决方案。如果删除会破坏现有的C扩展。（free threading 就是删除的案例，他会导致单线程任务速度降低40%。）</span><span style="color: #008000;">
-#</span><span style="color: #008000;"> 释放GIL：以前版本是采用计数策略删除，如果该线程计数为0，则删除。现在采用固定时间间隔，到了时间点就删除。</span>
-<span style="color: #0000ff;">import</span><span style="color: #000000;"> time
-</span><span style="color: #0000ff;">from</span> threading <span style="color: #0000ff;">import</span><span style="color: #000000;"> Thread
-</span><span style="color: #0000ff;">from</span> multiprocessing <span style="color: #0000ff;">import</span><span style="color: #000000;"> Pool
-Count </span>= 50000000
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> countdown(n):
-    </span><span style="color: #0000ff;">while</span> n&gt;<span style="color: #000000;">0:
-         n</span>-=1
-<span style="color: #0000ff;">if</span> <span style="color: #800080;">__name__</span> == <span style="color: #800000;">"</span><span style="color: #800000;">__main__</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-    </span><span style="color: #008000;">#</span><span style="color: #008000;"> 不采用多进程和多线程</span>
-    start1 =<span style="color: #000000;"> time.time()
-    countdown(Count)
-    end1 </span>=<span style="color: #000000;"> time.time()
-    </span><span style="color: #0000ff;">print</span>(<span style="color: #800000;">"</span><span style="color: #800000;">2:</span><span style="color: #800000;">"</span>, end1 - start1)  <span style="color: #008000;">#</span><span style="color: #008000;"> 2.538</span>
-
-<pre><code class="hljs">&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 采用多线程&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t1 = Thread(target=countdown, args=(Count // 2,))&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t2 = Thread(target=countdown, args=(Count // 2,))&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; start = time.time()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t1.start()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t2.start()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t1.join()  # join 所完成的工作就是线程同步，即主线程任务结束以后，进入堵塞状态，一直等待所有的子线程结束以后，主线程再终止&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; t2.join()  # 至于为什么，我觉得可能是为了防止同一时刻有多个线程访问资源。&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; end = time.time()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; print(&quot;1:&quot;, end - start)  # 2.717&lt;/span&gt;
-
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; 采用多进程&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; pool = Pool(processes=2)&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; start2 = time.time()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; r1 = pool.apply_async(countdown, [Count//2])&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; r2 = pool.apply_async(countdown, [Count//2])&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; pool.close()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; pool.join()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; end2 = time.time()&lt;/span&gt;
-&lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; print(&quot;3:&quot;,end2-start2)  # 1.617&lt;/span&gt;&lt;/pre&gt;
-</code></pre>
-</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># coding:utf-8</span><br><span class="hljs-comment"># GIL(Global Interpreter Lock):他只允许任何时刻只有一个线程处于执行状态，即使是在具有多个CPU内核的多线程架构中。</span><br><span class="hljs-comment"># 为什么没有删除GIL，因为现在的python已经严重依赖GIL提供的解决方案。如果删除会破坏现有的C扩展。（free threading 就是删除的案例，他会导致单线程任务速度降低40%。）</span><br><span class="hljs-comment"># 释放GIL：以前版本是采用计数策略删除，如果该线程计数为0，则删除。现在采用固定时间间隔，到了时间点就删除。</span><br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">from</span> threading <span class="hljs-keyword">import</span> Thread<br><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool<br>Count = <span class="hljs-number">50000000</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">countdown</span>(<span class="hljs-params">n</span>):<br>    <span class="hljs-keyword">while</span> n&gt;<span class="hljs-number">0</span>:<br>         n-=<span class="hljs-number">1</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-comment"># 不采用多进程和多线程</span><br>    start1 = time.time()<br>    countdown(Count)<br>    end1 = time.time()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2:&quot;</span>, end1 - start1)  <span class="hljs-comment"># 2.538</span><br><br>    <span class="hljs-comment"># 采用多线程</span><br>    <span class="hljs-comment"># t1 = Thread(target=countdown, args=(Count // 2,))</span><br>    <span class="hljs-comment"># t2 = Thread(target=countdown, args=(Count // 2,))</span><br>    <span class="hljs-comment"># start = time.time()</span><br>    <span class="hljs-comment"># t1.start()</span><br>    <span class="hljs-comment"># t2.start()</span><br>    <span class="hljs-comment"># t1.join()  # join 所完成的工作就是线程同步，即主线程任务结束以后，进入堵塞状态，一直等待所有的子线程结束以后，主线程再终止</span><br>    <span class="hljs-comment"># t2.join()  # 至于为什么，我觉得可能是为了防止同一时刻有多个线程访问资源。</span><br>    <span class="hljs-comment"># end = time.time()</span><br>    <span class="hljs-comment"># print(&quot;1:&quot;, end - start)  # 2.717</span><br><br>    <span class="hljs-comment"># 采用多进程</span><br>    <span class="hljs-comment"># pool = Pool(processes=2)</span><br>    <span class="hljs-comment"># start2 = time.time()</span><br>    <span class="hljs-comment"># r1 = pool.apply_async(countdown, [Count//2])</span><br>    <span class="hljs-comment"># r2 = pool.apply_async(countdown, [Count//2])</span><br>    <span class="hljs-comment"># pool.close()</span><br>    <span class="hljs-comment"># pool.join()</span><br>    <span class="hljs-comment"># end2 = time.time()</span><br>    <span class="hljs-comment"># print(&quot;3:&quot;,end2-start2)  # 1.617</span><br></code></pre></td></tr></table></figure>
 <p>结果发现，采用多进程的确会好点。</p>
                 
               </div>
@@ -400,7 +360,7 @@ Count </span>= 50000000
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -415,7 +375,7 @@ Count </span>= 50000000
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/GIL/">#GIL</a>
       
     </div>
   
@@ -446,7 +406,7 @@ Count </span>= 50000000
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       

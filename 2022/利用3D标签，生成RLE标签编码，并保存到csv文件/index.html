@@ -23,9 +23,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220506201537896-1102425362.png">
 <meta property="article:published_time" content="2022-05-06T12:16:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:56:45.954Z">
+<meta property="article:modified_time" content="2023-04-07T05:01:54.793Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="csv文件读取">
+<meta property="article:tag" content="3D标签">
+<meta property="article:tag" content="RLE标签编码">
+<meta property="article:tag" content="csv文件存储">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220506201537896-1102425362.png">
   
@@ -249,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.4k 字
+          2.2k 字
         
       </span>
     
@@ -260,7 +263,7 @@
         
         
         
-          54 分钟
+          19 分钟
         
       </span>
     
@@ -311,7 +314,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -319,58 +322,7 @@
             
               <div class="markdown-body">
                 
-                <div class="cnblogs_code">
-<pre></pre>
-<pre># coding:utf-8<br />from glob import glob<br />import os<br />import SimpleITK as sitk<br />from pathlib import Path<br />import numpy as np<br />import imageio<br />import pandas as pd</pre>
-<pre><span style="color: #0000ff;"><br />def</span> rle_encode(mask, bg = 0) -&gt;<span style="color: #000000;"> dict:
-    vec </span>=<span style="color: #000000;"> mask.flatten()
-    nb </span>=<span style="color: #000000;"> len(vec)
-    where </span>=<span style="color: #000000;"> np.flatnonzero
-    starts </span>= np.r_[0, where(~np.isclose(vec[1:], vec[:-1], equal_nan=True)) + 2<span style="color: #000000;">]
-    lengths </span>=<span style="color: #000000;"> np.diff(np.r_[starts, nb])
-    values </span>=<span style="color: #000000;"> vec[starts]
-    </span><span style="color: #0000ff;">assert</span> len(starts) == len(lengths) ==<span style="color: #000000;"> len(values)
-    rle </span>=<span style="color: #000000;"> {}
-    </span><span style="color: #0000ff;">for</span> start, length, val <span style="color: #0000ff;">in</span><span style="color: #000000;"> zip(starts, lengths, values):
-        </span><span style="color: #0000ff;">if</span> val ==<span style="color: #000000;"> bg:
-            </span><span style="color: #0000ff;">continue</span><span style="color: #000000;">
-        rle[val] </span>= rle.get(val, []) +<span style="color: #000000;"> [str(start), length]
-    </span><span style="color: #008000;">#</span><span style="color: #008000;"> post-processing</span>
-    rle = {lb: <span style="color: #800000;">"</span> <span style="color: #800000;">"</span>.join(map(str, id_lens)) <span style="color: #0000ff;">for</span> lb, id_lens <span style="color: #0000ff;">in</span><span style="color: #000000;"> rle.items()}
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> rle
-
-<p></span><span style="color: #0000ff;">def</span><span style="color: #000000;"> generate_rel(LABELS, path):<br>    preds </span>&#x3D;<span style="color: #000000;"> []</p>
-<pre><code class="hljs">&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; i &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; range(len(path)):
-    file &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; path[i]
-    file_name &lt;/span&gt;= file.split(&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;\\&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;)[-1].split(&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;_seg&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)[0]
-    case &lt;/span&gt;= file_name.split(&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;_&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)[0]
-    &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;case:&#123;&#125;, file_name:&#123;&#125;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;.format(case, file_name))
-    seg &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; sitk.ReadImage(file)
-    seg &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; sitk.GetArrayFromImage(seg)
-    &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; j &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; range(seg.shape[0]):
-        &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; j&amp;gt;=0 &lt;span style=&quot;color: #0000ff;&quot;&gt;and&lt;/span&gt; j&amp;lt;9&lt;span style=&quot;color: #000000;&quot;&gt;:
-            number &lt;/span&gt;= str(0)+str(0)+str(0)+str(j+1&lt;span style=&quot;color: #000000;&quot;&gt;)
-        &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;elif&lt;/span&gt; j&amp;gt;=9 &lt;span style=&quot;color: #0000ff;&quot;&gt;and&lt;/span&gt; j&amp;lt;99&lt;span style=&quot;color: #000000;&quot;&gt;:
-            number &lt;/span&gt;= str(0)+str(0) + str(j+1&lt;span style=&quot;color: #000000;&quot;&gt;)
-        &lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;:
-            number &lt;/span&gt;= str(0) + str(j+1&lt;span style=&quot;color: #000000;&quot;&gt;)
-        name &lt;/span&gt;= file_name+&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;_slice_&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;+&lt;span style=&quot;color: #000000;&quot;&gt;number
-        output &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; seg[j, ...]
-        Snapshot_img &lt;/span&gt;= np.zeros(shape=(seg.shape[1],seg.shape[2],3), dtype=np.uint8)  &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt; png设置为3通道&lt;/span&gt;
-        Snapshot_img[:, :, 0][np.where(output == 1)] = 1   &lt;span style=&quot;color: #008000;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot;color: #008000;&quot;&gt;我们也有3个标签，其中值分别为1,2,3，所以我们需要给每个标签都赋予不同的通道&lt;/span&gt;
-        Snapshot_img[:, :, 1][np.where(output == 2)] = 1&lt;span style=&quot;color: #000000;&quot;&gt;
-        Snapshot_img[:, :, &lt;/span&gt;2][np.where(output == 3)] = 1&lt;span style=&quot;color: #000000;&quot;&gt;
-        rle_lb &lt;/span&gt;= rle_encode(Snapshot_img[:, :, 0]) &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; np.sum(Snapshot_img[:, :, 0]) &amp;gt; 1 &lt;span style=&quot;color: #0000ff;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; &#123;&#125;
-        rle_sb &lt;/span&gt;= rle_encode(Snapshot_img[:, :, 1]) &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; np.sum(Snapshot_img[:, :, 1]) &amp;gt; 1 &lt;span style=&quot;color: #0000ff;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; &#123;&#125;
-        rle_sto &lt;/span&gt;= rle_encode(Snapshot_img[:, :, 2]) &lt;span style=&quot;color: #0000ff;&quot;&gt;if&lt;/span&gt; np.sum(Snapshot_img[:, :, 2]) &amp;gt; 1 &lt;span style=&quot;color: #0000ff;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; &#123;&#125;
-        index &lt;/span&gt;= (0,1,2&lt;span style=&quot;color: #000000;&quot;&gt;)
-        rel &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; [rle_lb, rle_sb, rle_sto]
-        preds &lt;/span&gt;+= [&#123;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;: name, &lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;: lb, &lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;predicted&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;: rle.get(1, &lt;span style=&quot;color: #800000;&quot;&gt;&quot;&quot;&lt;/span&gt;)&#125; &lt;span style=&quot;color: #0000ff;&quot;&gt;for&lt;/span&gt; i, rle, lb &lt;span style=&quot;color: #0000ff;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt; zip(index, rel, LABELS)]
-    df_pred &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; pd.DataFrame(preds)
-    df_pred.to_csv(&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;submission.csv&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;, index=&lt;span style=&quot;color: #000000;&quot;&gt;False)
-</code></pre>
-<p></span><span style="color: #0000ff;">if</span> <span style="color: #800080;"><strong>name</strong></span> &#x3D;&#x3D; <span style="color: #800000;">“</span><span style="color: #800000;"><strong>main</strong></span><span style="color: #800000;">“</span><span style="color: #000000;">:<br>    pred_file </span>&#x3D; glob(r<span style="color: #800000;">“</span><span style="color: #800000;">D:\compation\kaggle\3D_preprocess\a*</span><span style="color: #800000;">“</span>)  <span style="color: #008000;">#</span><span style="color: #008000;"> 获取到该文件夹下所有的标签（3D nii文件）</span><br>    LABELS &#x3D; (<span style="color: #800000;">“</span><span style="color: #800000;">large_bowel</span><span style="color: #800000;">“</span>, <span style="color: #800000;">“</span><span style="color: #800000;">small_bowel</span><span style="color: #800000;">“</span>, <span style="color: #800000;">“</span><span style="color: #800000;">stomach</span><span style="color: #800000;">“</span><span style="color: #000000;">)<br>    generate_rel(LABELS, pred_file)</span></pre></p>
-</div>
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># coding:utf-8from glob import globimport osimport SimpleITK as sitkfrom pathlib import Pathimport numpy as npimport imageioimport pandas as pd</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">rle_encode</span>(<span class="hljs-params">mask, bg = <span class="hljs-number">0</span></span>) -&gt; <span class="hljs-built_in">dict</span>:<br>    vec = mask.flatten()<br>    nb = <span class="hljs-built_in">len</span>(vec)<br>    where = np.flatnonzero<br>    starts = np.r_[<span class="hljs-number">0</span>, where(~np.isclose(vec[<span class="hljs-number">1</span>:], vec[:-<span class="hljs-number">1</span>], equal_nan=<span class="hljs-literal">True</span>)) + <span class="hljs-number">2</span>]<br>    lengths = np.diff(np.r_[starts, nb])<br>    values = vec[starts]<br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(starts) == <span class="hljs-built_in">len</span>(lengths) == <span class="hljs-built_in">len</span>(values)<br>    rle = &#123;&#125;<br>    <span class="hljs-keyword">for</span> start, length, val <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(starts, lengths, values):<br>        <span class="hljs-keyword">if</span> val == bg:<br>            <span class="hljs-keyword">continue</span><br>        rle[val] = rle.get(val, []) + [<span class="hljs-built_in">str</span>(start), length]<br>    <span class="hljs-comment"># post-processing</span><br>    rle = &#123;lb: <span class="hljs-string">&quot; &quot;</span>.join(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">str</span>, id_lens)) <span class="hljs-keyword">for</span> lb, id_lens <span class="hljs-keyword">in</span> rle.items()&#125;<br>    <span class="hljs-keyword">return</span> rle<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_rel</span>(<span class="hljs-params">LABELS, path</span>):<br>    preds = []<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(path)):<br>        file = path[i]<br>        file_name = file.split(<span class="hljs-string">&quot;\\&quot;</span>)[-<span class="hljs-number">1</span>].split(<span class="hljs-string">&quot;_seg&quot;</span>)[<span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">case</span> = file_name.split(<span class="hljs-string">&quot;_&quot;</span>)[<span class="hljs-number">0</span>]<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;case:&#123;&#125;, file_name:&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-keyword">case</span>, file_name))<br>        seg = sitk.ReadImage(file)<br>        seg = sitk.GetArrayFromImage(seg)<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(seg.shape[<span class="hljs-number">0</span>]):<br>            <span class="hljs-keyword">if</span> j&gt;=<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> j&lt;<span class="hljs-number">9</span>:<br>                number = <span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>)+<span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>)+<span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>)+<span class="hljs-built_in">str</span>(j+<span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">elif</span> j&gt;=<span class="hljs-number">9</span> <span class="hljs-keyword">and</span> j&lt;<span class="hljs-number">99</span>:<br>                number = <span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>)+<span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>) + <span class="hljs-built_in">str</span>(j+<span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">else</span>:<br>                number = <span class="hljs-built_in">str</span>(<span class="hljs-number">0</span>) + <span class="hljs-built_in">str</span>(j+<span class="hljs-number">1</span>)<br>            name = file_name+<span class="hljs-string">&quot;_slice_&quot;</span>+number<br>            output = seg[j, ...]<br>            Snapshot_img = np.zeros(shape=(seg.shape[<span class="hljs-number">1</span>],seg.shape[<span class="hljs-number">2</span>],<span class="hljs-number">3</span>), dtype=np.uint8)  <span class="hljs-comment"># png设置为3通道</span><br>            Snapshot_img[:, :, <span class="hljs-number">0</span>][np.where(output == <span class="hljs-number">1</span>)] = <span class="hljs-number">1</span>   <span class="hljs-comment">#我们也有3个标签，其中值分别为1,2,3，所以我们需要给每个标签都赋予不同的通道</span><br>            Snapshot_img[:, :, <span class="hljs-number">1</span>][np.where(output == <span class="hljs-number">2</span>)] = <span class="hljs-number">1</span><br>            Snapshot_img[:, :, <span class="hljs-number">2</span>][np.where(output == <span class="hljs-number">3</span>)] = <span class="hljs-number">1</span><br>            rle_lb = rle_encode(Snapshot_img[:, :, <span class="hljs-number">0</span>]) <span class="hljs-keyword">if</span> np.<span class="hljs-built_in">sum</span>(Snapshot_img[:, :, <span class="hljs-number">0</span>]) &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> &#123;&#125;<br>            rle_sb = rle_encode(Snapshot_img[:, :, <span class="hljs-number">1</span>]) <span class="hljs-keyword">if</span> np.<span class="hljs-built_in">sum</span>(Snapshot_img[:, :, <span class="hljs-number">1</span>]) &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> &#123;&#125;<br>            rle_sto = rle_encode(Snapshot_img[:, :, <span class="hljs-number">2</span>]) <span class="hljs-keyword">if</span> np.<span class="hljs-built_in">sum</span>(Snapshot_img[:, :, <span class="hljs-number">2</span>]) &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> &#123;&#125;<br>            index = (<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br>            rel = [rle_lb, rle_sb, rle_sto]<br>            preds += [&#123;<span class="hljs-string">&quot;id&quot;</span>: name, <span class="hljs-string">&quot;class&quot;</span>: lb, <span class="hljs-string">&quot;predicted&quot;</span>: rle.get(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;&quot;</span>)&#125; <span class="hljs-keyword">for</span> i, rle, lb <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(index, rel, LABELS)]<br>        df_pred = pd.DataFrame(preds)<br>        df_pred.to_csv(<span class="hljs-string">&quot;submission.csv&quot;</span>, index=<span class="hljs-literal">False</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    pred_file = glob(<span class="hljs-string">r&quot;D:\compation\kaggle\3D_preprocess\a\*&quot;</span>)  <span class="hljs-comment"># 获取到该文件夹下所有的标签（3D nii文件）</span><br>    LABELS = (<span class="hljs-string">&quot;large_bowel&quot;</span>, <span class="hljs-string">&quot;small_bowel&quot;</span>, <span class="hljs-string">&quot;stomach&quot;</span>)<br>    generate_rel(LABELS, pred_file)<br></code></pre></td></tr></table></figure>
 <p>结果：</p>
 <p><img src="/2023/image/1218402-20220506201537896-1102425362.png" srcset="/img/loading.gif" lazyload alt="" /></p>
 <p>&nbsp;</p>
@@ -411,7 +363,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -426,7 +378,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/csv%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">#csv文件读取</a>
+      
+        <a href="/tags/3D%E6%A0%87%E7%AD%BE/">#3D标签</a>
+      
+        <a href="/tags/RLE%E6%A0%87%E7%AD%BE%E7%BC%96%E7%A0%81/">#RLE标签编码</a>
+      
+        <a href="/tags/csv%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8/">#csv文件存储</a>
       
     </div>
   

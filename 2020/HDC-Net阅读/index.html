@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="九叶草">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="认真读的第一篇论文，翻译可能有很多问题，请见谅，建议去读原文。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation">
+<meta property="og:url" content="https://dreamoneyou.github.io/2020/HDC-Net%E9%98%85%E8%AF%BB/">
+<meta property="og:site_name" content="九叶草的Blog">
+<meta property="og:description" content="认真读的第一篇论文，翻译可能有很多问题，请见谅，建议去读原文。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114400193-1227259706111.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114442550-1788825326.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114456646-2116617853.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114507339-2141993524.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114520299-159119888.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114733497-1436887840.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114543292-1857077422.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114820758-2063928957.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114556990-1140269729.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114610889-549987943.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114631709-982409666.png">
+<meta property="article:published_time" content="2020-09-27T11:30:00.000Z">
+<meta property="article:modified_time" content="2023-04-07T07:33:51.022Z">
+<meta property="article:author" content="九叶草">
+<meta property="article:tag" content="HDC-Net">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200927114400193-1227259706111.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation - 九叶草的Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dreamoneyou.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>九叶草的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/movies/">
+                <i class="iconfont icon-youtube-fill"></i>
+                <span>影视</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/rest.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-27 19:30" pubdate>
+          2020年9月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          110 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation</h1>  
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月7日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>认真读的第一篇论文，翻译可能有很多问题，请见谅，建议去读原文。<br>论文地址：<br>HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation<br>Zhengrong Luo† , Zhongdao Jia† , Zhimin Yuan, and Jialin Peng∗<br>摘要：—从磁共振图像（MRI）准确分割脑肿瘤对于临床治疗决策和手术计划至关重要。由于肿瘤的多样性和子区域之间复杂的边界相互作用，这是一个巨大的挑战。除了准确性之外，资源约束也是另一个重要考虑因素。最近，通过使用深度卷积网络，针对此任务已实现了令人印象深刻的改进。但是，大多数最新模型都依赖昂贵的3D卷积以及模型级联&#x2F;集成策略，这会导致高计算开销和不期望的系统复杂性。对于临床使用而言，挑战在于如何在非常有限的计算预算内追求最佳准确性。在这项研究中，我们使用分层的解耦卷积网络（HDCNet）一次性分割3D立体图像，这是一种轻巧但有效的伪3D模型。具体来说，我们将3D卷积替换为新颖的分层解耦卷积（HDC）模块，该模块可以高效地探索多尺度多视图空间上下文。在BraTS 2018和2017挑战数据集上进行的大量实验表明，我们的方法在精度方面优于最新技术，但计算复杂度大大降低。</p>
+<p>索引词-脑瘤，磁共振图像，图像分割，解耦卷积，轻量级网络</p>
+<p>I. INTRODUCTION<br><img src="/2023/image/1218402-20200927114400193-1227259706111.png" srcset="/img/loading.gif" lazyload alt="1"><br>GLioma是最常见的脑肿瘤类型之一，通常使用多个MRI序列成像，例如T1加权（T1），对比增强的T1加权（T1ce），T2加权（T2）和液体衰减反转恢复序列（FLAIR）。多模式MRI具有突出神经胶质瘤子区域的多种能力，从而为肿瘤分析提供了补充信息。例如，在T1ce中可以观察到增强的肿瘤（ET）；肿瘤核心（TC）由坏死，不增强的肿瘤组成，ET在T2中可见。 T2和FLAIR突出显示了包括水肿和TC在内的整个肿瘤（WT）。准确的肿瘤分割，尤其是分离子区域，即WT，TC和ET，是诊断和治疗计划的先决条件。但是，手动描绘在大多数临床工作流程中效率低下，因为它既费时又主观精确注释的含糊之处。因此，自动分割方法不仅可以提高诊断效率，而且可以提供可重复的结果。这项任务的主要挑战在于：1）脑胶质瘤及其子区域在患者的外观，位置和形状方面的变异性； 2）边界模糊不清； 3）子区域之间复杂的边界相互作用。</p>
+<p>最近，通过使用全卷积网络（FCN）进行端到端学习，医学图像分割已取得了显着进步[1] – [3]。对于脑肿瘤分割，最先进的模型[4] – [11]是具有跳过连接的编码器-解码器体系结构的变体，它最初作为U-Net [2]引入，并已被证明可有效地用于恢复细粒度的细分。给定大量的大脑图像，已经探索了同时使用3D卷积和2D卷积的网络。 2D网络[9]，[12]，[13]逐片处理卷，通常是内存高效，但不可避免地忽略了连续的切片间一致性。 3D网络[14]，[15]可以通过直接将整个体积作为输入来一次性分割整个体积。因此，它可以利用3D内核在所有三个空间维度上充分利用完整的空间上下文，并已显示出优异的结果，但以显着增加GPU内存消耗和参数数量为代价。对于2D网络，一种简单而有效的补救措施是在3D体的不同角度（即轴向，冠状和矢状视图）上集合独立的分割，被许多研究[7]，[9]，[12]，[13]，[16]采用。对于2D和3D模型，另一个广泛使用的技巧是采用模型级联迭代地细分分割[12]，[17]或利用肿瘤子区域的分层结构[7]，[18]。尽管采用集成和级联策略可以提高性能，但主要缺点是不需要的系统和计算复杂性。除了分割精度外，计算和存储效率是模型设计的另一个重要考虑因素。因此，有利的是为3D体积分割开发一个轻量但有效的模型，该模型可以本质上包含仅具有低维卷积的完整空间信息。</p>
+<p>为了在具有挑战性的分割任务中实现更高的性能，构建更深，更宽的FCN（这还允许对较大的空间输入和远程上下文进行编码）是有益的。但是，对于3D体积图像处理，当前的深度架构，尤其是那些使用昂贵的3D卷积的深度架构，经常受到对大量内存和计算能力的需求的限制。尽管使用2D卷积可以大大减少参数数量，但它们固有的局限性在于无法捕获丰富的空间上下文。在严格的内存和计算预算约束下，通过分解标准卷积（例如深度方向可分离卷积[19]，组卷积[20] – [22]和常规的多分支结构[23]）来设计具有低冗余的有效内核。 ]，已被视为解决此问题的有效方法。在本文中，我们以分层方式将跨通道域和空间域的标准卷积解耦同时减少冗余并利用多视图和多尺度空间上下文</p>
+<p>在这项工作中，我们介绍了一个分层的解耦卷积网络（HDC-Net）（图1（a）），它是一个轻量级的伪3D网络，旨在作为脑肿瘤分割的简单而强大的基线。我们采用减少通道数的3D U-Net架构作为我们的骨干网络，并使用新颖的轻量级块来替代昂贵的3D卷积。具体来说，为了以较低的计算成本对多视图和多尺度空间上下文进行编码，我们引入了一种新颖的分层解耦卷积（HDC）（图2（b））。而不是像3D一样在空间和通道维度上同时进行计算</p>
+<p>如图2（b）所示，HDC在空间和通道维度上将标准卷积解耦。更具体地说，a）在空间域中，我们通过将3D空间卷积分解为工作在不同视图（轴向，冠状和矢状视图）上的两个互补2D卷积来引入视图解卷积，这可以在最小化感知的情况下降低计算复杂性空间环境； b）在通道域中，我们不是通过简单地堆叠2D卷积来近似3D卷积，而是对轴视图的2D卷积应用了一种新颖的分层组解耦卷积视图，即在具有分层连接的特征通道的子组上应用平行轴向视图卷积。这样，我们不仅可以将焦点放在特定的视图上，还可以从多个领域视图对焦点视图上的线索进行编码，这对于处理医疗量是理想的。为了允许大量输入并捕获远距离空间上下文，我们在第一层进一步插入了额外的下采样[24]。这项工作是对我们的初步工作的广泛扩展[25]，具有改进的网络体系结构以及更广泛的性能分析和比较实验。</p>
+<p>II. RELATED WORK<br>大多数现有的用于多类脑肿瘤分割的方法都使用具有2D或&#x2F;和3D卷积的FCN或U-Net变体来设计有效的方法。 与2D网络相比，即使是单个3D网络也可以获得更好的性能，但以高计算开销为代价。 而且，通常采用集成和级联策略来进一步提高2D和3D网络的性能。</p>
+<p>为了提高2D网络用于肿瘤分割的性能，在许多研究中已采用多个2D网络的多视图集成[9]，[13]，[16]，[26]。 例如，在[16]和[13]中集成了在三个视图上的独立2D分割。 除了多视图集成之外，在[27]中还使用了几个具有丢包的随机采样网络的集成。 Pereira等。 [28]开发了一种改进的U-Net，具有新颖的特征重组和重新校准模块，并且可以级联地分割脑肿瘤的子区域以利用其层次结构。</p>
+<p>3D FCN，包括3D U-Net [29]，V-Net [30]及其使用多尺度输出[7]，[31]，残差连接[7]，[31]，[32]的变体，空洞卷积 [4]，[7]，[32]，CRF改进[12]等已广泛用于脑肿瘤分割。 通过改进的体系结构，Nuechterlein等人。 [14]将ESP-Net [33]的3D变体与金字塔形细化相结合。 Chen等。 [4]用3D扩张的多纤维网络（3D DMFNet）解决了脑肿瘤分割问题。Mlynarski等。 [34]介绍了一种2D-3D模型，在该模型中，多视图2D网络学习的功能被用作3D U-Net的附加输入，以捕获较大的空间环境。 模型集成进一步提高了性能。</p>
+<p>模型级联策略已被许多著作[7]，[14]，[17]，[32]，[35]采用，以提高3D模型的性能。华等。 [17]介绍了级联的V-网络首先提取整个肿瘤，然后将其划分为子区域。在[4]中开发了一个由3D SE-Inception网络组成的级联，以依次分割脑肿瘤的亚结构。 Wang等。 [7]设计了一个级联的各向异性卷积网络（Cascaded-Anisotropic-Net），在该网络中，他们不仅使用多视图集成，而且还通过模型级联来提高最终的分割性能。徐等人，而不是简单地使用连续模型。 [5]引入了3D深度级联注意力网络（Cascaded-Attention-Net），该网络可以探索分区之间的潜在关联作为指导。由于使用级联方法的系统复杂度很高，Zhou等人。 [8]用单个多任务网络（MultiTask-Net）解决了多标签分割问题，该网络有多个输出用于单次分割。并非同时训练多个任务，而是使用课程学习来逐渐集中精力处理更困难的任务。在此研究中，我们没有使用集成，级联或课程学习，而是仅使用具有4类输出的单个网络来同时分割所有子区域。</p>
+<p>临床任务通常需要在有限的计算预算下实现最佳准确性。标准3D（空间）卷积涉及昂贵的4D操作，包括空间和通道信息。通过分离标准卷积的不同维度，可分离卷积已被证明是一种针对轻量级网络的有效策略。这种流行的深度卷积[19]将标准卷积分解为Depth-wise Convolution与Point-wise Convolution的组合。群卷积[20] – [22]，对预定义的通道组执行并行卷积。在多分支架构中，著名的Inception V3 [21]进行了空间分解。卷积变成非对称卷积，例如，将n×n卷积替换为n×1卷积，然后是1×n卷积。对于肿瘤分割，DMFNet [4]建立在多纤维单元[36]上，该单元使用有效的群卷积，并取得了良好的性能。在Cascaded-各向异性网络[7]中，Wang等。将3×3×3的空间3D卷积分解为2D堆栈3×3×1的卷积和1×1×3的1D卷积。但是，仅在一个空间视图上使用交叉切片1D卷积和切片内部2D卷积具有有限的利用完整3D空间上下文的能力，并且通过多种技巧进行了补偿，其中包括多尺度输出，多视图集成和模型级联。 Chen等人在S3D-UNet中[37]。使用S3D卷积[38]，并将其扩展为使用将不同类型的2级卷积和1D卷积结合起来，这与我们的方法密切相关。但是，我们专注于通过焦点视图将3D空间卷积分层解耦为2D卷积，在该视图上MR体积图像最初具有最高的片内分辨率，并且信息最可靠。</p>
+<p>III. METHOD<br>A. Architecture of the HDC-Net<br>HDC-Net的概述如图1（a）所示。 我们默认进行端到端的多标签学习，并执行体积密集分割。 将来自多种模态的图像连接起来，形成模型的4通道输入。 用于3D分割的HDC-Net的主体主要由一个新颖的HDC模块（图2）组成，该模块实质上依赖于更有效的2D卷积，并将在以下各节中详细介绍。</p>
+<p>HDC-Net的骨干架构是3D U-Net的轻量级变体，具有：a）每层减少的通道数（仅32个通道），b）额外的下采样&#x2F;上采样操作以允许相对较大的输入量。 具体来说，骨干网由一个具有4个下采样级的编码器和一个具有4个上采样级的解码器组成，如图1（a）所示。 定期的下移（PDS）操作[24]在第一阶段用作下采样，因为该下采样策略没有参数，并且可以保留完整的图像信息。 这里的PDS操作旨在将大小为Cin×H×W×D的高分辨率输入张量Tin重新排列为大小为Cout×H &#x2F; 2×W &#x2F; 2×D &#x2F; 2的低分辨率张量Tout，其中H×W×D 是Tin的空间大小，而Cin是通道号。 Tout的空间大小是输入空间大小的1&#x2F;2倍，而输出通道Cout的数量是8×Cin。 数学上PDS的操作描述如下，<br><img src="/2023/image/1218402-20200927114442550-1788825326.png" srcset="/img/loading.gif" lazyload alt="2"></p>
+<p>c,x,y,z是Tout的坐标。</p>
+<p>在我们的初步研究中[25]引入了HDC-Net的简化版本HDC-Net0，如图1（b）所示。与HDC-Net相比，HDC-Net0不使用附加的下&#x2F;上采样层，因此在严格的内存约束下仅允许相对较小的输入大小。为了弥补这一限制，HDC-Net0同时利用了多视图集成和模型级联策略来提高性能。基于这种观察，在临床使用中，医师通常会沿着所有轴向，冠状和矢状平面查看体积图像，以捕获互补信息，并一一识别肿瘤的子区域。更具体地说，1）为了减轻脑肿瘤组织之间的干扰，HDC-Net0将多标签分割任务分解为三个二进制分割子任务，每个子任务从背景中分割目标； 2）还使用了多视图合奏。请注意，由于我们模型中的各向异性分解，通常仅在2D模型中使用的多视图合奏在此处适用。然而，由于重复的模型训练和测试，模型级联和集成策略将大大增加模型的复杂性。相比之下，这项研究中提出的HDC-Net能够使用单个网络一次性通过分割所有肿瘤亚区域，从而提高了计算效率。</p>
+<p>B. The HDC module<br><img src="/2023/image/1218402-20200927114456646-2116617853.png" srcset="/img/loading.gif" lazyload alt="3"></p>
+<p>近来，已广泛使用通过几个低维内核的乘积来逼近满秩滤波器以减少存储器开销。 但是，挑战在于如何仅使用低维内核和非常小的网络在非常有限的计算预算内追求最佳精度。 为此，我们将进一步努力，以利用多尺度的视野和丰富的空间背景（仅需较低的分辨率）来提高分割精度尺寸内核。 为了解决这些挑战，我们提出了在空间和通道域上进行去耦卷积的层次化集成，以减少可学习参数的大小并提高判别能力。</p>
+<p>提出的HDC模块如图2（b）所示，该模块具有相互连接的多分支结构，并采用一次和二次卷积。 具体而言，一次卷积应用于并行分支的主卷积（例如3×3×1）用于在3D体积的焦点视图上分层提取多尺度特征，而二次卷积（例如1×3×3） 遵循多分支模块的作用是通过一次卷积来混合多尺度输出，以及在互补视图上提取空间上下文特征。 本质上，HDC模块仅基于2D卷积。 在详细介绍HDC模块之前，我们首先介VDC（HDC的简化版本）作为基准。 然后，我们使用一种新颖的分层组卷积（HGC）块对其进行改进，并获得HDC模块。</p>
+<p>视图解耦卷积（VDC）如图2（a）所示。为了在减少参数数量的同时更有效地使用3D空间上下文信息，我们将3×3×3的3D卷积核在空间上分解为两个互补的2D卷积，即3×3×1卷积和1× 3×3卷积，适用于3D空间上的不同2D视图。为了近似计算两个3×3×3空间3D卷积的堆栈，我们使用四个2D卷积的堆栈，包括三个3×3×1卷积和一个1×3×3卷积，如图2（a）所示。假设3×3×1卷积对应于轴向视图切片上的运算。然后，使用VDC中的前三个2D卷积捕获轴向视图上的内部切片特征，随后的1×3×3 2D卷积将融合互补视图上的空间一致性和上下文。通过不对称分解和连续卷积的特殊布置，VDC能够强调通常具有最高空间分辨率的轴向视图。</p>
+<p>作为VDC的改进，HDC使用了一种改进的称为HGC的组卷积组件，该组卷积组件在图2（b）的实心框中突出显示，作为增强的一次卷积。多尺度上下文特征捕获是至关重要的，重要在对于神经网络模型的表示强度以及最终的分割精度。除了在HGC中将空间解耦的卷积简单地堆叠为VDC之外，我们还进一步在通道域上解耦卷积运算，并且在特征通道不同子组上并行进行2D卷积（3×3×1）。更具体地说，在进行1×1×1卷积之后，HGC块首先将特征通道分组为s个（&#x3D; 4个）大小相等的子组（在我们的设置中每组8个通道）。然后，对s-1个子组执行3×3×1卷积；快捷连接应用于第一个子组以将HGC重新配置为残差学习[39]。为了提升特征组和在主视图上捕获的多尺度特征的信息流动，我们进一步使用了内部组之间的连接，如图2（b）所示。类似的组间联系已在诸如[22]的数项研究中使用。连接所有输出的特征图后，执行一次1×3×3卷积以在另一视图上编码提示。通过在HDC模块中集成组解耦卷积，层次连接和视图解耦卷积，可以：1）从多个视图区域中提取语义特征，以及多尺度信息可以被发现； 2）焦点视图的3D空间上下文感知能力相比于2D方法可以得到提升3）模型在视图上是不对称的，因此有促使去使用集成方法来获得更好且鲁棒的预测性能。</p>
+<p>C. Variants of the HDC module<br><img src="/2023/image/1218402-20200927114507339-2141993524.png" srcset="/img/loading.gif" lazyload alt="4"></p>
+<p>提出的HDC模块可以灵活地使用其他空间解耦的卷积。 例如，代替恒定使用1×3×3卷积，我们可以从1×3×3卷积和3×1×3卷积在不同层中随机选择卷积。 我们将这种类型的HDC模块命名为HDC +。 另一个变体是将1×3×3替换为1×1×3卷积，即我们首先执行切片内卷积，然后执行像素级切片间卷积。 我们命名为HDC-的变体，如图3（a）所示。</p>
+<p>在本节中，我们进一步介绍HDC模块的另一个变体HDC ++，它涉及在3D体积的三个视图上进行2D卷积。 HDC ++也是多分支结构，如图3（b）所示。 但是，对于不同的分支，我们应用不同的等级-2（2D）卷积从不同的视图提取特征。 对于最后三个分支中的每个分支，我们堆叠相同的两个卷积。 为了去进一步提升特征复用和信息传递分支，我们引入了一个与[36]中的多路复用器相似的特征融合模块。 具体来说，在第一次卷积后，四个分支通过1×1×1卷积融合在一起，然后将其输出与各个分支连接起来。 这样，多视图信息被组合在单个块中。</p>
+<p>D. Complexity of the proposed model<br>通常通过网络参数和FLOPs的数量来衡量模型的复杂性[20]，[21]。 内核大小为Kx×Ky×Kz的卷积层中的参数数为Cin×Kh×Kw×Kd×Cout，其中Cin和Cout分别是输入通道数和输出通道数。 总体而言，我们的HDC-Net具有0.29M参数。 假设卷积层的输入是Cin×H×W×D的4维张量，输出是Cout×H×W×D， FLOPs是Cin×Kh×Kw×Kd×Cout×H×W×D。输入尺寸为128×128×128时，HDC-Net需要24个GFLOP，而3D U-Net需要1900个以上GFLOPs。</p>
+<p>由于HDC模块被两个连续3D卷积的替换，因此我们将模块的参数大小与两个具有压缩率的3D卷积的级联进行比较。 假设每层中的通道为Cin &#x3D; Cout &#x3D; 32，两个3D卷积的参数数目为55296，对于HDC 12992，对于VDC为36864，对于HGC为3776，对于HDC-为6848，对于HDC +为12992，对于HDC ++为6528。 HDC &#x2F; HDC +的压缩率为0.23，VDC为0.67，使用HGC时为0.07，使用HDC-时为0.12，使用HDC ++时为0.12。 表I中显示了总的模型大小比较。</p>
+<p>IV. EXPERIMENTAL RESULTS<br>A. Dataset<br>我们使用脑肿瘤的基准评估我们的方法分段挑战（BraTS）， BraTS 2018和BraTS2017。具体来说，1）BraTS 2018具有两个公开可用的数据集：带注释的训练集（285个受试者），包括210个高级别神经胶质瘤（HGG）和75个低级别神经胶质瘤（LGG） ）案例，验证集（排行榜）（66个主题），这些验证集的评估是通过网上隐藏的标注来完成，2）BraTS 2017包含带注释的285个主题作为训练集，包含46个主题作为在线评估的验证集。 对于这两个基准，每个主题具有四种模式的MRI数据，即T1 T1ce，T2和FLAIR（液体衰减反转恢复序列）。 将所有图像剥离，对齐并且内插至1 mm各向同性分辨率。按照挑战指南，使用骰子和Hausdorff距离的第95个百分位 （Hausdorff95）来评估性能。</p>
+<p>B. Implementation details<br>这些网络在Pytorch中实现。 使用ReLU激活功能和批量归一化。 我们的模型使用Adam优化器进行了优化，初始学习率设置为10−3。 我们以L2正则的10−5权重衰减来规范化模型。 1）对于HDC-Net，我们使用多类soft Dice 子函数作为损失函数。 我们在两个并行的Nvidia Tesla K40 GPU上使用随机裁剪的128×128×128大小和10个batch size的体积训练网络，历时800个epoch。 使用包括随机旋转和随机强度偏移的数据增强。 总训练时间为12.8小时，每卷的平均预测时间为2.3秒。 2）对于HDC-Net0，我们使用soft Dice函数作为损失函数。 我们训练的模型使用随机裁剪尺寸为144×144×24和batch size为2，模型在单个Nvidia Tesla K40 GPU上并且epoch 800次。 该代码可从<a target="_blank" rel="noopener" href="https://github.com/luozhengrong/HDC-Net%E8%8E%B7%E5%BE%97%E3%80%82">https://github.com/luozhengrong/HDC-Net获得。</a></p>
+<p>C. Results on BraTS 2018 dataset<br><img src="/2023/image/1218402-20200927114520299-159119888.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>1）在BraTS 2018验证数据集上的细分结果：在BraTS 2018验证数据集上，我们的HDC-Net的ET，WT和TC骰子的平均准确度分别达到80.9％，89.7％，84.7％。 图4显示了具有我们分割分数分布特征的组级别箱线图。在图4中，绘制了患者之间Dice分数和Hausdorff95距离的平滑分布以及ET，WT和TC组中各个患者的值。 图4.中可以看到，除了少数失败的案例，HDC-Net对于所有这三个组中的大多数对象都表现良好<br><img src="/2023/image/1218402-20200927114733497-1436887840.png" srcset="/img/loading.gif" lazyload alt="image1"><br>2）HDC-Net及其变体的视觉比较：我们首先在BraTS 2018训练集上进行视觉比较。 具体来说，我们随机选择BraTS 2018培训集中的80％进行培训，其余20％进行测试。 视觉比较结果显示在图5中，其中显示了来自两个主题的示例。 从图5中可以看出，所有方法在WT区域均表现出很好的性能，而HDC-Net在更具挑战性的ET和TC区域上在视觉上显示出与标注的更好一致性，该区域用红色箭头高亮显示出来。</p>
+<p>3）HDC-Net的消融研究：默认情况下，HDCNet使用HDC模块作为基本构件。 在此实验中，我们研究了建议的HDC模块及其变体对BraTS 2018验证集上的分割性能的影响。 更具体地说，比较的变体包括：1）2（a）中的VDC，即不带HGC的HDC模块； 2）HDC中的HGC子模块，如图2（b）所示； 3）图3中的HDC-； 4）HDC +，随机使用从不同层 1×3×3卷积和3×1×3卷积中选择卷积; 5）图3中的HDC ++</p>
+<p>比较的结果显示在表I中。与HDC-Net相比，HDC-Net（VDC）在三个区域的Dice中的性能下降分别为1.7％，1.3％，1.3％。在不使用complementary view的情况下，HDCNet（HGC）在这三个区域的性能分别下降了1.2％，0.9％和1.7％。通过在complementary view上使用1×1×3卷积，HDC-Net（HDC-）在平面外方向上的接收场要小得多，并且显示出这三个地区的性能下降分别为1.5％，1.2％和0.7％。相比之下，使用HDC的HDC-Net能够通过分层组的集成和视图解耦的卷积来捕获更丰富的空间上下文，从而可以比使用VDC和HDC-的HDC-Net更好。使用HDC +，我们在ET区域获得了最高的81.5％的性能，但是该模型显示出在其他两个区域上的性能下降很小。 HDC-Net（HDC ++）也显示 在ET区域的性能比HDC-Net（HDC）更高。与强大的3D基线（即V-Net和3D U-Net）相比，HDC-Net在具有挑战性的ET和TC区域分割方面获得了巨大的性能提升，但模型尺寸却大大减小了。与其他变体相比，使用HDC的HDC-Net展现了模型大小和分割精确度之间达到了良好平衡。在图5中的视觉比较也表明，HDC-Net的结果与三个子任务的标注更加一致。<br><img src="/2023/image/1218402-20200927114543292-1857077422.png" srcset="/img/loading.gif" lazyload alt="image2"><br>4）HDC-Net0的消融研究：在表I中，我们还研究了HDC-Net0中关键组件的影响。 与HDC Net相比，HDC-Net0仅允许较小的输入大小。 为了提高性能，它使用多视图集成和模型级联。 多视图集成表示为Ens。 请参见表I。在HDC-Net0中使用VDC和HDC-的效果与在HDC-Net中使用的效果相似。 借助多视图集成和模型级联，HDC-Net0获得了显着的性能提升。 但是，单HDC-Net效率更高，性能更高。 特别是，在具有挑战性的ET和TC细分方面，HDC-Net分别比HDC-Net0高出1.6％和2.2％。</p>
+<p>5）与现有技术的比较：多视图集成和模型级联已被证明有效地提高了分割性能，并被广泛用于肿瘤分割。 因此，我们在六个类别中将我们的方法与最新方法进行了比较：1）多视图2D网络的集成； 2）单一3D网络 3）级联3D网络； 4）多个3D网络的集合； 5）同时使用多视图集成和模型级联的伪3D网络； 6）单伪3D网络。 提出的HDC-Net是单个伪3D网络，HDC-Net0是同时使用多视图集成和模型级联的伪3D网络，这将不可避免地增加计算和系统复杂性。<br><img src="/2023/image/1218402-20200927114820758-2063928957.png" srcset="/img/loading.gif" lazyload alt="6"><br>表II总结了BraTS 2018验证数据集的比较结果。 可以观察到，ET和TC子区域的分割比整个肿瘤分割更具挑战性。 结果，所有方法对于WT分割均显示出更好的分割精度，而对于其他两个在临床上更重要的任务则表现出急剧的性能下降。 总体而言，即使采用多视图集成策略的2D方法也没有足够的竞争力。 相比之下，单个3D模型（例如3D U-Net和V-Net）已经可以实现令人鼓舞的结果。 与强大的基线模型（例如V-Net [12]，V-Net + CRF [12]，3D UNet，残差3D-UNet以及级联V-Net [17]）相比，我们的HDC-Net表现得更好 具有挑战性的ET和TC细分的细分精度。 尤其是，我们使用HDC +模块的HDCNet在Dice中对ET区域分割显示出最高的81.5％的性能。</p>
+<p>如表II所示，级联的3D模型显示出明显改善的结果，但是通常以高系统复杂性为代价。 尽管Multitask-Net [8]通过共同学习所有具有多个输出的二元任务解决了这个问题，但是模型训练需要在 curriculum training下进行连续训练。 与Multitask-Net [8]相比，我们的单通道HDC-Net在ET和TC的Dice中获得了1.6％和1.2％的大性能提升，但参数却减少了47倍。 为了增强多任务模型[8]，在[5]（CascadedAttention-Net）中引入了级联注意机制，以利用子区域之间的相关性作为指导。 Cascaded-Attention-Net分别在ET，WT和TC获得80.8％，90.7％，85.1％的最先进执行效果，其中比我们HDC-Net中ET分别降低0.1％，WT高1.0％和TC高0.4％ 。</p>
+<p>Kao等人探索了多种最先进方法的集合。 [40]。 但是，在ET，WT和TC的Dice中，其性能分别比我们的HDC-Net低2.1％，0.2％和3.4％。 此外，异构模型的集成不可避免地导致非常复杂的系统，这个系统需要大量的计算资源，而最终模型无论在训练还是测试阶段均缺乏效率。 相比之下，最新技术NoNewNet [6]使用训练交叉验证和集成在不同子集上的五个训练网络的结果。 当我们的HDC-Net进行多类预测时，NoNewNet（ 多类）的执行性能在WT方面比HDC-Net高1.1％，在ET和TC方面比HDC-Net低1.2％和0.4％。 此外，我们HDC-Net的参数和FLOPs的数量分别仅为NoNewNet（51.8M和202 GFLOPs）的0.6％和12％。 通过将多类预测分为三个二进制分段，NoNewNet（多任务）可以分别在WT和TC高HDC-Net的 1.2％和0.5％，但显示出ET的性能较差。 尽管具有出色的性能，但NoNewNet依赖于几个独立训练的模型的集合，因此具有训练和预测复杂度高的局限性。 相反，我们的单次one-pass模型非常轻便，高效，但性能却相当。</p>
+<p>在表II中，我们还与其他伪3D模型进行了比较，这些伪3D模型通常使用跨空间域或通道域的解耦卷积。这些模型是轻量级，模型尺寸小的模型，也适合在有限的硬件资源下工作。与性能最佳的CascadedAnisotropicNet [7]，[35]相比，我们分别获得了ET和TC 1.8％和1.5％的性能提升。此外，CascadedAnisotropicNet依赖于多尺度输出，多视图集成和模型级联策略，并且涉及使用九种独立训练模型进行预测，这些模型的总大小是我们HDC-Net的6倍以上。因此，此类方法的代价是系统复杂度高。相比之下，使用单个轻量模型执行一次通过分割的方法，例如3D ESPNet [14]，S3D-UNet [37]，3D DMFNet [4]和HDCNet，则更为有利。 S3D-UNet [37]与我们的方法密切相关，并使用基于1D 1×1×3和2D 3×3×1卷积的多分支S3D块。但是，这种方法无法产生最先进的性能，特别是对于ET区域。通过将2D 1×3×3和2D 3×3×1卷积与多分支体系结构进行分层集成，我们提出的HDC-Net的性能优于S3DUNet，分别在ET高出6.0%，WT高出0.3%和TC高出1.6%。尽管HDC模块也是基于与S3D-UNet相同的1D和2D卷积，但是对于ET，WT，和TC，在带有HDC-的HDC-Net中，Dice仍然比S3D-UNet分别高出4.5％，0.9％和0.9％。</p>
+<p>[1]  这个数据是从哪儿获得的？<br>另一种高效的先进方法是3D DMFNet [4]，它集成了扩张卷积以捕获多尺度上下文信息，并集成了多光纤单元以减少参数。除了通道分组策略之外，多光纤单元还利用1×1×1作为多路复用器，以促进消息在通道组之间的流动。与3D DMFNet相比，我们的HDC-Net在ET和TC分割方面获得了0.8％和0.2％的性能提升，而WT却有0.9%的下降。但是，3D DMFNet （3.88M）的参数大小是我们HDC-Net（0.29M）的13倍以上，这表明所提出的轻量级模型具有强大的学习能力。</p>
+<p>D. Results on BraTS 2017 validation set<br>为了完整起见，我们还报告了初步研究中提出的关于BraTS 2017的HDC-Net0的结果[25]。 由于BraTS 2017的在线评估已经结束，因此我们无法在此验证集中报告HDC-Net的结果。<br><img src="/2023/image/1218402-20200927114556990-1140269729.png" srcset="/img/loading.gif" lazyload alt="image7"></p>
+<p>1）在BraTS 2017验证集上对HDC-Net0的消融研究：在表III中，我们测试了HDC模块的两个简化版本（即VDC和HDC-）的效果以及多视图集成的影响（ Ens）。 如表III所示，HDC-Net0（HDC）在ET，WT和TC方面分别优于HDCNet0（VDC）3.2％，1.7％和2.3％，并且优于HDC-Net0 （HDC-）分别为ET，WT和TC的1.3％，1.0％和2.1％。 而且，通过小尺寸输入（144×144×24）到HDC-Net0，多视图集成策略可以显着提高性能</p>
+<p>2）BraTS 2017验证集的比较：结果列于表IV。我们将HDC-Net0与（1）Li等进行了比较。 [26]融合了多视图分割； （2）赵等。 [41]，其中集成了多视图集成和CRF改进； （3）Isensee等。 [31]，它使用U-Net的3D版本，并在定位路径和最终输出中集成了不同级别的分割层； （4）Pereira 等。 [28]，它使用了两个新颖的FCN网络的级联； （5）Jungo等。 [27]集合了几个随机采样的网络进行预测； （6）Kamnitsas等。 [42]，它使用了多个最新模型的集合； （7）混合2D-3D [34]中的模型； （8）陈等。 [43]，它使用了一个新型的双重训练方案多级DeepMedic； （9）在[8]中的多任务网络;（10）在[7]中的CascadedAnisotropicNet。相比之下，我们的方法优于大多数方法，包括[42]中的最新集成方法。由于其较小的模型尺寸，HDC-Net0的优势在于可以在有限的硬件资源预算下工作，而且可以产生令人满意的结果。但是，它具有较高的局限性 HDC-Net的模型冗余。</p>
+<p><img src="/2023/image/1218402-20200927114610889-549987943.png" srcset="/img/loading.gif" lazyload alt="9"></p>
+<p>V. DISCUSSION AND CONCLUSION<br>我们使用新型轻量级HDC-Net解决了脑肿瘤分割问题。 为了减少计算开销，我们使用一种新颖的HDC模型探索了视图和组解耦卷积，它可以通过在3D图像中编码多尺度多视图上下文，并减少参数数量的同时提高执行性能。 在BraTS 2018和2017基准测试上的实验表明，我们的方法仅需0.29M参数即可达到竞争性能，参数数量比最新3D模型NoNewNet [6]低了170倍，比最新的轻量模型3D DMFNet [4]模型的参数低了13倍。 。</p>
+<p>尽管我们所提出的方法总体执行性能优异，但在一些具有挑战性的情况下，其在ET &#x2F; TC上的准确性仍然很低。 图6演示了两种代表性情况，其中TC和ET显示了不可见的边界。 为了解决这些问题，将来我们将利用多模式数据的更好融合而不是简单的级联。<br><img src="/2023/image/1218402-20200927114631709-982409666.png" srcset="/img/loading.gif" lazyload alt="image0"></p>
+
+                
+              </div>
+              <!-- 个人修改:打赏模块 -->
+              <!--自己添加的打赏模块：开始-->
+              <div style="text-align: center; margin: auto;">
+                <!--如果主题的  _config.yml 中开启打赏-->
+                  <hr><!--放一条水平线与文章正文内容区分-->
+                  <div style="background-color: #663399; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+                   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+                    打赏支持
+                  	
+                </div>
+                  <div style="font-size: 14px;margin-bottom: 10px;">
+                  “如果你觉得我的文章不错，不妨鼓励我继续写作。” <!--在主题的 _config.yml 中设置打赏提示语-->
+                </div>
+                  <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+                  <img src="/img/ali_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/weixin_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+                </div>
+                
+              </div> 
+              <!--自己添加的打赏模块：结束-->
+
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HDC-Net/">#HDC-Net</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HDC-Net: Hierarchical Decoupled Convolution Network for Brain Tumor Segmentation</div>
+      <div>https://dreamoneyou.github.io/2020/HDC-Net阅读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>九叶草</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月27日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年4月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/windows%E4%B8%8B%E9%85%8D%E7%BD%AEpytorch%E7%8E%AF%E5%A2%83/" title="windows下配置pytorch环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">windows下配置pytorch环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/%E4%BD%BF%E7%94%A8VNC%E8%BF%9E%E6%8E%A5ubuntu16.4%E9%94%99%E8%AF%AFAuthentication%20Failure%E9%97%AE%E9%A2%98/" title="使用VNC连接ubuntu16.4错误AuthenticationFailure问题">
+                        <span class="hidden-mobile">使用VNC连接ubuntu16.4错误AuthenticationFailure问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.14.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.14.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://peixu-waline.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus","https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

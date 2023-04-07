@@ -16,17 +16,17 @@
   <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta name="description" content="后续会慢慢补充1、Faster R-CNN：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。2、False Positive&amp;rdquo;通常指假阳性，就是把一个健康人诊断为病人。3、敏感度（sensitivity）：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&amp;times;100％，此值越大，说明诊断试验越灵敏。3、特异度（specific">
+    <meta name="description" content="后续会慢慢补充1、Faster R-CNN：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。2、False Positive&amp;rdquo;通常指假阳性，就是把一个健康人诊断为病人。3、敏感度（sensitivity）：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&amp;times;100％，此值越大，说明诊断试验越灵敏。4、特异度（specific">
 <meta property="og:type" content="article">
 <meta property="og:title" content="医学影像中常见名词解释">
 <meta property="og:url" content="https://dreamoneyou.github.io/2020/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">
 <meta property="og:site_name" content="九叶草的Blog">
-<meta property="og:description" content="后续会慢慢补充1、Faster R-CNN：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。2、False Positive&amp;rdquo;通常指假阳性，就是把一个健康人诊断为病人。3、敏感度（sensitivity）：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&amp;times;100％，此值越大，说明诊断试验越灵敏。3、特异度（specific">
+<meta property="og:description" content="后续会慢慢补充1、Faster R-CNN：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。2、False Positive&amp;rdquo;通常指假阳性，就是把一个健康人诊断为病人。3、敏感度（sensitivity）：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&amp;times;100％，此值越大，说明诊断试验越灵敏。4、特异度（specific">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-07T08:31:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T02:14:36.470Z">
+<meta property="article:modified_time" content="2023-04-07T05:44:22.593Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="医学图像">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          898 字
+          900 字
         
       </span>
     
@@ -311,7 +311,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -319,8 +319,8 @@
             
               <div class="markdown-body">
                 
-                <p><span style="font-size: 18px;"><strong>后续会慢慢补充</strong></span><br />1、Faster R-CNN：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。<br />2、False Positive&rdquo;通常指假阳性，就是把一个健康人诊断为病人。<br />3、敏感度（sensitivity）：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&times;100％，此值越大，说明诊断试验越灵敏。<br />3、特异度（specificity）：又称真阴性率，即实际上未患病的人被诊断为阴性的概率，计算公式是：真阴性／（真阴性＋假阳性）&times;100％，此值越大，说明诊断试验越精确。<br />4、Skull-RCNN:是将头骨形态和深度卷积网络融合在一起进行精确的头骨骨折检测。<br />5、ROI Align很好地解决了ROI Pooling操作中两次量化造成的区域不匹配(mis-alignment)的问题。ROI Align的思路很简单：取消量化操作，使用双线性内插的方法获得坐标为浮点数的像素点上的图像数值,从而将整个特征聚集过程转化为一个连续的操作。<br />6、FPN（Feature Pyramid Networks）解决什么问题？<br />答：答： 在以往的faster rcnn进行目标检测时，无论是rpn还是fast rcnn，roi 都作用在最后一层，这在大目标的检测没有问题，但是对于小目标的检测就有些问题。因为对于小目标来说，当进行卷积池化到最后一层，实际上语义信息已经没有了，因为我们都知道对于一个roi映射到某个feature map的方法就是将底层坐标直接除以stride,显然越后，映射过去后就越小，甚至可能就没有了。 所以为了解决多尺度检测的问题，引入了特征金字塔网络。<br />7、特征金字塔是多尺度目标检测系统中的一个基本组成部分</p>
-<p>8、SURF (Speeded Up Robust Features, 加速稳健特征) 是一个稳健的图像识别和描述算法，首先于2006年发表在ECCV大会上。这个算法可被用于计算机视觉任务，如物件识别和3D重构。<br />9、SURF使用海森矩阵的行列式值作特征点侦测并用积分图加速运算；SURF 的描述子基于 2D 离散小波变换 响应并且有效地利用了积分图。</p>
+                <p><span style="font-size: 18px;"><strong>后续会慢慢补充</strong></span><br /><strong>1、Faster R-CNN</strong>：他会花费更多的时间在检测方面，但是在小的项目中可以得到更为精确的结果。<br /><strong>2、False Positive</strong>&rdquo;通常指假阳性，就是把一个健康人诊断为病人。<br /><strong>3、敏感度（sensitivity）</strong>：又称真阳性率，即患者被诊断为阳性的概率，计算公式是：真阳性／（真阳性＋假阴性）&times;100％，此值越大，说明诊断试验越灵敏。<br /><strong>4、特异度（specificity）</strong>：又称真阴性率，即实际上未患病的人被诊断为阴性的概率，计算公式是：真阴性／（真阴性＋假阳性）&times;100％，此值越大，说明诊断试验越精确。<br /><strong>5、Skull-RCNN:</strong>是将头骨形态和深度卷积网络融合在一起进行精确的头骨骨折检测。<br /><strong>6、ROI Align</strong>很好地解决了ROI Pooling操作中两次量化造成的区域不匹配(mis-alignment)的问题。ROI Align的思路很简单：取消量化操作，使用双线性内插的方法获得坐标为浮点数的像素点上的图像数值,从而将整个特征聚集过程转化为一个连续的操作。<br /><strong>7、FPN（Feature Pyramid Networks）</strong>解决什么问题？<br />答：答： 在以往的faster rcnn进行目标检测时，无论是rpn还是fast rcnn，roi 都作用在最后一层，这在大目标的检测没有问题，但是对于小目标的检测就有些问题。因为对于小目标来说，当进行卷积池化到最后一层，实际上语义信息已经没有了，因为我们都知道对于一个roi映射到某个feature map的方法就是将底层坐标直接除以stride,显然越后，映射过去后就越小，甚至可能就没有了。 所以为了解决多尺度检测的问题，引入了特征金字塔网络。<br /><strong>8、特征金字塔/<strong>是多尺度目标检测系统中的一个基本组成部分</p>
+<p><strong>9、SURF (Speeded Up Robust Features, 加速稳健特征)</strong> 是一个稳健的图像识别和描述算法，首先于2006年发表在ECCV大会上。这个算法可被用于计算机视觉任务，如物件识别和3D重构。<br /><strong>10、SURF</strong>使用海森矩阵的行列式值作特征点侦测并用积分图加速运算；SURF 的描述子基于 2D 离散小波变换 响应并且有效地利用了积分图。</p>
                 
               </div>
               <!-- 个人修改:打赏模块 -->
@@ -358,7 +358,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E5%85%85%E7%94%B5%E5%AD%A6%E4%B9%A0/" class="category-chain-item">充电学习</a>
   
   
 
@@ -373,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F/">#医学图像</a>
       
     </div>
   

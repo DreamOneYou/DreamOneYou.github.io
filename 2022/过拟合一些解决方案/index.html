@@ -23,9 +23,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220522162722698-1555354996.png">
 <meta property="article:published_time" content="2022-05-22T08:41:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:56:18.332Z">
+<meta property="article:modified_time" content="2023-04-07T04:51:54.876Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="解决过拟合">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220522162722698-1555354996.png">
   
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          881 字
+          869 字
         
       </span>
     
@@ -311,7 +311,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -320,14 +320,12 @@
               <div class="markdown-body">
                 
                 <img src="/2023/image/1218402-20220522162722698-1555354996.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
-<p>过拟合原因：</p>
-<p>&nbsp;</p>
+<p><strong>过拟合原因：</strong></p>
 <p>1. 训练集的数量级和模型的复杂度不匹配。训练集的数量级要小于模型的复杂度；（模型太复杂，参数就会太大，然而你的数据量又很小）</p>
 <p>2. 训练集和测试集特征分布不一致；（用分类猫的训练集，去拟合分类狗的）</p>
 <p>3. 样本里的噪音数据干扰过大，大到模型过分记住了噪音特征，反而忽略了真实的输入输出间的关系；（数据量太小，或许只学到了噪音，而没有学到希望学到的特征）</p>
 <p>4. 权值学习迭代次数足够多(Overtraining)，拟合了训练数据中的噪声和训练样例中没有代表性的特征。<br /><br /></p>
-<p>解决方案：</p>
+<p><strong>解决方案：</strong></p>
 <p>1、简化模型结构：比如减小网络深度。</p>
 <p>2、多来一些数据增广，比如flip、rotate，镜像，高斯噪音，随机裁剪，缩放。</p>
 <p>3、正则化：比如添加L1和L2正则。（L2正则也称为权重衰减 weight decay ）</p>
@@ -373,7 +371,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -388,7 +386,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/%E8%A7%A3%E5%86%B3%E8%BF%87%E6%8B%9F%E5%90%88/">#解决过拟合</a>
       
     </div>
   

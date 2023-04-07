@@ -22,9 +22,10 @@
 <meta property="og:site_name" content="九叶草的Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-14T12:19:00.000Z">
-<meta property="article:modified_time" content="2023-04-06T13:41:42.556Z">
+<meta property="article:modified_time" content="2023-04-07T05:18:16.609Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="数据扩充方法">
+<meta property="article:tag" content="三维医学图像">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -247,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          2.1k 字
         
       </span>
     
@@ -258,7 +259,7 @@
         
         
         
-          41 分钟
+          18 分钟
         
       </span>
     
@@ -309,7 +310,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月6日 晚上
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -317,57 +318,7 @@
             
               <div class="markdown-body">
                 
-                <div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;">coding:utf-8</span>
-<span style="color: #0000ff;">import</span><span style="color: #000000;"> torch
-</span><span style="color: #0000ff;">from</span> monai.transforms <span style="color: #0000ff;">import</span><span style="color: #000000;"> Compose, RandHistogramShiftD, Flipd, Rotate90d
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> matplotlib.pyplot as plt
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> SimpleITK as sitk
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> start a chain of transforms</span>
-KEYS = (<span style="color: #800000;">"</span><span style="color: #800000;">image</span><span style="color: #800000;">"</span>, <span style="color: #800000;">"</span><span style="color: #800000;">label</span><span style="color: #800000;">"</span><span style="color: #000000;">)
-</span><span style="color: #0000ff;">class</span><span style="color: #000000;"> aug():
-    </span><span style="color: #0000ff;">def</span> <span style="color: #800080;">__init__</span><span style="color: #000000;">(self):
-        self.random_rotated </span>=<span style="color: #000000;"> Compose([
-            Rotate90d(KEYS, k</span>=1, spatial_axes=(2,3),allow_missing_keys=<span style="color: #000000;">True),
-            Flipd(KEYS, spatial_axis</span>=(1,2,3),allow_missing_keys=<span style="color: #000000;">True),
-            RandHistogramShiftD(KEYS,  prob</span>=1, num_control_points=30, allow_missing_keys=<span style="color: #000000;">True),
-            </span><span style="color: #008000;">#</span><span style="color: #008000;"> ToTensorD(KEYS),</span>
-<span style="color: #000000;">        ])
-    </span><span style="color: #0000ff;">def</span><span style="color: #000000;"> forward(self,x):
-        x </span>=<span style="color: #000000;"> self.random_rotated(x)
-        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> x
-
-<p></span><span style="color: #008000;">#</span><span style="color: #008000;"> start a dataset</span><br><span style="color: #0000ff;">def</span> save(before_x, after_x, new_path,new_name&#x3D;<span style="color: #800000;">“”</span><span style="color: #000000;">):<br>    after_x </span>&#x3D;<span style="color: #000000;"> after_x[0, 0,…]<br>    </span><span style="color: #0000ff;">if</span> new_name&#x3D;&#x3D;<span style="color: #800000;">“</span><span style="color: #800000;">image</span><span style="color: #800000;">“</span><span style="color: #000000;">:<br>        ct </span>&#x3D;<span style="color: #000000;"> sitk.ReadImage(before_x, sitk.sitkInt16)<br>    </span><span style="color: #0000ff;">else</span><span style="color: #000000;">:<br>        ct </span>&#x3D;<span style="color: #000000;"> sitk.ReadImage(before_x, sitk.sitkUInt8)<br>    predict_seg </span>&#x3D;<span style="color: #000000;"> sitk.GetImageFromArray(after_x)<br>    predict_seg.SetDirection(ct.GetDirection())<br>    predict_seg.SetOrigin(ct.GetOrigin())<br>    predict_seg.SetSpacing(ct.GetSpacing())</p>
-<pre><code class="hljs">sitk.WriteImage(predict_seg,new_path)
-</code></pre>
-<p></span><span style="color: #0000ff;">if</span> <span style="color: #800080;"><strong>name</strong></span> &#x3D;&#x3D; <span style="color: #800000;">“</span><span style="color: #800000;"><strong>main</strong></span><span style="color: #800000;">“</span><span style="color: #000000;">:<br>    image </span>&#x3D; r<span style="color: #800000;">“</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\image_2.nii</span><span style="color: #800000;">“</span>   <span style="color: #008000;">#</span><span style="color: #008000;"> 原图</span><br>    label &#x3D; r<span style="color: #800000;">“</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\liver_2.nii</span><span style="color: #800000;">“</span>   <span style="color: #008000;">#</span><span style="color: #008000;">标签</span><br>    new_path &#x3D; r<span style="color: #800000;">“</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\image_0.nii</span><span style="color: #800000;">“</span>  <span style="color: #008000;">#</span><span style="color: #008000;">增强后的原图</span><br>    new_path1 &#x3D; r<span style="color: #800000;">“</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\liver_1.nii</span><span style="color: #800000;">“</span>  <span style="color: #008000;">#</span><span style="color: #008000;">增强后的标签</span><br><span style="color: #000000;"><br>    ct </span>&#x3D;<span style="color: #000000;"> sitk.ReadImage(image)<br>    ct1 </span>&#x3D;<span style="color: #000000;"> sitk.GetArrayFromImage(ct)<br>    seg </span>&#x3D;<span style="color: #000000;"> sitk.ReadImage(label)<br>    seg1 </span>&#x3D;<span style="color: #000000;"> sitk.GetArrayFromImage(seg)</p>
-<pre><code class="hljs">ct &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; ct1[None, None,...]
-seg &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; seg1[None, None,...]
-
-ct &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; torch.from_numpy(ct)
-seg &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; torch.from_numpy(seg)
-m &lt;/span&gt;= &#123;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;: ct,
-     &lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;label&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;:seg&#125;
-augs &lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; aug()
-&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(m[&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;].shape)
-data_dict&lt;/span&gt;=&lt;span style=&quot;color: #000000;&quot;&gt; augs.forward(m)
-
-save(image, data_dict[&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;], new_path, &lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)
-save(label, data_dict[&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;label&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;], new_path1, &lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;label&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;)
-
-
-&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;print&lt;/span&gt;(data_dict[&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #000000;&quot;&gt;].shape)
-plt.subplots(&lt;/span&gt;1, 3&lt;span style=&quot;color: #000000;&quot;&gt;)
-plt.subplot(&lt;/span&gt;1, 3, 1&lt;span style=&quot;color: #000000;&quot;&gt;);
-plt.imshow(ct1[&lt;/span&gt;66&lt;span style=&quot;color: #000000;&quot;&gt;,...])
-plt.subplot(&lt;/span&gt;1, 3, 2&lt;span style=&quot;color: #000000;&quot;&gt;);
-plt.imshow(data_dict[&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;image&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;][0,0, 66&lt;span style=&quot;color: #000000;&quot;&gt;,...])
-plt.subplot(&lt;/span&gt;1, 3, 3&lt;span style=&quot;color: #000000;&quot;&gt;);
-plt.imshow(data_dict[&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;label&lt;/span&gt;&lt;span style=&quot;color: #800000;&quot;&gt;&quot;&lt;/span&gt;][0,0, 66&lt;span style=&quot;color: #000000;&quot;&gt;,...])
-plt.show()&lt;/span&gt;&lt;/pre&gt;
-</code></pre>
-</div>
-<p>&nbsp;</p>
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> monai.transforms <span class="hljs-keyword">import</span> Compose, RandHistogramShiftD, Flipd, Rotate90d<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> SimpleITK <span class="hljs-keyword">as</span> sitk<br><span class="hljs-comment"># start a chain of transforms</span><br>KEYS = (<span class="hljs-string">&quot;image&quot;</span>, <span class="hljs-string">&quot;label&quot;</span>)<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">aug</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.random_rotated = Compose([<br>            Rotate90d(KEYS, k=<span class="hljs-number">1</span>, spatial_axes=(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),allow_missing_keys=<span class="hljs-literal">True</span>),<br>            Flipd(KEYS, spatial_axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),allow_missing_keys=<span class="hljs-literal">True</span>),<br>            RandHistogramShiftD(KEYS,  prob=<span class="hljs-number">1</span>, num_control_points=<span class="hljs-number">30</span>, allow_missing_keys=<span class="hljs-literal">True</span>),<br>            <span class="hljs-comment"># ToTensorD(KEYS),</span><br>        ])<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self,x</span>):<br>        x = self.random_rotated(x)<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># start a dataset</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save</span>(<span class="hljs-params">before_x, after_x, new_path,new_name=<span class="hljs-string">&quot;&quot;</span></span>):<br>    after_x = after_x[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>,...]<br>    <span class="hljs-keyword">if</span> new_name==<span class="hljs-string">&quot;image&quot;</span>:<br>        ct = sitk.ReadImage(before_x, sitk.sitkInt16)<br>    <span class="hljs-keyword">else</span>:<br>        ct = sitk.ReadImage(before_x, sitk.sitkUInt8)<br>    predict_seg = sitk.GetImageFromArray(after_x)<br>    predict_seg.SetDirection(ct.GetDirection())<br>    predict_seg.SetOrigin(ct.GetOrigin())<br>    predict_seg.SetSpacing(ct.GetSpacing())<br><br>    sitk.WriteImage(predict_seg,new_path)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    image = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\image_2.nii&quot;</span>   <span class="hljs-comment"># 原图</span><br>    label = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\liver_2.nii&quot;</span>   <span class="hljs-comment">#标签</span><br>    new_path = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\image_0.nii&quot;</span>  <span class="hljs-comment">#增强后的原图</span><br>    new_path1 = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\liver_1.nii&quot;</span>  <span class="hljs-comment">#增强后的标签</span><br><br>    ct = sitk.ReadImage(image)<br>    ct1 = sitk.GetArrayFromImage(ct)<br>    seg = sitk.ReadImage(label)<br>    seg1 = sitk.GetArrayFromImage(seg)<br><br>    ct = ct1[<span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>,...]<br>    seg = seg1[<span class="hljs-literal">None</span>, <span class="hljs-literal">None</span>,...]<br><br>    ct = torch.from_numpy(ct)<br>    seg = torch.from_numpy(seg)<br>    m = &#123;<span class="hljs-string">&quot;image&quot;</span>: ct,<br>         <span class="hljs-string">&quot;label&quot;</span>:seg&#125;<br>    augs = aug()<br>    <span class="hljs-built_in">print</span>(m[<span class="hljs-string">&quot;image&quot;</span>].shape)<br>    data_dict= augs.forward(m)<br><br>    save(image, data_dict[<span class="hljs-string">&quot;image&quot;</span>], new_path, <span class="hljs-string">&quot;image&quot;</span>)<br>    save(label, data_dict[<span class="hljs-string">&quot;label&quot;</span>], new_path1, <span class="hljs-string">&quot;label&quot;</span>)<br><br><br>    <span class="hljs-built_in">print</span>(data_dict[<span class="hljs-string">&quot;image&quot;</span>].shape)<br>    plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)<br>    plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>);<br>    plt.imshow(ct1[<span class="hljs-number">66</span>,...])<br>    plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>);<br>    plt.imshow(data_dict[<span class="hljs-string">&quot;image&quot;</span>][<span class="hljs-number">0</span>,<span class="hljs-number">0</span>, <span class="hljs-number">66</span>,...])<br>    plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>);<br>    plt.imshow(data_dict[<span class="hljs-string">&quot;label&quot;</span>][<span class="hljs-number">0</span>,<span class="hljs-number">0</span>, <span class="hljs-number">66</span>,...])<br>    plt.show()<br></code></pre></td></tr></table></figure>
                 
               </div>
               <!-- 个人修改:打赏模块 -->
@@ -405,7 +356,7 @@ plt.show()&lt;/span&gt;&lt;/pre&gt;
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -420,7 +371,9 @@ plt.show()&lt;/span&gt;&lt;/pre&gt;
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E6%89%A9%E5%85%85%E6%96%B9%E6%B3%95/">#数据扩充方法</a>
+      
+        <a href="/tags/%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F/">#三维医学图像</a>
       
     </div>
   
@@ -451,7 +404,7 @@ plt.show()&lt;/span&gt;&lt;/pre&gt;
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       
@@ -492,8 +445,8 @@ plt.show()&lt;/span&gt;&lt;/pre&gt;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/%E5%AF%B9%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E6%8B%BC%E6%8E%A5%EF%BC%8C%E8%B0%83%E6%95%B4%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D%E3%80%82/" title="对三维医学图像进行拼接，调整窗宽窗位。">
-                        <span class="hidden-mobile">对三维医学图像进行拼接，调整窗宽窗位。</span>
+                      <a href="/2022/%E5%AF%B9%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E6%8B%BC%E6%8E%A5%EF%BC%8C%E8%B0%83%E6%95%B4%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D%E3%80%82/" title="对三维医学图像进行拼接，调整窗宽窗位">
+                        <span class="hidden-mobile">对三维医学图像进行拼接，调整窗宽窗位</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

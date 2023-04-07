@@ -22,9 +22,10 @@
 <meta property="og:site_name" content="九叶草的Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-25T12:08:00.000Z">
-<meta property="article:modified_time" content="2023-04-06T13:41:48.831Z">
+<meta property="article:modified_time" content="2023-04-07T05:20:40.934Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="npy2png">
+<meta property="article:tag" content="npy2nii">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -247,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          973 字
+          1.1k 字
         
       </span>
     
@@ -309,7 +310,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月6日 晚上
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -317,22 +318,7 @@
             
               <div class="markdown-body">
                 
-                <div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;">coding:utf-8</span>
-<span style="color: #0000ff;">import</span><span style="color: #000000;"> matplotlib.pyplot as plt
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy as np
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> os
-</span><span style="color: #0000ff;">from</span> skimage.transform <span style="color: #0000ff;">import</span><span style="color: #000000;"> resize
-</span><span style="color: #0000ff;">from</span> glob <span style="color: #0000ff;">import</span><span style="color: #000000;"> glob
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> SimpleITK as sitk
-file_dir </span>= r<span style="color: #800000;">"</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\npy\train_image\*</span><span style="color: #800000;">"</span>  <span style="color: #008000;">#</span><span style="color: #008000;"> npy文件路径</span>
-dest_dir = r<span style="color: #800000;">"</span><span style="color: #800000;">D:\MyData\3Dircadb1_fusion_date\png</span><span style="color: #800000;">"</span>  <span style="color: #008000;">#</span><span style="color: #008000;"> 文件存储的路径</span>
-
-
-<p><span style="color: #0000ff;">def</span><span style="color: #000000;"> npy_png(file_dir, dest_dir):<br>    </span><span style="color: #008000;">#</span><span style="color: #008000;"> 如果不存在对应文件，则创建对应文件</span><br>    <span style="color: #0000ff;">if</span> <span style="color: #0000ff;">not</span><span style="color: #000000;"> os.path.exists(dest_dir):<br>        os.makedirs(dest_dir)<br>    path </span>&#x3D;<span style="color: #000000;"> glob(file_dir)<br>    k</span>&#x3D;<span style="color: #000000;">0<br>    </span><span style="color: #0000ff;">for</span> file <span style="color: #0000ff;">in</span><span style="color: #000000;"> path:<br>        arr </span>&#x3D;<span style="color: #000000;"> np.load(file)<br>        z </span>&#x3D; arr.shape[0] <span style="color: #008000;">#</span><span style="color: #008000;"> 获取Z轴大小</span><br>        k +&#x3D; 1<br>        <span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span>  range(z-1):  <span style="color: #008000;">#</span><span style="color: #008000;"> 因为是npy是三维的，但是png二维显示，所以我按照Z轴切片进行保存展示</span><br>            arr1 &#x3D; arr[i:i+1,…] <span style="color: #008000;">#</span><span style="color: #008000;">每次增长1 slice</span><br>            arr2 &#x3D; arr1[0, …] <span style="color: #008000;">#</span><span style="color: #008000;"> 将其转换为两维，因为Z轴当前为1，可以省略。</span><br>            disp_to_img &#x3D; resize(arr2, [128, 128<span style="color: #000000;">])<br>            plt.imsave(os.path.join(dest_dir, </span><span style="color: #800000;">“</span><span style="color: #800000;">{}_{}_disp.png</span><span style="color: #800000;">“</span>.format(k,i)), disp_to_img, cmap&#x3D;<span style="color: #800000;">‘</span><span style="color: #800000;">plasma</span><span style="color: #800000;">‘</span>)  <span style="color: #008000;">#</span><span style="color: #008000;"> 定义命名规则，保存图片为彩色模式</span><br>        <span style="color: #008000;">#</span><span style="color: #008000;"># npy文件转换为nii文件</span><br>        <span style="color: #008000;">#</span><span style="color: #008000;"> sitk_img &#x3D; sitk.GetImageFromArray(arr, isVector&#x3D;False)</span><br>        <span style="color: #008000;">#</span><span style="color: #008000;"> sitk.WriteImage(sitk_img, os.path.join(dest_dir, str(i) + “.nii”))</span><br>        <span style="color: #008000;">#</span><span style="color: #008000;"> print(‘file_name:{}’.format(file))</span></p>
-<p><span style="color: #0000ff;">if</span> <span style="color: #800080;"><strong>name</strong></span> &#x3D;&#x3D; <span style="color: #800000;">“</span><span style="color: #800000;"><strong>main</strong></span><span style="color: #800000;">“</span><span style="color: #000000;">:<br>    npy_png(file_dir, dest_dir)</span></pre></p>
-</div>
-<p>&nbsp;</p>
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> skimage.transform <span class="hljs-keyword">import</span> resize<br><span class="hljs-keyword">from</span> glob <span class="hljs-keyword">import</span> glob<br><span class="hljs-keyword">import</span> SimpleITK <span class="hljs-keyword">as</span> sitk<br>file_dir = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\npy\train_image\*&quot;</span>  <span class="hljs-comment"># npy文件路径</span><br>dest_dir = <span class="hljs-string">r&quot;D:\MyData\3Dircadb1_fusion_date\png&quot;</span>  <span class="hljs-comment"># 文件存储的路径</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">npy_png</span>(<span class="hljs-params">file_dir, dest_dir</span>):<br>    <span class="hljs-comment"># 如果不存在对应文件，则创建对应文件</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(dest_dir):<br>        os.makedirs(dest_dir)<br>    path = glob(file_dir)<br>    k=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> path:<br>        arr = np.load(file)<br>        z = arr.shape[<span class="hljs-number">0</span>] <span class="hljs-comment"># 获取Z轴大小</span><br>        k += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span>  <span class="hljs-built_in">range</span>(z-<span class="hljs-number">1</span>):  <span class="hljs-comment"># 因为是npy是三维的，但是png二维显示，所以我按照Z轴切片进行保存展示</span><br>            arr1 = arr[i:i+<span class="hljs-number">1</span>,...] <span class="hljs-comment">#每次增长1 slice</span><br>            arr2 = arr1[<span class="hljs-number">0</span>, ...] <span class="hljs-comment"># 将其转换为两维，因为Z轴当前为1，可以省略。</span><br>            disp_to_img = resize(arr2, [<span class="hljs-number">128</span>, <span class="hljs-number">128</span>])<br>            plt.imsave(os.path.join(dest_dir, <span class="hljs-string">&quot;&#123;&#125;_&#123;&#125;_disp.png&quot;</span>.<span class="hljs-built_in">format</span>(k,i)), disp_to_img, cmap=<span class="hljs-string">&#x27;plasma&#x27;</span>)  <span class="hljs-comment"># 定义命名规则，保存图片为彩色模式</span><br>        <span class="hljs-comment">## npy文件转换为nii文件</span><br>        <span class="hljs-comment"># sitk_img = sitk.GetImageFromArray(arr, isVector=False)</span><br>        <span class="hljs-comment"># sitk.WriteImage(sitk_img, os.path.join(dest_dir, str(i) + &quot;.nii&quot;))</span><br>        <span class="hljs-comment"># print(&#x27;file_name:&#123;&#125;&#x27;.format(file))</span><br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    npy_png(file_dir, dest_dir)<br></code></pre></td></tr></table></figure>
                 
               </div>
               <!-- 个人修改:打赏模块 -->
@@ -370,7 +356,7 @@ dest_dir = r<span style="color: #800000;">"</span><span style="color: #800000;">
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -385,7 +371,9 @@ dest_dir = r<span style="color: #800000;">"</span><span style="color: #800000;">
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/npy2png/">#npy2png</a>
+      
+        <a href="/tags/npy2nii/">#npy2nii</a>
       
     </div>
   
@@ -416,7 +404,7 @@ dest_dir = r<span style="color: #800000;">"</span><span style="color: #800000;">
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       
@@ -447,9 +435,9 @@ dest_dir = r<span style="color: #800000;">"</span><span style="color: #800000;">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/%E5%AF%B9%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E6%8B%BC%E6%8E%A5%EF%BC%8C%E8%B0%83%E6%95%B4%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D%E3%80%82/" title="对三维医学图像进行拼接，调整窗宽窗位。">
+                      <a href="/2022/%E5%AF%B9%E4%B8%89%E7%BB%B4%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E8%BF%9B%E8%A1%8C%E6%8B%BC%E6%8E%A5%EF%BC%8C%E8%B0%83%E6%95%B4%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D%E3%80%82/" title="对三维医学图像进行拼接，调整窗宽窗位">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">对三维医学图像进行拼接，调整窗宽窗位。</span>
+                        <span class="hidden-mobile">对三维医学图像进行拼接，调整窗宽窗位</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

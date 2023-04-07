@@ -16,10 +16,12 @@
   <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="图像膨胀、图像腐蚀、读取nii">
+<meta property="og:type" content="article">
 <meta property="og:title" content="图像形态学操作（cv2库实现）">
 <meta property="og:url" content="https://dreamoneyou.github.io/2022/%E5%9B%BE%E5%83%8F%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%EF%BC%88cv2%E5%BA%93%E5%AE%9E%E7%8E%B0%EF%BC%89/">
 <meta property="og:site_name" content="九叶草的Blog">
+<meta property="og:description" content="图像膨胀、图像腐蚀、读取nii">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220525164419600-904871557.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220525164435424-314363314.png">
@@ -28,9 +30,11 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220525164500199-557805773.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220525164507530-1567196474.png">
 <meta property="article:published_time" content="2022-05-22T12:31:00.000Z">
-<meta property="article:modified_time" content="2023-04-07T01:58:12.060Z">
+<meta property="article:modified_time" content="2023-04-07T04:50:34.537Z">
 <meta property="article:author" content="九叶草">
-<meta property="article:tag" content="tags10245">
+<meta property="article:tag" content="图像膨胀">
+<meta property="article:tag" content="图像腐蚀">
+<meta property="article:tag" content="读取nii">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20220525164419600-904871557.png">
   
@@ -254,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.3k 字
         
       </span>
     
@@ -265,7 +269,7 @@
         
         
         
-          17 分钟
+          19 分钟
         
       </span>
     
@@ -316,7 +320,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月7日 上午
+                    本文最后更新于：2023年4月7日 下午
                   
                 
               </p>
@@ -324,100 +328,27 @@
             
               <div class="markdown-body">
                 
-                <div class="cnblogs_code">
-<pre><span style="color: #008000;">#</span><span style="color: #008000;">coding:utf-8</span>
-<span style="color: #0000ff;">import</span><span style="color: #000000;"> SimpleITK as sitk
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> numpy as np
-</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> cv2
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 膨胀</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> dilateion(image):
-    kernel </span>= cv2.getStructuringElement(cv2.MORPH_RECT, (5,5<span style="color: #000000;">))
-    </span><span style="color: #008000;">#</span><span style="color: #008000;"> dilate = cv2.dilate(image, kernel, iterations=1)</span>
-    dilate =<span style="color: #000000;"> cv2.morphologyEx(image, cv2.MORPH_DILATE, kernel)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> dilate
-</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> erode(image):
-    kernel </span>= cv2.getStructuringElement(cv2.MORPH_RECT, (3,3<span style="color: #000000;">))
-    </span><span style="color: #008000;">#</span><span style="color: #008000;"> erode = cv2.erode(image, kernel, iterations=1)</span>
-    erode =<span style="color: #000000;"> cv2.morphologyEx(image, cv2.MORPH_ERODE, kernel)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> erode
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 形态学梯度</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> edge(image):
-    SE </span>= cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3<span style="color: #000000;">))
-    img_grad </span>=<span style="color: #000000;"> cv2.morphologyEx(image, cv2.MORPH_GRADIENT, SE)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> img_grad
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 开运算</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> openOpreation(image):
-    kernel </span>= cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3<span style="color: #000000;">))
-    open </span>=<span style="color: #000000;"> cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> open
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 闭运算</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> closeOperation(image):
-    kernel </span>= cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5<span style="color: #000000;">))
-    close </span>=<span style="color: #000000;"> cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> close
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 读取3D图像，对每一个slice进行形态学变化</span>
-<span style="color: #0000ff;">def</span> read_3D(image, model=<span style="color: #800000;">"</span><span style="color: #800000;">closeOperation</span><span style="color: #800000;">"</span><span style="color: #000000;">):
-    slices </span>=<span style="color: #000000;"> image.shape[0]
-    result </span>=<span style="color: #000000;"> np.zeros(img_num.shape)
-    </span><span style="color: #0000ff;">for</span> i <span style="color: #0000ff;">in</span><span style="color: #000000;"> range(slices):
-        sli </span>= img_num[i:i + 1<span style="color: #000000;">, ...]
-        s </span>=<span style="color: #000000;"> sli[0, ...]
-        </span><span style="color: #0000ff;">if</span> model == <span style="color: #800000;">"</span><span style="color: #800000;">dilateion</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> dilateion(s)
-        </span><span style="color: #0000ff;">elif</span> model ==<span style="color: #800000;">"</span><span style="color: #800000;">edge</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> edge(s)
-        </span><span style="color: #0000ff;">elif</span> model == <span style="color: #800000;">"</span><span style="color: #800000;">erode</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> erode(s)
-        </span><span style="color: #0000ff;">elif</span> model == <span style="color: #800000;">"</span><span style="color: #800000;">edge</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> edge(s)
-        </span><span style="color: #0000ff;">elif</span> model == <span style="color: #800000;">"</span><span style="color: #800000;">openOpreation</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> openOpreation(s)
-        </span><span style="color: #0000ff;">elif</span> model == <span style="color: #800000;">"</span><span style="color: #800000;">closeOperation</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-            slice </span>=<span style="color: #000000;"> closeOperation(s)
-        result[i, ...] </span>=<span style="color: #000000;"> slice
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> result
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 保存图像</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> save(x, path):
-    predict_seg </span>=<span style="color: #000000;"> sitk.GetImageFromArray(x)
-    sitk.WriteImage(predict_seg, path)
-</span><span style="color: #008000;">#</span><span style="color: #008000;"> 读取 nii文件</span>
-<span style="color: #0000ff;">def</span><span style="color: #000000;"> read_nii(path):
-    image </span>=<span style="color: #000000;"> sitk.ReadImage(path)
-    img_num </span>=<span style="color: #000000;"> sitk.GetArrayFromImage(image)
-    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> img_num
-</span><span style="color: #0000ff;">if</span> <span style="color: #800080;">__name__</span> == <span style="color: #800000;">"</span><span style="color: #800000;">__main__</span><span style="color: #800000;">"</span><span style="color: #000000;">:
-    path </span>= r<span style="color: #800000;">"</span><span style="color: #800000;">D:\myProject\HDC_vessel_seg\datasets\nii\image\vessel_12.nii</span><span style="color: #800000;">"</span><span style="color: #000000;">
-    imgpath </span>= r<span style="color: #800000;">"</span><span style="color: #800000;">D:\myProject\HDC_vessel_seg\datasets\nii\image\image_12.nii</span><span style="color: #800000;">"</span><span style="color: #000000;">
-    img_num </span>=<span style="color: #000000;"> read_nii(path)
-    img </span>=<span style="color: #000000;"> read_nii(imgpath)
-    img_num </span>= img_num[10:260<span style="color: #000000;">,...]
-    img </span>= img[10:260<span style="color: #000000;">,...]
-    result </span>=<span style="color: #000000;"> read_3D(img_num)
-    name </span>= <span style="color: #800000;">"</span><span style="color: #800000;">closeOperation_</span><span style="color: #800000;">"</span><span style="color: #000000;">
-    save(result, path.replace(</span><span style="color: #800000;">"</span><span style="color: #800000;">vessel_12</span><span style="color: #800000;">"</span>, name + <span style="color: #800000;">"</span><span style="color: #800000;">vessel</span><span style="color: #800000;">"</span><span style="color: #000000;">))
-    </span><span style="color: #008000;">#</span><span style="color: #008000;"> save(img_num, path.replace("vessel_12", "pre_vessel"))</span>
-    <span style="color: #008000;">#</span><span style="color: #008000;"> save(img, imgpath.replace("image_12", "pre_image"))</span></pre>
-</div>
+                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> SimpleITK <span class="hljs-keyword">as</span> sitk<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-comment"># 膨胀</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dilateion</span>(<span class="hljs-params">image</span>):<br>    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">5</span>,<span class="hljs-number">5</span>))<br>    <span class="hljs-comment"># dilate = cv2.dilate(image, kernel, iterations=1)</span><br>    dilate = cv2.morphologyEx(image, cv2.MORPH_DILATE, kernel)<br>    <span class="hljs-keyword">return</span> dilate<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">erode</span>(<span class="hljs-params">image</span>):<br>    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))<br>    <span class="hljs-comment"># erode = cv2.erode(image, kernel, iterations=1)</span><br>    erode = cv2.morphologyEx(image, cv2.MORPH_ERODE, kernel)<br>    <span class="hljs-keyword">return</span> erode<br><span class="hljs-comment"># 形态学梯度</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">edge</span>(<span class="hljs-params">image</span>):<br>    SE = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>    img_grad = cv2.morphologyEx(image, cv2.MORPH_GRADIENT, SE)<br>    <span class="hljs-keyword">return</span> img_grad<br><span class="hljs-comment"># 开运算</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">openOpreation</span>(<span class="hljs-params">image</span>):<br>    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))<br>    <span class="hljs-built_in">open</span> = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">open</span><br><span class="hljs-comment"># 闭运算</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">closeOperation</span>(<span class="hljs-params">image</span>):<br>    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))<br>    close = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)<br>    <span class="hljs-keyword">return</span> close<br><span class="hljs-comment"># 读取3D图像，对每一个slice进行形态学变化</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_3D</span>(<span class="hljs-params">image, model=<span class="hljs-string">&quot;closeOperation&quot;</span></span>):<br>    slices = image.shape[<span class="hljs-number">0</span>]<br>    result = np.zeros(img_num.shape)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(slices):<br>        sli = img_num[i:i + <span class="hljs-number">1</span>, ...]<br>        s = sli[<span class="hljs-number">0</span>, ...]<br>        <span class="hljs-keyword">if</span> model == <span class="hljs-string">&quot;dilateion&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = dilateion(s)<br>        <span class="hljs-keyword">elif</span> model ==<span class="hljs-string">&quot;edge&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = edge(s)<br>        <span class="hljs-keyword">elif</span> model == <span class="hljs-string">&quot;erode&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = erode(s)<br>        <span class="hljs-keyword">elif</span> model == <span class="hljs-string">&quot;edge&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = edge(s)<br>        <span class="hljs-keyword">elif</span> model == <span class="hljs-string">&quot;openOpreation&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = openOpreation(s)<br>        <span class="hljs-keyword">elif</span> model == <span class="hljs-string">&quot;closeOperation&quot;</span>:<br>            <span class="hljs-built_in">slice</span> = closeOperation(s)<br>        result[i, ...] = <span class="hljs-built_in">slice</span><br>    <span class="hljs-keyword">return</span> result<br><span class="hljs-comment"># 保存图像</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save</span>(<span class="hljs-params">x, path</span>):<br>    predict_seg = sitk.GetImageFromArray(x)<br>    sitk.WriteImage(predict_seg, path)<br><span class="hljs-comment"># 读取 nii文件</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_nii</span>(<span class="hljs-params">path</span>):<br>    image = sitk.ReadImage(path)<br>    img_num = sitk.GetArrayFromImage(image)<br>    <span class="hljs-keyword">return</span> img_num<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    path = <span class="hljs-string">r&quot;D:\myProject\HDC_vessel_seg\datasets\nii\image\vessel_12.nii&quot;</span><br>    imgpath = <span class="hljs-string">r&quot;D:\myProject\HDC_vessel_seg\datasets\nii\image\image_12.nii&quot;</span><br>    img_num = read_nii(path)<br>    img = read_nii(imgpath)<br>    img_num = img_num[<span class="hljs-number">10</span>:<span class="hljs-number">260</span>,...]<br>    img = img[<span class="hljs-number">10</span>:<span class="hljs-number">260</span>,...]<br>    result = read_3D(img_num)<br>    name = <span class="hljs-string">&quot;closeOperation_&quot;</span><br>    save(result, path.replace(<span class="hljs-string">&quot;vessel_12&quot;</span>, name + <span class="hljs-string">&quot;vessel&quot;</span>))<br>    <span class="hljs-comment"># save(img_num, path.replace(&quot;vessel_12&quot;, &quot;pre_vessel&quot;))</span><br>    <span class="hljs-comment"># save(img, imgpath.replace(&quot;image_12&quot;, &quot;pre_image&quot;))</span><br></code></pre></td></tr></table></figure>
 <table border="0">
 <tbody>
 <tr>
 <td><img src="/2023/image/1218402-20220525164419600-904871557.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 <td><img src="/2023/image/1218402-20220525164435424-314363314.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 <td><img src="/2023/image/1218402-20220525164444079-677908876.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 <td><img src="/2023/image/1218402-20220525164452974-1654089967.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 <td><img src="/2023/image/1218402-20220525164500199-557805773.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 <td><img src="/2023/image/1218402-20220525164507530-1567196474.png" srcset="/img/loading.gif" lazyload alt="" />
-<p>&nbsp;</p>
+
 </td>
 </tr>
 <tr>
@@ -480,7 +411,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
   
   
 
@@ -495,7 +426,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/tags10245/">#tags10245</a>
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E8%86%A8%E8%83%80/">#图像膨胀</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E8%85%90%E8%9A%80/">#图像腐蚀</a>
+      
+        <a href="/tags/%E8%AF%BB%E5%8F%96nii/">#读取nii</a>
       
     </div>
   
