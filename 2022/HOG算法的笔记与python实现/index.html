@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="九叶草">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这两篇[1]【2】博客写的都非常详细。这里做个笔记记录一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HOG算法的笔记与python实现">
+<meta property="og:url" content="https://dreamoneyou.github.io/2022/HOG%E7%AE%97%E6%B3%95%E7%9A%84%E7%AC%94%E8%AE%B0%E4%B8%8Epython%E5%AE%9E%E7%8E%B0/">
+<meta property="og:site_name" content="九叶草的Blog">
+<meta property="og:description" content="这两篇[1]【2】博客写的都非常详细。这里做个笔记记录一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20221118232730625-1932613845.jpg">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20221118230930324-2003338663.jpg">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20221118235712682-1068826816.png">
+<meta property="article:published_time" content="2022-11-18T15:10:00.000Z">
+<meta property="article:modified_time" content="2023-04-07T03:07:22.595Z">
+<meta property="article:author" content="九叶草">
+<meta property="article:tag" content="HOG算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dreamoneyou.github.io/2023/image/1218402-20221118232730625-1932613845.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HOG算法的笔记与python实现 - 九叶草的Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dreamoneyou.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>九叶草的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/movies/">
+                <i class="iconfont icon-youtube-fill"></i>
+                <span>影视</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/rest.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HOG算法的笔记与python实现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-18 23:10" pubdate>
+          2022年11月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HOG算法的笔记与python实现</h1>  
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月7日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>这两篇<a href="https://cloud.tencent.com/developer/article/1678210" target="_blank">[1]</a><a href="https://developer.aliyun.com/article/325510" target="_blank">【2】</a>博客写的都非常详细。这里做个笔记记录一下。</strong></p>
+<p>HOG称为方向梯度直方图（Histogram of Oriented Gradient），主要是为了对图像进行特征提取。所以在传统目标检测算法中经常与SVM结合用于行人识别任务（当前都是基于深度学习来做了，毕竟效果不要太好了，并且省去了繁琐的特征检测过程）。</p>
+<p>HOG主要是计算图像中每个像素的梯度值和梯度方向，从而来获得梯度特征，是一种特征描述子<a href="https://cloud.tencent.com/developer/article/1678210" target="_blank">[1]</a>。</p>
+<h1 id="HOG%E7%89%B9%E7%82%B9">HOG特点</h1>
+<p>1.由于计算局部直方图和归一化，所以它对图像几何的和光学的形变都能保持很好的不变性；</p>
+<p>2.细微的动作可以被忽略而不影响检测效果。</p>
+<h1 id="HOG%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4">HOG计算步骤</h1>
+<p>1.对输入图像进行灰度化</p>
+<p>2.利用gamma校正法对图像进行颜色空间归一化；（伽玛校正就是对图像的伽玛曲线进行编辑，以对图像进行非线性色调编辑的方法，检出图像信号中的深色部分和浅色部分，并使两者比例增大，从而提高图像对比度效果。主要是为了降低图像局部的阴影和光照变化所造成的影响，同时可以抑制噪音的干扰；）</p>
+<p>3.计算图像中每个像素的梯度大小和方向；（主要是为了捕获轮廓信息，同时进一步弱化光照的干扰）</p>
+<p>4.将图像划分cells，计算每个cell内的梯度直方图；</p>
+<p>5.将每几个cell组成一个block，计算每个block内的梯度特征；</p>
+<p>6.将每几个cell组成一个block（例如3*3个cell/block），一个block内所有cell的特征descriptor串联起来便得到该block的HOG特征描述子；</p>
+<p>7.将图像image内的所有block的HOG特征描述子串联起来就可以得到该image（你要检测的目标）的HOG特征描述子了。这个就是最终的可供分类使用的特征向量了<a href="https://developer.aliyun.com/article/325510" target="_blank">【2】</a>。</p>
+<p><img src="/2023/image/1218402-20221118232730625-1932613845.jpg" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>&nbsp;</p>
+<div><span style="font-size: 18pt;"><strong>&nbsp;算法实现</strong></span></div>
+<div class="image-block">&nbsp;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-comment">#手敲的hog算法，跑通了，效果还行</span><br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Hog_descriptor</span>():<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, img, cell_size=<span class="hljs-number">16</span>, bin_size=<span class="hljs-number">8</span></span>):<br>        self.img = img<br>        self.img = np.sqrt(img / np.<span class="hljs-built_in">max</span>(img)) <span class="hljs-comment"># 做完归一化取根号，取值范围[0,1]</span><br>        self.img = img * <span class="hljs-number">255</span><br>        self.cell_size = cell_size<br>        self.bin_size = bin_size<br>        self.angle_unit = <span class="hljs-number">360</span> / self.bin_size<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">extract</span>(<span class="hljs-params">self</span>):<br>        height, width = self.img.shape<br>        <span class="hljs-comment"># 计算图像的梯度大小和方向</span><br>        gradient_magnitude, gradient_angle = self.global_gradient()<br>        gradient_magnitude = <span class="hljs-built_in">abs</span>(gradient_magnitude)<br>        cell_gradient_vector = np.zeros((<span class="hljs-built_in">int</span>(height / self.cell_size), <span class="hljs-built_in">int</span>(width / self.cell_size), self.bin_size))<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient_vector.shape[<span class="hljs-number">0</span>]):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient_vector.shape[<span class="hljs-number">1</span>]):<br>                <span class="hljs-comment"># cell内的梯度大小</span><br>                cell_magnitude = gradient_magnitude[i * self.cell_size:(i + <span class="hljs-number">1</span>) * self.cell_size,<br>                                 j * self.cell_size:(j + <span class="hljs-number">1</span>) * self.cell_size]<br>                <span class="hljs-comment"># cell内的梯度方向</span><br>                cell_angle = gradient_angle[i * self.cell_size:(i + <span class="hljs-number">1</span>) * self.cell_size,<br>                             j * self.cell_size:(j + <span class="hljs-number">1</span>) * self.cell_size]<br>                <span class="hljs-comment"># 转化为梯度直方图格式</span><br>                cell_gradient_vector[i][j] = self.cell_gradient(cell_magnitude, cell_angle)<br><br>        <span class="hljs-comment"># 绘制梯度直方图</span><br>        hog_image = self.render_gradient(np.zeros([height, width]), cell_gradient_vector)<br><br>        <span class="hljs-comment"># block组合、归一化</span><br>        hog_vector = []<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient_vector.shape[<span class="hljs-number">0</span>] - <span class="hljs-number">1</span>):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient_vector.shape[<span class="hljs-number">1</span>] - <span class="hljs-number">1</span>):<br>                block_vector = []<br>                block_vector.extend(cell_gradient_vector[i][j])<br>                block_vector.extend(cell_gradient_vector[i][j + <span class="hljs-number">1</span>])<br>                block_vector.extend(cell_gradient_vector[i + <span class="hljs-number">1</span>][j])<br>                block_vector.extend(cell_gradient_vector[i + <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>])<br>                mag = <span class="hljs-keyword">lambda</span> vector: math.sqrt(<span class="hljs-built_in">sum</span>(i ** <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> vector))<br>                magnitude = mag(block_vector)<br>                <span class="hljs-keyword">if</span> magnitude != <span class="hljs-number">0</span>:<br>                    normalize = <span class="hljs-keyword">lambda</span> block_vector, magnitude: [element / magnitude <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> block_vector]<br>                    block_vector = normalize(block_vector, magnitude)<br>                hog_vector.append(block_vector)<br>        <span class="hljs-keyword">return</span> hog_vector, hog_image<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">global_gradient</span>(<span class="hljs-params">self</span>):<br>        gradient_values_x = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, ksize=<span class="hljs-number">5</span>)<br>        gradient_values_y = cv2.Sobel(self.img, cv2.CV_64F, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, ksize=<span class="hljs-number">5</span>)<br>        gradient_magnitude = cv2.addWeighted(gradient_values_x, <span class="hljs-number">0.5</span>, gradient_values_y, <span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>)<br>        gradient_angle = cv2.phase(gradient_values_x, gradient_values_y, angleInDegrees=<span class="hljs-literal">True</span>)<br>        <span class="hljs-keyword">return</span> gradient_magnitude, gradient_angle<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">cell_gradient</span>(<span class="hljs-params">self, cell_magnitude, cell_angle</span>):<br>        orientation_centers = [<span class="hljs-number">0</span>] * self.bin_size<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_magnitude.shape[<span class="hljs-number">0</span>]):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_magnitude.shape[<span class="hljs-number">1</span>]):<br>                gradient_strength = cell_magnitude[i][j]<br>                gradient_angle = cell_angle[i][j]<br>                min_angle, max_angle, mod = self.get_closest_bins(gradient_angle)<br>                orientation_centers[min_angle] += (gradient_strength * (<span class="hljs-number">1</span> - (mod / self.angle_unit)))<br>                orientation_centers[max_angle] += (gradient_strength * (mod / self.angle_unit))<br>        <span class="hljs-keyword">return</span> orientation_centers<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_closest_bins</span>(<span class="hljs-params">self, gradient_angle</span>):<br>        idx = <span class="hljs-built_in">int</span>(gradient_angle / self.angle_unit)<br>        mod = gradient_angle % self.angle_unit<br>        <span class="hljs-keyword">return</span> idx, (idx + <span class="hljs-number">1</span>) % self.bin_size, mod<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">render_gradient</span>(<span class="hljs-params">self, image, cell_gradient</span>):<br>        cell_width = self.cell_size / <span class="hljs-number">2</span><br>        max_mag = np.array(cell_gradient).<span class="hljs-built_in">max</span>()<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient.shape[<span class="hljs-number">0</span>]):<br>            <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cell_gradient.shape[<span class="hljs-number">1</span>]):<br>                cell_grad = cell_gradient[x][y]<br>                cell_grad /= max_mag<br>                angle = <span class="hljs-number">0</span><br>                angle_gap = self.angle_unit<br>                <span class="hljs-keyword">for</span> magnitude <span class="hljs-keyword">in</span> cell_grad:<br>                    angle_radian = math.radians(angle)<br>                    x1 = <span class="hljs-built_in">int</span>(x * self.cell_size + magnitude * cell_width * math.cos(angle_radian))<br>                    y1 = <span class="hljs-built_in">int</span>(y * self.cell_size + magnitude * cell_width * math.sin(angle_radian))<br>                    x2 = <span class="hljs-built_in">int</span>(x * self.cell_size - magnitude * cell_width * math.cos(angle_radian))<br>                    y2 = <span class="hljs-built_in">int</span>(y * self.cell_size - magnitude * cell_width * math.sin(angle_radian))<br>                    cv2.line(image, (y1, x1), (y2, x2), <span class="hljs-built_in">int</span>(<span class="hljs-number">255</span> * math.sqrt(magnitude)))<br>                    angle += angle_gap<br>        <span class="hljs-keyword">return</span> image<br><br>img = cv2.imread(<span class="hljs-string">&#x27;qiao.jpg&#x27;</span>, cv2.IMREAD_GRAYSCALE)<br><span class="hljs-comment"># v2.IMREAD_COLOR:读取一副彩色图片，图片的透明度会被忽略，默认为该值，实际取值为1；</span><br><span class="hljs-comment"># cv2.IMREAD_GRAYSCALE:以灰度模式读取一张图片，实际取值为0</span><br><span class="hljs-comment"># cv2.IMREAD_UNCHANGED:加载一副彩色图像，透明度不会被忽略。</span><br>hog = Hog_descriptor(img, cell_size=<span class="hljs-number">8</span>, bin_size=<span class="hljs-number">9</span>)<br>vector, image = hog.extract()<br><br><span class="hljs-comment"># 输出图像的特征向量shape</span><br><span class="hljs-built_in">print</span>(np.array(vector).shape)<br>plt.imshow(image, cmap=plt.cm.gray)<br>plt.show()<br></code></pre></td></tr></table></figure>
+<div class="image-block">
+<p>结果：</p>
+<table border="0">
+<tbody>
+<tr>
+<td style="text-align: center;">原图</td>
+<td style="text-align: center;">特征</td>
+</tr>
+<tr>
+<td><img src="/2023/image/1218402-20221118230930324-2003338663.jpg" srcset="/img/loading.gif" lazyload alt="" />
+<p>&nbsp;</p>
+</td>
+<td><img src="/2023/image/1218402-20221118235712682-1068826816.png" srcset="/img/loading.gif" lazyload alt="" />
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+</div>
+                
+              </div>
+              <!-- 个人修改:打赏模块 -->
+              <!--自己添加的打赏模块：开始-->
+              <div style="text-align: center; margin: auto;">
+                <!--如果主题的  _config.yml 中开启打赏-->
+                  <hr><!--放一条水平线与文章正文内容区分-->
+                  <div style="background-color: #663399; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+                   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+                    打赏支持
+                  	
+                </div>
+                  <div style="font-size: 14px;margin-bottom: 10px;">
+                  “如果你觉得我的文章不错，不妨鼓励我继续写作。” <!--在主题的 _config.yml 中设置打赏提示语-->
+                </div>
+                  <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+                  <img src="/img/ali_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/weixin_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+                </div>
+                
+              </div> 
+              <!--自己添加的打赏模块：结束-->
+
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HOG%E7%AE%97%E6%B3%95/">#HOG算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HOG算法的笔记与python实现</div>
+      <div>https://dreamoneyou.github.io/2022/HOG算法的笔记与python实现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>九叶草</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年4月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" title="图像分割评价指标">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图像分割评价指标</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/%E5%AF%B9%E4%BA%8EChannelNet%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/" title="对于ChannelNet的一点理解">
+                        <span class="hidden-mobile">对于ChannelNet的一点理解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.14.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.14.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://peixu-waline.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus","https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="九叶草">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇文章是从wiki中摘抄下来，需要阅读英文的，可以去看看。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canny算子">
+<meta property="og:url" content="https://dreamoneyou.github.io/2020/Canny%E7%AE%97%E5%AD%90/">
+<meta property="og:site_name" content="九叶草的Blog">
+<meta property="og:description" content="这篇文章是从wiki中摘抄下来，需要阅读英文的，可以去看看。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/985195d6c106e9f77aa99d1ac9c169c1a2da28df">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/476e832af46d5ae268c12d323ae2bf3b64453815">
+<meta property="og:image" content="https://dreamoneyou.github.io/2023/image/1218402-20200709104323307-1068986561.png">
+<meta property="article:published_time" content="2020-07-09T02:45:00.000Z">
+<meta property="article:modified_time" content="2023-04-07T02:01:01.108Z">
+<meta property="article:author" content="九叶草">
+<meta property="article:tag" content="tags10245">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/985195d6c106e9f77aa99d1ac9c169c1a2da28df">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Canny算子 - 九叶草的Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dreamoneyou.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>九叶草的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/movies/">
+                <i class="iconfont icon-youtube-fill"></i>
+                <span>影视</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/rest.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Canny算子"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-09 10:45" pubdate>
+          2020年7月9日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Canny算子</h1>  
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年4月7日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这篇文章是从<span style="font-size: 16px;"><a href="https://zh.wikipedia.org/wiki/Canny%E7%AE%97%E5%AD%90" target="_blank">wiki</a></span>中摘抄下来，需要阅读英文的，可以去看看。</p>
+<p><strong>Canny边缘检测算子</strong>是澳洲计算机科学家<a class="new" title="约翰&middot;坎尼（页面不存在）" target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E7%B4%84%E7%BF%B0%C2%B7%E5%9D%8E%E5%B0%BC&amp;action=edit&amp;redlink=1">约翰&middot;坎尼</a>（<span lang="en">John F. Canny）于1986年开发出来的一个多级<a title="边缘检测" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B">边缘检测</a><a title="" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%AE%97%E6%B3%95">算法</a>。更为重要的是Canny创立了&ldquo;边缘检测计算理论&rdquo;（computational theory of edge detection）解释这项技术如何工作。</span></p>
+<h2><span id="Canny算法的发展" class="mw-headline">Canny算法的发展</span></h2>
+<p>Canny的目标是找到一个最优的边缘检测算法，最优边缘检测的含义是：</p>
+<ul>
+<li><em>好的检测</em>&nbsp;- 算法能够尽可能多地标识出图像中的实际边缘。</li>
+<li><em>好的定位</em>&nbsp;- 标识出的边缘要与实际图像中的实际边缘尽可能接近。</li>
+<li><em>最小响应</em>&nbsp;- 图像中的边缘只能标识一次，并且可能存在的图像噪声不应标识为边缘。</li>
+</ul>
+<p>为了满足这些要求Canny使用了<a title="变分法" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8F%98%E5%88%86%E6%B3%95">变分法</a>，这是一种寻找满足特定功能的<a title="函数" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0">函数</a>的方法。最优检测使用四个<a title="指数函数" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0">指数函数</a>项的和表示，但是它非常近似于<a title="高斯函数" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E5%87%BD%E6%95%B0">高斯函数</a>的一阶<a title="导数" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">导数</a>。</p>
+<h2><span id="Canny算法的步骤" class="mw-headline">Canny算法的步骤</span></h2>
+<h3><span id="降噪" class="mw-headline"><a class="mw-redirect" title="降噪" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%99%8D%E5%99%AA">降噪</a><span class="mw-editsection"><span class="mw-editsection-bracket"><span class="mw-editsection-bracket"><br /></span></span></span></span></h3>
+<p>　　任何边缘检测算法都不可能在未经处理的原始数据上很好地处理，所以第一步是对原始数据与高斯平滑模板作<a title="卷积" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%B7%E7%A7%AF">卷积</a>，得到的图像与原始图像相比有些轻微的模糊（<a class="new" title="Blurring（页面不存在）" target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=Blurring&amp;action=edit&amp;redlink=1">blurred</a>）。这样，单独的一个像素噪声在经过<a class="mw-redirect" title="高斯平滑" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E5%B9%B3%E6%BB%91">高斯平滑</a>的图像上变得几乎没有影响。</p>
+<h3><span id=".E5.AF.BB.E6.89.BE.E5.9B.BE.E5.83.8F.E4.B8.AD.E7.9A.84.E4.BA.AE.E5.BA.A6.E6.A2.AF.E5.BA.A6"><span id="寻找图像中的亮度梯度" class="mw-headline">寻找图像中的亮度梯度<span class="mw-editsection"><span class="mw-editsection-bracket"><span class="mw-editsection-bracket"><br /></span></span></span></span></span></h3>
+<p>　　图像中的边缘可能会指向不同的方向，所以Canny算法使用4个mask检测水平、垂直以及对角线方向的边缘。原始图像与每个mask所作的卷积都存储起来。对于每个点我们都标识在这个点上的最大值以及生成的边缘的方向。这样我们就从原始图像生成了图像中每个点<a class="new" title="亮度梯度（页面不存在）" target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E4%BA%AE%E5%BA%A6%E6%A2%AF%E5%BA%A6&amp;action=edit&amp;redlink=1">亮度梯度</a>图以及<a class="new" title="亮度梯度（页面不存在）" target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E4%BA%AE%E5%BA%A6%E6%A2%AF%E5%BA%A6&amp;action=edit&amp;redlink=1">亮度梯度</a>的方向。</p>
+<h3><span id=".E5.9C.A8.E5.9B.BE.E5.83.8F.E4.B8.AD.E8.B7.9F.E8.B8.AA.E8.BE.B9.E7.BC.98"><span id="在图像中跟踪边缘" class="mw-headline">在图像中跟踪边缘<span class="mw-editsection"><span class="mw-editsection-bracket"><span class="mw-editsection-bracket"><br /></span></span></span></span></span></h3>
+<p>　　较高的亮度梯度比较有可能是边缘，但是没有一个确切的值来限定多大的亮度梯度是边缘多大又不是，所以Canny使用了<a class="mw-redirect" title="滞后" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%BB%9E%E5%90%8E">滞后</a>阈值。</p>
+<p>滞后阈值需要两个阈值&mdash;&mdash;高阈值与低阈值。假设图像中的重要边缘都是连续的曲线，这样我们就可以跟踪给定曲线中模糊的部分，并且避免将没有组成曲线的噪声像素当成边缘。所以我们从一个较大的阈值开始，这将标识出我们比较确信的真实边缘，使用前面导出的方向信息，我们从这些真正的边缘开始在图像中跟踪整个的边缘。在跟踪的时候，我们使用一个较小的阈值，这样就可以跟踪曲线的模糊部分直到我们回到起点。</p>
+<p>一旦这个过程完成，我们就得到了一个二值图像，每点表示是否是一个边缘点。</p>
+<p>一个获得亚像素精度边缘的改进实现是在梯度方向检测二阶方向导数的过零点</p>
+<p><span class="mwe-math-element"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/985195d6c106e9f77aa99d1ac9c169c1a2da28df" srcset="/img/loading.gif" lazyload alt="L_{x}^{2}\,L_+2\,L_{x}\,L_{y}\,L_+L_{y}^{2}\,L_=0," class="mwe-math-fallback-image-inline" style="display: block; margin-left: auto; margin-right: auto;" /></span></p>
+<p>它在梯度方向的三阶方向导数满足符号条件</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/476e832af46d5ae268c12d323ae2bf3b64453815" srcset="/img/loading.gif" lazyload alt="L_{x}^{3}\,L_+3\,L_{x}^{2}\,L_{y}\,L_+3\,L_{x}\,L_{y}^{2}\,L_+L_{y}^{3}\,L_&lt;0" class="mwe-math-fallback-image-inline" style="display: block; margin-left: auto; margin-right: auto;" /><span class="mwe-math-element"><img src="/2023/image/1218402-20200709104323307-1068986561.png" srcset="/img/loading.gif" lazyload alt="" loading="lazy" /></span></p>
+<p><strong><span class="mwe-math-element">&nbsp;</span><span style="font-size: 1.5em;">参数</span></strong></p>
+<p>&nbsp;</p>
+<p>Canny算法包含许多可以调整的参数，它们将影响到算法的计算时间与实效。</p>
+<p>&nbsp;</p>
+<ul>
+<li><a class="new" title="高斯滤波器（页面不存在）" target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E9%AB%98%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8&amp;action=edit&amp;redlink=1">高斯滤波器</a>的大小：第一步所用的平滑滤波器将会直接影响Canny算法的结果。较小的滤波器产生的模糊效果也较少，这样就可以检测较小、变化明显的细线。较大的滤波器产生的模糊效果也较多，将较大的一块图像区域涂成一个特定点的颜色值。这样带来的结果就是对于检测较大、平滑的边缘更加有用，例如彩虹的边缘。</li>
+<li><a class="mw-redirect mw-disambig" title="阈值" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%88%E5%80%BC">阈值</a>：使用两个阈值比使用一个阈值更加灵活，但是它还是有阈值存在的共性问题。设置的阈值过高，可能会漏掉重要信息；阈值过低，将会把枝节信息看得很重要。很难给出一个适用于所有图像的通用阈值。目前还没有一个经过验证的实现方法。</li>
+</ul>
+<p>&nbsp;</p>
+<p>如果想要试验Canny算法中的参数，<a class="external free" target="_blank" href="https://web.archive.org/web/20090615224334/http://matlabserver.cs.rug.nl/" rel="nofollow noopener">https://web.archive.org/web/20090615224334/http://matlabserver.cs.rug.nl/</a>&nbsp;的在线Canny程序会很有帮助。</p>
+<p><strong><span id="评价" class="mw-headline" style="font-size: 18pt;">评价</span></strong></p>
+<p><strong><span id="评价" class="mw-headline" style="font-size: 18pt;">　　</span></strong><span class="mw-headline">Canny算法适用于不同的场合。它的参数允许根据不同实现的特定要求进行调整以识别不同的边缘特性。对于<a class="mw-disambig" title="PC" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/PC">PC</a>上的实时图像处理来说可能慢得无法使用，尤其是在使用大的高斯滤波器的情况下。但是，我们讨论计算能力的时候，也要考虑到随着处理器速度不断提升，有望在未来几年使得这不再成为一个问题。</span></p>
+                
+              </div>
+              <!-- 个人修改:打赏模块 -->
+              <!--自己添加的打赏模块：开始-->
+              <div style="text-align: center; margin: auto;">
+                <!--如果主题的  _config.yml 中开启打赏-->
+                  <hr><!--放一条水平线与文章正文内容区分-->
+                  <div style="background-color: #663399; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+                   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+                    打赏支持
+                  	
+                </div>
+                  <div style="font-size: 14px;margin-bottom: 10px;">
+                  “如果你觉得我的文章不错，不妨鼓励我继续写作。” <!--在主题的 _config.yml 中设置打赏提示语-->
+                </div>
+                  <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+                  <img src="/img/ali_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/weixin_pay.JPG" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+                </div>
+                
+              </div> 
+              <!--自己添加的打赏模块：结束-->
+
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/categories10245/" class="category-chain-item">categories10245</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/tags10245/">#tags10245</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Canny算子</div>
+      <div>https://dreamoneyou.github.io/2020/Canny算子/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>九叶草</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年7月9日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年4月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/np.mean()%E5%92%8Cnp.std()%E5%87%BD%E6%95%B0/" title="np.mean()和np.std()函数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">np.mean()和np.std()函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/" title="医学影像中常见名词解释">
+                        <span class="hidden-mobile">医学影像中常见名词解释</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.14.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.14.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://peixu-waline.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus","https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
