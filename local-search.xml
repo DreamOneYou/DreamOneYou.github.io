@@ -2768,31 +2768,6 @@
   
   
   <entry>
-    <title>HierarchicalClustering分层集群</title>
-    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
-    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
-    
-    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>分层集群</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>K近邻算法（KNN）</title>
     <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
     <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
@@ -2810,6 +2785,31 @@
     <tags>
       
       <tag>KNN</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HierarchicalClustering分层集群</title>
+    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
+    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
+    
+    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分层集群</tag>
       
     </tags>
     
