@@ -503,9 +503,9 @@
     
     <tags>
       
-      <tag>传统分割算法</tag>
-      
       <tag>区域分割算法</tag>
+      
+      <tag>传统分割算法</tag>
       
     </tags>
     
@@ -1808,9 +1808,9 @@
     
     <tags>
       
-      <tag>Windows</tag>
-      
       <tag>pytorch环境配置</tag>
+      
+      <tag>Windows</tag>
       
     </tags>
     
@@ -2793,31 +2793,6 @@
   
   
   <entry>
-    <title>K近邻算法（KNN）</title>
-    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
-    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
-    
-    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>KNN</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>HierarchicalClustering分层集群</title>
     <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
     <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
@@ -2835,6 +2810,31 @@
     <tags>
       
       <tag>分层集群</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>K近邻算法（KNN）</title>
+    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
+    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>KNN</tag>
       
     </tags>
     
@@ -2947,31 +2947,6 @@
   
   
   <entry>
-    <title>机器学习西瓜书第二章笔记</title>
-    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
-    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    
-    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>西瓜书</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>排序算法基础知识</title>
     <link href="/2018/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <url>/2018/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
@@ -2997,11 +2972,11 @@
   
   
   <entry>
-    <title>机器学习西瓜书第五章神经网络笔记</title>
-    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/"/>
-    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/</url>
+    <title>机器学习西瓜书第二章笔记</title>
+    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<p><span style="font-size: 18px;"><strong>第五章：神经网络</strong></span></p><p>1、<span style="color: #ff0000;">神经网络（neural networks</span>）：神经网络是由具有适应性的简单单元组成的广泛并进行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所做出的交互反应。<br />2、<span style="color: #ff0000;">感知机（Perceptron</span>）由两层神经元组成，输入层接收外界输入信号后传递给输出层，输出层是M-P神经元，也称为&ldquo;<span style="color: #ff0000;">阈值逻辑单元&rdquo;（threshold logic unit）</span>。<br />&nbsp;　　1）、感知机只有输出层神经元进行<span style="color: #00ff00;">激活函数处理</span>，即只拥有一层<span style="color: #ff0000;">功能神经元（functional neuron</span>），其学习能力非常有限。<br />&nbsp;　　2）、输入层与输出层之间的层神经元，被称为隐层或<span style="color: #ff0000;">隐含层（hidden layer）</span>。<br />3、<span style="color: #ff0000;">多层前馈神经网络（multi-layer feedforward neural networks）</span>:每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。<br />&nbsp;　　1）、前馈并不意味着网络中的信号不能向后传递，而是指网络拓扑结构上不存在环或者回路。<br />&nbsp;　　2）、神经网络的学习过程，就是根据训练数据来调整神经元之间的&ldquo;<span style="color: #ff0000;">连接权&rdquo;（connection weight</span>）以及每个功能神经元的阈值，换言之，神经网络&ldquo;学&rdquo;到的东西，蕴含在在连接权和阈值中。<br />4、<span style="color: #ff0000;">误差逆传播（error BackPropagation，简称：BP）算法</span>：是最成功的的神经网络学习算法，可用于多层前馈神经网络和其他类型的神经网络。<br />&nbsp;　　1）、BP是一个迭代学习算法，在迭代的每一轮中采用广义感知机学习规则对参数进行更新估计。<br />　　&nbsp;2）、BP算法是基于<span style="color: #ff0000;">梯度下降（gradient descent</span>）策略，以目标的负梯度方向对参数进行调整。<br />&nbsp;　　3）、BP操作过程：先将输入示例提供给输入层神经元，然后逐层将信号前传，直到产生输出层的结果；然后计算输出层的误差，再将误差逆向传播至隐层神经元，最后根据隐层神经元的误差来对连接权和阈值进行调整。该迭代过程循环进行，直到达到某些停止条件为止。<br />&nbsp;　　4）、BP算法由于其强大的表示能力，所以经常遭遇过拟合，其训练误差持续降低，但测试误差却可能上升。有两种策略缓解BP过拟合问题：<br />&nbsp;　　　　（1）、<span style="color: #ff0000;">早停（early stopping）</span>：将数据分为训练集和验证集，训练集用来计算梯度、更新连接权和阈值，验证集用来估计误差，若训练集误差降低但验证集误差升高，则停止训练，同时返回具有最小验证集误差的连接权和阈值。<br />&nbsp;&nbsp;　　　&nbsp; （2）、<span style="color: #ff0000;">正则化（regularization）</span>：在误差目标函数中增加一个用于描述网络复杂度的部分，例如连接权和阈值的平方和。<br /><span style="color: #3366ff;"><strong>注</strong>：<strong>BP算法实质是LMS（Least Mean Square）算法的推广</strong></span>。<br />5、全局最小和局部极小<br />&nbsp;　　1）、用E表示神经网络在训练集上的误差，显然，它是关于连接权和阈值的函数。此时，神经网络训练过程可以看做是一个参数寻优过程，我们需要寻找一组最优参数使得E最小。<br />&nbsp;　　2）、两种最优：<span style="color: #ff0000;">全局最小（global minimum）</span>和<span style="color: #ff0000;">局部极小（local minimum）</span>，全局最小一定是局部极小，反之不成立。我们在寻优的过程就是希望找到全局最小。<br />&nbsp;　　3）、由于负梯度方向是函数值下降最快的方向，因此梯度下降法就是沿着负梯度方向搜索最优解。<br />　　&nbsp;4）、&ldquo;跳出&rdquo;局部极小，寻找全局最小的策略：<br />&nbsp;&nbsp;　　　　（1）、以多组不同参数值初始化多个神经网络，按标准方法训练后，取其中误差最小的解作为最终参数。<br />&nbsp;&nbsp;　　　　（2）、<span style="color: #ff0000;">&ldquo;模拟退火&rdquo;（simulated annealing）技术</span>：模拟退火在每一步都以一定的概率接受比当前解更差的结果，在每步迭代过程中，接受&ldquo;次优解&rdquo;的概率要随着时间的推移而逐渐降低，从而保证算法稳定。<span style="color: #3366ff;"><strong>注</strong>：<strong>但是也可能会造成&ldquo;跳出&rdquo;全局最小。</strong></span><br />&nbsp;&nbsp;　　　　（3）、使用随机梯度下降。<br />&nbsp;&nbsp;　　　　（4）、<span style="color: #ff0000;">遗传算法（genetic algorithms）</span>。<br />6、常见的神经网络<br />&nbsp;　　1）、<span style="color: #ff0000;">RBF（Radial Basis Function，径向基函数）网络</span>：是一种单隐层前馈神经网络，它使用径向基函数作为隐层神经元激活函数，而输出层则是对隐层神经元输出的线性组合。<br />&nbsp;　　2）、<span style="color: #ff0000;">ART（Adaptive Resonance Theory，自适应谐振理论）网络</span>：是<span style="color: #00ff00;">竞争型学习</span>（competitive learning）【<strong><span style="color: #3366ff;">注：无监督学习策略</span></strong>】的代表。<br />&nbsp;　　3）、<span style="color: #ff0000;">SOM（Self-Organizing Map，自组织映射）网络</span>：是一种竞争学习型的<span style="color: #00ff00;">无监督神经网络</span>，它能将高维输入数据映射到低维空间，同时保持输入数据在高维空间的拓扑结构，即将高维空间中相似的样本点映射到网络输出层中的邻近神经元。<br />&nbsp;　　4）、<span style="color: #ff0000;">级联相关（Cascade-Correlation）网络</span>:是结构自适应网络的重要代表。<br />&nbsp;　　5）、<span style="color: #ff0000;">Elman网络</span>：是最常用的递归神经网络之一。<br />7、<span style="color: #ff0000;"><strong>Boltzmann机（玻尔兹曼机）</strong></span>：<br />&nbsp;　　1）、一种基于<span style="color: #ff0000;">能量的模型（energy-based model</span>），其神经元分为两层：显层与隐层。显层用于表示数据的输入与输出，隐层则被理解为数据的内在表达。<br />&nbsp;　　2）、Boltzmann机中的神经元都是布尔型。<br />&nbsp;　　3）、它的训练过程就是将每个训练样本视为一个状态向量，使其出现的概率尽可能大。<br />&nbsp;　　4）、标准Boltzmann机是一个全连接图，训练网络复杂度很高，这使其难以用于解决现实任务。所以现实中一般采用<span style="color: #ff0000;">受限Boltzmann机（Restricted Boltzmann Machine，简称：RBM）</span>。<br />8、受限Boltzmann机常用&ldquo;<span style="color: #ff0000;">对比散度&rdquo;（Contrastive Divergence，简称CD）算法</span>来进行训练。</p>]]></content>
+    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
     
     
     <categories>
@@ -3039,6 +3014,31 @@
     <tags>
       
       <tag>蒙特卡洛算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>机器学习西瓜书第五章神经网络笔记</title>
+    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/"/>
+    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/</url>
+    
+    <content type="html"><![CDATA[<p><span style="font-size: 18px;"><strong>第五章：神经网络</strong></span></p><p>1、<span style="color: #ff0000;">神经网络（neural networks</span>）：神经网络是由具有适应性的简单单元组成的广泛并进行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所做出的交互反应。<br />2、<span style="color: #ff0000;">感知机（Perceptron</span>）由两层神经元组成，输入层接收外界输入信号后传递给输出层，输出层是M-P神经元，也称为&ldquo;<span style="color: #ff0000;">阈值逻辑单元&rdquo;（threshold logic unit）</span>。<br />&nbsp;　　1）、感知机只有输出层神经元进行<span style="color: #00ff00;">激活函数处理</span>，即只拥有一层<span style="color: #ff0000;">功能神经元（functional neuron</span>），其学习能力非常有限。<br />&nbsp;　　2）、输入层与输出层之间的层神经元，被称为隐层或<span style="color: #ff0000;">隐含层（hidden layer）</span>。<br />3、<span style="color: #ff0000;">多层前馈神经网络（multi-layer feedforward neural networks）</span>:每层神经元与下一层神经元全互连，神经元之间不存在同层连接，也不存在跨层连接。<br />&nbsp;　　1）、前馈并不意味着网络中的信号不能向后传递，而是指网络拓扑结构上不存在环或者回路。<br />&nbsp;　　2）、神经网络的学习过程，就是根据训练数据来调整神经元之间的&ldquo;<span style="color: #ff0000;">连接权&rdquo;（connection weight</span>）以及每个功能神经元的阈值，换言之，神经网络&ldquo;学&rdquo;到的东西，蕴含在在连接权和阈值中。<br />4、<span style="color: #ff0000;">误差逆传播（error BackPropagation，简称：BP）算法</span>：是最成功的的神经网络学习算法，可用于多层前馈神经网络和其他类型的神经网络。<br />&nbsp;　　1）、BP是一个迭代学习算法，在迭代的每一轮中采用广义感知机学习规则对参数进行更新估计。<br />　　&nbsp;2）、BP算法是基于<span style="color: #ff0000;">梯度下降（gradient descent</span>）策略，以目标的负梯度方向对参数进行调整。<br />&nbsp;　　3）、BP操作过程：先将输入示例提供给输入层神经元，然后逐层将信号前传，直到产生输出层的结果；然后计算输出层的误差，再将误差逆向传播至隐层神经元，最后根据隐层神经元的误差来对连接权和阈值进行调整。该迭代过程循环进行，直到达到某些停止条件为止。<br />&nbsp;　　4）、BP算法由于其强大的表示能力，所以经常遭遇过拟合，其训练误差持续降低，但测试误差却可能上升。有两种策略缓解BP过拟合问题：<br />&nbsp;　　　　（1）、<span style="color: #ff0000;">早停（early stopping）</span>：将数据分为训练集和验证集，训练集用来计算梯度、更新连接权和阈值，验证集用来估计误差，若训练集误差降低但验证集误差升高，则停止训练，同时返回具有最小验证集误差的连接权和阈值。<br />&nbsp;&nbsp;　　　&nbsp; （2）、<span style="color: #ff0000;">正则化（regularization）</span>：在误差目标函数中增加一个用于描述网络复杂度的部分，例如连接权和阈值的平方和。<br /><span style="color: #3366ff;"><strong>注</strong>：<strong>BP算法实质是LMS（Least Mean Square）算法的推广</strong></span>。<br />5、全局最小和局部极小<br />&nbsp;　　1）、用E表示神经网络在训练集上的误差，显然，它是关于连接权和阈值的函数。此时，神经网络训练过程可以看做是一个参数寻优过程，我们需要寻找一组最优参数使得E最小。<br />&nbsp;　　2）、两种最优：<span style="color: #ff0000;">全局最小（global minimum）</span>和<span style="color: #ff0000;">局部极小（local minimum）</span>，全局最小一定是局部极小，反之不成立。我们在寻优的过程就是希望找到全局最小。<br />&nbsp;　　3）、由于负梯度方向是函数值下降最快的方向，因此梯度下降法就是沿着负梯度方向搜索最优解。<br />　　&nbsp;4）、&ldquo;跳出&rdquo;局部极小，寻找全局最小的策略：<br />&nbsp;&nbsp;　　　　（1）、以多组不同参数值初始化多个神经网络，按标准方法训练后，取其中误差最小的解作为最终参数。<br />&nbsp;&nbsp;　　　　（2）、<span style="color: #ff0000;">&ldquo;模拟退火&rdquo;（simulated annealing）技术</span>：模拟退火在每一步都以一定的概率接受比当前解更差的结果，在每步迭代过程中，接受&ldquo;次优解&rdquo;的概率要随着时间的推移而逐渐降低，从而保证算法稳定。<span style="color: #3366ff;"><strong>注</strong>：<strong>但是也可能会造成&ldquo;跳出&rdquo;全局最小。</strong></span><br />&nbsp;&nbsp;　　　　（3）、使用随机梯度下降。<br />&nbsp;&nbsp;　　　　（4）、<span style="color: #ff0000;">遗传算法（genetic algorithms）</span>。<br />6、常见的神经网络<br />&nbsp;　　1）、<span style="color: #ff0000;">RBF（Radial Basis Function，径向基函数）网络</span>：是一种单隐层前馈神经网络，它使用径向基函数作为隐层神经元激活函数，而输出层则是对隐层神经元输出的线性组合。<br />&nbsp;　　2）、<span style="color: #ff0000;">ART（Adaptive Resonance Theory，自适应谐振理论）网络</span>：是<span style="color: #00ff00;">竞争型学习</span>（competitive learning）【<strong><span style="color: #3366ff;">注：无监督学习策略</span></strong>】的代表。<br />&nbsp;　　3）、<span style="color: #ff0000;">SOM（Self-Organizing Map，自组织映射）网络</span>：是一种竞争学习型的<span style="color: #00ff00;">无监督神经网络</span>，它能将高维输入数据映射到低维空间，同时保持输入数据在高维空间的拓扑结构，即将高维空间中相似的样本点映射到网络输出层中的邻近神经元。<br />&nbsp;　　4）、<span style="color: #ff0000;">级联相关（Cascade-Correlation）网络</span>:是结构自适应网络的重要代表。<br />&nbsp;　　5）、<span style="color: #ff0000;">Elman网络</span>：是最常用的递归神经网络之一。<br />7、<span style="color: #ff0000;"><strong>Boltzmann机（玻尔兹曼机）</strong></span>：<br />&nbsp;　　1）、一种基于<span style="color: #ff0000;">能量的模型（energy-based model</span>），其神经元分为两层：显层与隐层。显层用于表示数据的输入与输出，隐层则被理解为数据的内在表达。<br />&nbsp;　　2）、Boltzmann机中的神经元都是布尔型。<br />&nbsp;　　3）、它的训练过程就是将每个训练样本视为一个状态向量，使其出现的概率尽可能大。<br />&nbsp;　　4）、标准Boltzmann机是一个全连接图，训练网络复杂度很高，这使其难以用于解决现实任务。所以现实中一般采用<span style="color: #ff0000;">受限Boltzmann机（Restricted Boltzmann Machine，简称：RBM）</span>。<br />8、受限Boltzmann机常用&ldquo;<span style="color: #ff0000;">对比散度&rdquo;（Contrastive Divergence，简称CD）算法</span>来进行训练。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>西瓜书</tag>
       
     </tags>
     
