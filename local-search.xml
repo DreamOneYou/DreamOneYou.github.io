@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>毛泽东选集</title>
+    <link href="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/"/>
+    <url>/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/</url>
+    
+    <content type="html"><![CDATA[<br><img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/1.jpg" class="" title="image1">&emsp;<img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/2.jpg" class="" title="image2">&nbsp;<img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/3.jpg" class="" title="image3">&nbsp;<img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/4.jpg" class="" title="image4"> &nbsp;<img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/5.jpg" class="" title="image5"> &nbsp;<img src="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/6.jpg" class="" title="image6">]]></content>
+    
+    
+    <categories>
+      
+      <category>读一本好书</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>毛泽东选集</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>青铜时代</title>
     <link href="/2023/%E9%9D%92%E9%93%9C%E6%97%B6%E4%BB%A3/"/>
     <url>/2023/%E9%9D%92%E9%93%9C%E6%97%B6%E4%BB%A3/</url>
@@ -1345,7 +1370,7 @@
     <link href="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/"/>
     <url>/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/</url>
     
-    <content type="html"><![CDATA[<img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E4%BF%A1%E6%81%AF%E7%86%B5.jpg" class="" title="信息熵"><p>熵可以作为一种<strong>“失调”</strong>的度量，熵的值越大表明这个事件就越难以预料。<br>当前这个公式底为2，表明当前熵的单位是位（bits）。<br>应用：为了压缩一幅图像，可以用熵来估计一幅图像的冗余性。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h1><img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E4%BF%A1%E6%81%AF%E7%86%B5.jpg" class="" title="信息熵"><p>熵可以作为一种<strong>“失调”</strong>的度量，熵的值越大表明这个事件就越难以预料。<br>当前这个公式底为2，表明当前熵的单位是位（bits）。<br>应用：为了压缩一幅图像，可以用熵来估计一幅图像的冗余性。</p>]]></content>
     
     
     <categories>
@@ -3022,6 +3047,31 @@
   
   
   <entry>
+    <title>机器学习西瓜书第二章笔记</title>
+    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>西瓜书</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>机器学习西瓜书第五章神经网络笔记</title>
     <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/"/>
     <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/</url>
@@ -3047,11 +3097,11 @@
   
   
   <entry>
-    <title>机器学习西瓜书第二章笔记</title>
-    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
-    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <title>深度学习之蒙特卡洛算法</title>
+    <link href="/2018/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AE%97%E6%B3%95/"/>
+    <url>/2018/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AE%97%E6%B3%95/</url>
     
-    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
+    <content type="html"><![CDATA[<p>蒙特卡洛算法称之为统计模拟方法，是一种以概率论统计理论为指导的一类非常重要的数值计算方法。是通过使用随机数来解决很多计算问题的方法。</p><p>基本思想：是某种随机事件出现的概率，或者是某个随机变量的期望值时，通过某种&ldquo;实验&rdquo;的方法，以这种事件出现的频率估计这一随机事件的概率，或者得到这个随机变量的某些数字特征，并将其作为问题的解。</p>]]></content>
     
     
     <categories>
@@ -3063,7 +3113,7 @@
     
     <tags>
       
-      <tag>西瓜书</tag>
+      <tag>蒙特卡洛算法</tag>
       
     </tags>
     
@@ -3091,31 +3141,6 @@
       <tag>生成式模型</tag>
       
       <tag>判别式模型</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>深度学习之蒙特卡洛算法</title>
-    <link href="/2018/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AE%97%E6%B3%95/"/>
-    <url>/2018/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E7%AE%97%E6%B3%95/</url>
-    
-    <content type="html"><![CDATA[<p>蒙特卡洛算法称之为统计模拟方法，是一种以概率论统计理论为指导的一类非常重要的数值计算方法。是通过使用随机数来解决很多计算问题的方法。</p><p>基本思想：是某种随机事件出现的概率，或者是某个随机变量的期望值时，通过某种&ldquo;实验&rdquo;的方法，以这种事件出现的频率估计这一随机事件的概率，或者得到这个随机变量的某些数字特征，并将其作为问题的解。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>蒙特卡洛算法</tag>
       
     </tags>
     
