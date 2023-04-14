@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>描述图像全局信息的方法</title>
+    <link href="/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><p><a href="https://opencc.icu/2022/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/">我之前写的博客</a></p><h2 id="共生矩阵"><a href="#共生矩阵" class="headerlink" title="共生矩阵"></a>共生矩阵</h2><p><a href="https://www.cnblogs.com/xixixing/p/5856118.html">一篇很详细的博客</a></p><ul><li>共生矩阵用两个位置的象素的联合概率密度来定义，它不仅反映亮度的分布特性，也反映具有同样亮度或接近亮度的象素之间的位置分布特性，是有关图象亮度变化的二阶统计特征。它是定义一组纹理特征的基础。 </li><li>图像的灰度共生矩阵是像素距离和角度的矩阵函数，它通过计算图像中一定距离和一定方向的两点灰度之间的相关性，来反映图像在方向、间隔、变化幅度及快慢上的综合信息。</li></ul><h2 id="积分图像"><a href="#积分图像" class="headerlink" title="积分图像"></a>积分图像</h2><p>积分图是一种能够描述全局信息的矩阵表示方法，其构造方式是积分图像上位置$（i，j）$处的值$ii（i，j）$是原图像$（i，j）$左上角方向所有像素的和。</p><p>$i i(i, j)&#x3D;\sum_{k \leq i, l \leq j} f(k, l)$</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>共生矩阵</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>毛泽东选集</title>
     <link href="/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/"/>
     <url>/2023/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%86/</url>
