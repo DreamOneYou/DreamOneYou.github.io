@@ -253,6 +253,197 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/%E5%88%A9%E7%94%A8CSV%E8%B7%AF%E5%BE%84%E6%96%87%E4%BB%B6%E5%92%8C.png%E5%9B%BE%E5%83%8F%EF%BC%8C%E7%94%9F%E6%88%903D%E5%8E%9F%E5%9B%BE%E3%80%82%E5%B9%B6%E5%B1%95%E7%A4%BA%E9%83%A8%E5%88%86%E5%88%86%E5%89%B2%E5%9B%BE%E5%83%8F/" target="_self">
+          利用CSV路径文件和.png图像，生成3D原图。并展示部分分割图像
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/%E5%88%A9%E7%94%A8CSV%E8%B7%AF%E5%BE%84%E6%96%87%E4%BB%B6%E5%92%8C.png%E5%9B%BE%E5%83%8F%EF%BC%8C%E7%94%9F%E6%88%903D%E5%8E%9F%E5%9B%BE%E3%80%82%E5%B9%B6%E5%B1%95%E7%A4%BA%E9%83%A8%E5%88%86%E5%88%86%E5%89%B2%E5%9B%BE%E5%83%8F/" target="_self">
+        <div>
+          具体代码，请看的的github
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-02 11:55" pubdate>
+              2022-05-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/csv%E8%B7%AF%E5%BE%84%E6%96%87%E4%BB%B6/">#csv路径文件</a>
+            
+              <a href="/tags/2Dto3D/">#2Dto3D</a>
+            
+              <a href="/tags/%E5%88%86%E5%89%B2%E5%9B%BE%E5%83%8F/">#分割图像</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/%E4%BD%BF%E7%94%A8nnUNet%E8%B7%91BraTS%E8%84%91%E8%82%BF%E7%98%A4%E5%88%86%E5%89%B2%E9%A2%84%E6%B5%8BTC%E5%92%8CET%E9%9D%9E%E5%B8%B8%E4%BD%8E%E7%9A%84%E5%8E%9F%E5%9B%A0%E3%80%82/" target="_self">
+          使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低的原因
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/%E4%BD%BF%E7%94%A8nnUNet%E8%B7%91BraTS%E8%84%91%E8%82%BF%E7%98%A4%E5%88%86%E5%89%B2%E9%A2%84%E6%B5%8BTC%E5%92%8CET%E9%9D%9E%E5%B8%B8%E4%BD%8E%E7%9A%84%E5%8E%9F%E5%9B%A0%E3%80%82/" target="_self">
+        <div>
+          使用nnUNet跑BraTS脑肿瘤分割预测TC和ET非常低，原来是预测的时候，使用了预处理后的标签。原本标签是2WT,1TC,4ET。但是预处理之后变为1WT,2TC,3ET。所以我们对于最后预测完需要变回原来的标签值。nnUNet需要改动代码位置nnunet/inference/segmentation_export.py。代码只写了我如何修改的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-29 09:34" pubdate>
+              2022-04-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/nnUNe/">#nnUNe</a>
+            
+              <a href="/tags/BraTS%E8%82%BF%E7%98%A4%E5%88%86%E5%89%B2/">#BraTS肿瘤分割</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/python%EF%BC%9A%E5%B0%86%E6%96%87%E4%BB%B6%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95%E3%80%82%E9%99%84%EF%BC%9AnnUnet%E4%BD%BF%E7%94%A8/" target="_self">
+          python将文件从一个目录移动到另一个目录。附nnUnet使用
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/python%EF%BC%9A%E5%B0%86%E6%96%87%E4%BB%B6%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95%E7%A7%BB%E5%8A%A8%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95%E3%80%82%E9%99%84%EF%BC%9AnnUnet%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          在使用nnUnet做BraTS2019数据集预测时，预测文件分别生成了三类文件.pkl&nbsp;.npz&nbsp;.nii.gz，我们需要的是.nii.gz文件。所以需要进行文件移动。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-23 18:48" pubdate>
+              2022-04-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8/">#文件移动</a>
+            
+              <a href="/tags/python%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8/">#python实现文件移动</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/%E4%BD%BF%E7%94%A8KFold%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95%E5%88%92%E5%88%86%E8%AE%AD%E7%BB%83%E9%9B%86%E5%92%8C%E9%AA%8C%E8%AF%81%E9%9B%86/" target="_self">
           使用KFold交叉验证方法划分训练集和验证集
         </a>
@@ -425,67 +616,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/">#批量删除文件</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/" target="_self">
-          数字图像性质
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/" target="_self">
-        <div>
-          目录 信息熵 高斯噪声 图像噪声 离散傅里叶变换  信息熵 熵可以作为一种“失调”的度量，熵的值越大表明这个事件就越难以预料。当前这个公式底为2，表明当前熵的单位是位（bits）。应用：为了压缩一幅图像，可以用熵来估计一幅图像的冗余性。 高斯噪声 白噪声的一个特例–高斯噪声。上图计算公式是一个服从高斯（正态）分布的随机变量具有高斯曲线型的概率密度函数。白噪声：噪声在所有频率上出现且强度相同。 图像
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-13 14:22" pubdate>
-              2022-04-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%85%85%E7%94%B5%E5%AD%A6%E4%B9%A0/" class="category-chain-item">充电学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E4%BF%A1%E6%81%AF%E7%86%B5/">#信息熵</a>
             
           </div>
         
@@ -743,135 +873,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/npy%E8%BD%AC%E6%8D%A2%E4%B8%BApng%E5%92%8Cnii%E6%96%87%E4%BB%B6/" target="_self">
-          npy转换为png和nii文件
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/npy%E8%BD%AC%E6%8D%A2%E4%B8%BApng%E5%92%8Cnii%E6%96%87%E4%BB%B6/" target="_self">
-        <div>
-          
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-25 20:08" pubdate>
-              2022-02-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/npy2png/">#npy2png</a>
-            
-              <a href="/tags/npy2nii/">#npy2nii</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96nii%E6%96%87%E4%BB%B6%E7%9A%84shape/" target="_self">
-          批量读取nii文件的shape
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96nii%E6%96%87%E4%BB%B6%E7%9A%84shape/" target="_self">
-        <div>
-          
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-25 18:59" pubdate>
-              2022-02-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96nii/">#批量读取nii</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#board">14</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

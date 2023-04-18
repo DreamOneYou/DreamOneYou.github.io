@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>描述图像全局信息的方法</title>
-    <link href="/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <url>/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <title>gaussian噪声</title>
+    <link href="/2023/gaussian%E5%99%AA%E5%A3%B0/"/>
+    <url>/2023/gaussian%E5%99%AA%E5%A3%B0/</url>
     
-    <content type="html"><![CDATA[<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><p><a href="https://opencc.icu/2022/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/">我之前写的博客</a></p><h2 id="共生矩阵"><a href="#共生矩阵" class="headerlink" title="共生矩阵"></a>共生矩阵</h2><p><a href="https://www.cnblogs.com/xixixing/p/5856118.html">一篇很详细的博客</a></p><ul><li>共生矩阵用两个位置的象素的联合概率密度来定义，它不仅反映亮度的分布特性，也反映具有同样亮度或接近亮度的象素之间的位置分布特性，是有关图象亮度变化的二阶统计特征。它是定义一组纹理特征的基础。 </li><li>图像的灰度共生矩阵是像素距离和角度的矩阵函数，它通过计算图像中一定距离和一定方向的两点灰度之间的相关性，来反映图像在方向、间隔、变化幅度及快慢上的综合信息。</li></ul><h2 id="积分图像"><a href="#积分图像" class="headerlink" title="积分图像"></a>积分图像</h2><p>积分图是一种能够描述全局信息的矩阵表示方法，其构造方式是积分图像上位置$（i，j）$处的值$ii（i，j）$是原图像$（i，j）$左上角方向所有像素的和。</p><p>$i i(i, j)&#x3D;\sum_{k \leq i, l \leq j} f(k, l)$</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="高斯噪声"><a href="#高斯噪声" class="headerlink" title="高斯噪声"></a>高斯噪声</h2><p>高斯噪声（Gaussian noise）是一种具有正态分布（也称作高斯分布）概率密度函数的噪声。换句话说，高斯噪声的值遵循高斯分布或者它在各个频率分量上的能量具有高斯分布。它被极其普遍地应用为用以产生加成性高斯白噪声（AWGN）的迭代白噪声。<br>其公式如下：<br>$p_G(z)&#x3D;\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(z-\mu)^2}{2 \sigma^2}}$ </p><p>式中：z表示灰度级图像；$\mu$表示平均灰度值；$\sigma$表示标准差。</p><p>python Code:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_gaussian</span>(<span class="hljs-params">img, sigma</span>):<br>    <span class="hljs-comment"># fig = plt.figure(figsize=(1,1), dpi=300)</span><br>    <span class="hljs-comment"># 生成高斯噪声</span><br>    H, W = img.shape<br>    noise = np.random.randn(H,W)<br>    gaussian_noises = np.sqrt(<span class="hljs-number">2</span>*math.pi*sigma**<span class="hljs-number">2</span>)*np.exp((-(noise-np.mean(noise))**<span class="hljs-number">2</span>)/(<span class="hljs-number">2</span>*sigma**<span class="hljs-number">2</span>))<br>    <span class="hljs-comment"># 为图像添加高斯噪声</span><br>    img = img /<span class="hljs-number">255</span><br>    gaussian_out = img + gaussian_noises<br>    gaussian_out = np.clip(gaussian_out,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)<br>    gaussian_out = np.uint8(gaussian_out*<span class="hljs-number">255</span>)<br>    <span class="hljs-keyword">return</span>  gaussian_out, gaussian_noises<br>    <span class="hljs-comment"># sub = fig.add_subplot(111)</span><br>    <span class="hljs-comment"># sub.imshow(gaussian_n, cmap=&#x27;gray&#x27;)</span><br>    <span class="hljs-comment"># plt.show()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">gaussian_noise</span>(<span class="hljs-params">img, mean, sigma</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    此函数用将产生的高斯噪声加到图片上</span><br><span class="hljs-string">    传入:</span><br><span class="hljs-string">        img   :  原图</span><br><span class="hljs-string">        mean  :  均值</span><br><span class="hljs-string">        sigma :  标准差</span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">        gaussian_out : 噪声处理后的图片</span><br><span class="hljs-string">        noise        : 对应的噪声</span><br><span class="hljs-string">    &#x27;&#x27;&#x27;</span><br>    <span class="hljs-comment"># 将图片灰度标准化</span><br>    img = img / <span class="hljs-number">255</span><br>    <span class="hljs-comment"># 产生高斯 noise</span><br>    noise = np.random.normal(mean, sigma, img.shape)<br>    <span class="hljs-comment"># 将噪声和图片叠加</span><br>    gaussian_out = img + noise<br>    <span class="hljs-comment"># 将超过 1 的置 1，低于 0 的置 0</span><br>    gaussian_out = np.clip(gaussian_out, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># 将图片灰度范围的恢复为 0-255</span><br>    gaussian_out = np.uint8(gaussian_out*<span class="hljs-number">255</span>)<br>    <span class="hljs-comment"># 将噪声范围搞为 0-255</span><br>    <span class="hljs-comment"># noise = np.uint8(noise*255)</span><br>    <span class="hljs-keyword">return</span> gaussian_out, noise <span class="hljs-comment"># 这里也会返回噪声，注意返回值</span><br><br><br><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&quot;__main__&quot;</span>:<br><br>    <span class="hljs-comment"># 读取图片</span><br>    src = cv2.imread(<span class="hljs-string">&#x27;img.png&#x27;</span>, <span class="hljs-number">0</span>)<br>    <span class="hljs-comment"># 创建绘图 figure</span><br>    fig_out = plt.figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>), dpi=<span class="hljs-number">370</span>) <span class="hljs-comment"># figsize宽高比</span><br>    fig_noise = plt.figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>), dpi=<span class="hljs-number">370</span>)<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>):<br><br>        <span class="hljs-comment"># 将图片和不同的噪声叠加</span><br>        <span class="hljs-comment"># gaussian_out, noise = gaussian_noise(src, 0, 0.03*i)</span><br>        gaussian_out, noise = my_gaussian(src, <span class="hljs-number">0.03</span>*i)  <span class="hljs-comment"># RuntimeWarning需要优化</span><br>        <span class="hljs-comment"># 创建 AxesSubplot 对象</span><br>        ax_out = fig_out.add_subplot(i+<span class="hljs-number">241</span>)<br>        ax_noise = fig_noise.add_subplot(i+<span class="hljs-number">241</span>)<br>        <span class="hljs-comment"># 将丑兮兮的坐标抽去掉</span><br>        ax_out.axis(<span class="hljs-string">&#x27;off&#x27;</span>)<br>        ax_noise.axis(<span class="hljs-string">&#x27;off&#x27;</span>)<br>        <span class="hljs-comment"># 设置标题</span><br>        ax_out.set_title(<span class="hljs-string">&#x27;$\sigma$ = &#x27;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-number">0.03</span>*i), loc=<span class="hljs-string">&#x27;left&#x27;</span>, fontsize=<span class="hljs-number">3</span>, fontstyle=<span class="hljs-string">&#x27;italic&#x27;</span>)<br>        ax_noise.set_title(<span class="hljs-string">&#x27;$\sigma$ = &#x27;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-number">0.03</span>*i), loc=<span class="hljs-string">&#x27;left&#x27;</span>, fontsize=<span class="hljs-number">3</span>, fontstyle=<span class="hljs-string">&#x27;italic&#x27;</span>)<br>        <span class="hljs-comment"># 图片展示</span><br>        ax_out.imshow(gaussian_out, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>        ax_noise.imshow((noise+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br><br><br>    <span class="hljs-comment"># 保存图片</span><br>    fig_out.savefig(<span class="hljs-string">&#x27;1_Peppers_noise.png&#x27;</span>)<br>    fig_noise.savefig(<span class="hljs-string">&#x27;1_Guassion_noise.png&#x27;</span>)<br>    <span class="hljs-comment"># 图片显示</span><br>    plt.show()<br></code></pre></td></tr></table></figure><p>result:</p><img src="/2023/gaussian%E5%99%AA%E5%A3%B0/1_Guassion_noise.png" class=""><img src="/2023/gaussian%E5%99%AA%E5%A3%B0/1_Peppers_noise.png" class="">]]></content>
     
     
     <categories>
@@ -20,7 +20,34 @@
     
     <tags>
       
-      <tag>共生矩阵</tag>
+      <tag>gaussian噪声</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Perlin噪声</title>
+    <link href="/2023/Perlin%E5%99%AA%E5%A3%B0/"/>
+    <url>/2023/Perlin%E5%99%AA%E5%A3%B0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="perline基本信息"><a href="#perline基本信息" class="headerlink" title="perline基本信息"></a>perline基本信息</h2><p>Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的自然噪声生成算法，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。</p><p>由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被单独称作Perlin噪声。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>噪声</tag>
+      
+      <tag>perlin</tag>
       
     </tags>
     
@@ -327,6 +354,56 @@
     <tags>
       
       <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>描述图像全局信息的方法</title>
+    <link href="/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2023/%E6%8F%8F%E8%BF%B0%E5%9B%BE%E5%83%8F%E5%85%A8%E5%B1%80%E4%BF%A1%E6%81%AF%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><p><a href="https://opencc.icu/2022/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA/">我之前写的博客</a></p><h2 id="共生矩阵"><a href="#共生矩阵" class="headerlink" title="共生矩阵"></a>共生矩阵</h2><p><a href="https://www.cnblogs.com/xixixing/p/5856118.html">一篇很详细的博客</a></p><ul><li>共生矩阵用两个位置的象素的联合概率密度来定义，它不仅反映亮度的分布特性，也反映具有同样亮度或接近亮度的象素之间的位置分布特性，是有关图象亮度变化的二阶统计特征。它是定义一组纹理特征的基础。 </li><li>图像的灰度共生矩阵是像素距离和角度的矩阵函数，它通过计算图像中一定距离和一定方向的两点灰度之间的相关性，来反映图像在方向、间隔、变化幅度及快慢上的综合信息。</li></ul><h2 id="积分图像"><a href="#积分图像" class="headerlink" title="积分图像"></a>积分图像</h2><p>积分图是一种能够描述全局信息的矩阵表示方法，其构造方式是积分图像上位置$（i，j）$处的值$ii（i，j）$是原图像$（i，j）$左上角方向所有像素的和。</p><p>$i i(i, j)&#x3D;\sum_{k \leq i, l \leq j} f(k, l)$</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>共生矩阵</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数字图像性质</title>
+    <link href="/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/"/>
+    <url>/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul><li><a href="#1.1">信息熵</a></li><li><a href="#1.2">高斯噪声</a></li><li><a href="#1.3">图像噪声</a></li><li><a href="#1.4">离散傅里叶变换</a></li></ul><h2 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a><h1 id="1.1">信息熵</h2><img src="/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E4%BF%A1%E6%81%AF%E7%86%B5.jpg" class="" title="信息熵"><p>熵可以作为一种<strong>“失调”</strong>的度量，熵的值越大表明这个事件就越难以预料。<br>当前这个公式底为2，表明当前熵的单位是位（bits）。<br>应用：为了压缩一幅图像，可以用熵来估计一幅图像的冗余性。</p><h2 id="高斯噪声"><a href="#高斯噪声" class="headerlink" title="高斯噪声"></a><h1 id="1.2">高斯噪声</h2><img src="/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83.jpg" class="" title="信息熵"><p>白噪声的一个特例–高斯噪声。<br>上图计算公式是一个服从高斯（正态）分布的随机变量具有高斯曲线型的概率密度函数。<br><strong>白噪声：</strong>噪声在所有频率上出现且强度相同。</p><h2 id="图像噪声"><a href="#图像噪声" class="headerlink" title="图像噪声"></a><h1 id="1.3">图像噪声</h2><h3 id="信噪比"><a href="#信噪比" class="headerlink" title="信噪比"></a>信噪比</h3><p>各种噪声总和计算：$E&#x3D;\sum {v^2 (x,y)} $ </p><p>观察到的信号计算（也就是出现在图像上的所有信号进行计算）：$F&#x3D;\sum {f^2 (x,y)} $ </p><p>信噪比：$SNR&#x3D;F &#x2F; E$ </p><p>定义：就是计算噪声贡献的所有平方和与观察到的信号的所有平方和做比较，其值越大，表明图像品质越“好”。</p><h3 id="量化噪声"><a href="#量化噪声" class="headerlink" title="量化噪声"></a>量化噪声</h3><p>定义：量化级别不足时出现</p><h3 id="冲击噪声"><a href="#冲击噪声" class="headerlink" title="冲击噪声"></a>冲击噪声</h3><p>定义：是指一幅图像被个别噪声像素破坏，这些像素的亮度与其领域的显著不同。</p><h3 id="胡椒盐噪声"><a href="#胡椒盐噪声" class="headerlink" title="胡椒盐噪声"></a>胡椒盐噪声</h3><p>定义：是指饱和的冲击噪声，这时图像被一些白的或者黑的像素所破坏。胡椒盐噪声会使二值图像退化。</p><h2 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a><h1 id="1.4"><a href="https://zh.wikipedia.org/zh-cn/%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2">离散傅里叶变换</a></h2><p>离散傅里叶变换（Discrete Fourier Transform，DFT）就是先将信号在时域离散化，求其连续傅里叶变换后，再在频域离散化的结果。</p><p><strong>应用领域</strong>：边缘检测、数据压缩(去掉人类无法感知的高频部分信号)、图像复原和边界特性描述等。</p><ul><li><p>用于边缘检测</p><p>  在对图像进行FFT（快速傅立叶变换）后，我们需要对FFT变换后的图像应用高通滤波器。该滤波器会阻止所有低频，仅允许高频通过。<br>  最后，我们对经过了滤波器的图像进行逆FFT，就会得到原始图像中一些明显的边缘特征。</p>  <img src="/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/img_fft.png" class="" title="img">  <img src="/2023/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E5%BB%BA%E7%AD%91_FFT.png" class="" title="img"><ul><li>Code  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>img = cv2.imread(<span class="hljs-string">r&#x27;img.png&#x27;</span>, <span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;img:&quot;</span>,img)<br>dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)<br>dft_shift = np.fft.fftshift(dft)<br>magnitude_spectrum = <span class="hljs-number">20</span> * np.log(cv2.magnitude(dft_shift[:, :, <span class="hljs-number">0</span>], dft_shift[:, :, <span class="hljs-number">1</span>]))<br><br>rows, cols = img.shape<br>crow, ccol = <span class="hljs-built_in">int</span>(rows / <span class="hljs-number">2</span>), <span class="hljs-built_in">int</span>(cols / <span class="hljs-number">2</span>) <span class="hljs-comment"># center</span><br><span class="hljs-comment"># Circular HPF mask, center circle is 0, remaining all ones</span><br>mask = np.ones((rows, cols, <span class="hljs-number">2</span>), np.uint8)<br>r = <span class="hljs-number">80</span><br>center = [crow, ccol]<br>x, y = np.ogrid[:rows, :cols]<br>mask_area = (x - center[<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> + (y - center[<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span> &lt;= r*r<br><span class="hljs-comment"># apply mask and inverse DFT</span><br>fshift = dft_shift * mask<br>fshift_mask_mag = <span class="hljs-number">2000</span> * np.log(cv2.magnitude(fshift[:, :, <span class="hljs-number">0</span>], fshift[:, :, <span class="hljs-number">1</span>]))<br>f_ishift = np.fft.ifftshift(fshift)<br>img_back = cv2.idft(f_ishift)<br>img_back = cv2.magnitude(img_back[:, :, <span class="hljs-number">0</span>], img_back[:, :, <span class="hljs-number">1</span>])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>), plt.imshow(img, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;Input Image&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), plt.imshow(magnitude_spectrum, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;After FFT&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>), plt.imshow(fshift_mask_mag, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;FFT + Mask&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>), plt.imshow(img_back, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;After FFT Inverse&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.show()<br></code></pre></td></tr></table></figure></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>信息熵</tag>
       
     </tags>
     
@@ -1383,31 +1460,6 @@
     <tags>
       
       <tag>批量删除文件</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>数字图像性质</title>
-    <link href="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/"/>
-    <url>/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/</url>
-    
-    <content type="html"><![CDATA[<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul><li><a href="#1.1">信息熵</a></li><li><a href="#1.2">高斯噪声</a></li><li><a href="#1.3">图像噪声</a></li><li><a href="#1.4">离散傅里叶变换</a></li></ul><h2 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a><h1 id="1.1">信息熵</h2><img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E4%BF%A1%E6%81%AF%E7%86%B5.jpg" class="" title="信息熵"><p>熵可以作为一种<strong>“失调”</strong>的度量，熵的值越大表明这个事件就越难以预料。<br>当前这个公式底为2，表明当前熵的单位是位（bits）。<br>应用：为了压缩一幅图像，可以用熵来估计一幅图像的冗余性。</p><h2 id="高斯噪声"><a href="#高斯噪声" class="headerlink" title="高斯噪声"></a><h1 id="1.2">高斯噪声</h2><img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83.jpg" class="" title="信息熵"><p>白噪声的一个特例–高斯噪声。<br>上图计算公式是一个服从高斯（正态）分布的随机变量具有高斯曲线型的概率密度函数。<br><strong>白噪声：</strong>噪声在所有频率上出现且强度相同。</p><h2 id="图像噪声"><a href="#图像噪声" class="headerlink" title="图像噪声"></a><h1 id="1.3">图像噪声</h2><h3 id="信噪比"><a href="#信噪比" class="headerlink" title="信噪比"></a>信噪比</h3><p>各种噪声总和计算：$E&#x3D;\sum {v^2 (x,y)} $ </p><p>观察到的信号计算（也就是出现在图像上的所有信号进行计算）：$F&#x3D;\sum {f^2 (x,y)} $ </p><p>信噪比：$SNR&#x3D;F &#x2F; E$ </p><p>定义：就是计算噪声贡献的所有平方和与观察到的信号的所有平方和做比较，其值越大，表明图像品质越“好”。</p><h3 id="量化噪声"><a href="#量化噪声" class="headerlink" title="量化噪声"></a>量化噪声</h3><p>定义：量化级别不足时出现</p><h3 id="冲击噪声"><a href="#冲击噪声" class="headerlink" title="冲击噪声"></a>冲击噪声</h3><p>定义：是指一幅图像被个别噪声像素破坏，这些像素的亮度与其领域的显著不同。</p><h3 id="胡椒盐噪声"><a href="#胡椒盐噪声" class="headerlink" title="胡椒盐噪声"></a>胡椒盐噪声</h3><p>定义：是指饱和的冲击噪声，这时图像被一些白的或者黑的像素所破坏。胡椒盐噪声会使二值图像退化。</p><h2 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a><h1 id="1.4"><a href="https://zh.wikipedia.org/zh-cn/%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2">离散傅里叶变换</a></h2><p>离散傅里叶变换（Discrete Fourier Transform，DFT）就是先将信号在时域离散化，求其连续傅里叶变换后，再在频域离散化的结果。</p><p><strong>应用领域</strong>：边缘检测、数据压缩(去掉人类无法感知的高频部分信号)、图像复原和边界特性描述等。</p><ul><li><p>用于边缘检测</p><p>  在对图像进行FFT（快速傅立叶变换）后，我们需要对FFT变换后的图像应用高通滤波器。该滤波器会阻止所有低频，仅允许高频通过。<br>  最后，我们对经过了滤波器的图像进行逆FFT，就会得到原始图像中一些明显的边缘特征。</p>  <img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/img_fft.png" class="" title="img">  <img src="/2022/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E6%80%A7%E8%B4%A8/%E5%BB%BA%E7%AD%91_FFT.png" class="" title="img"><ul><li>Code  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>img = cv2.imread(<span class="hljs-string">r&#x27;img.png&#x27;</span>, <span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;img:&quot;</span>,img)<br>dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)<br>dft_shift = np.fft.fftshift(dft)<br>magnitude_spectrum = <span class="hljs-number">20</span> * np.log(cv2.magnitude(dft_shift[:, :, <span class="hljs-number">0</span>], dft_shift[:, :, <span class="hljs-number">1</span>]))<br><br>rows, cols = img.shape<br>crow, ccol = <span class="hljs-built_in">int</span>(rows / <span class="hljs-number">2</span>), <span class="hljs-built_in">int</span>(cols / <span class="hljs-number">2</span>) <span class="hljs-comment"># center</span><br><span class="hljs-comment"># Circular HPF mask, center circle is 0, remaining all ones</span><br>mask = np.ones((rows, cols, <span class="hljs-number">2</span>), np.uint8)<br>r = <span class="hljs-number">80</span><br>center = [crow, ccol]<br>x, y = np.ogrid[:rows, :cols]<br>mask_area = (x - center[<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> + (y - center[<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span> &lt;= r*r<br><span class="hljs-comment"># apply mask and inverse DFT</span><br>fshift = dft_shift * mask<br>fshift_mask_mag = <span class="hljs-number">2000</span> * np.log(cv2.magnitude(fshift[:, :, <span class="hljs-number">0</span>], fshift[:, :, <span class="hljs-number">1</span>]))<br>f_ishift = np.fft.ifftshift(fshift)<br>img_back = cv2.idft(f_ishift)<br>img_back = cv2.magnitude(img_back[:, :, <span class="hljs-number">0</span>], img_back[:, :, <span class="hljs-number">1</span>])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>), plt.imshow(img, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;Input Image&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), plt.imshow(magnitude_spectrum, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;After FFT&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>), plt.imshow(fshift_mask_mag, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;FFT + Mask&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>), plt.imshow(img_back, cmap=<span class="hljs-string">&#x27;gray&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;After FFT Inverse&#x27;</span>), plt.xticks([]), plt.yticks([])<br>plt.show()<br></code></pre></td></tr></table></figure></li></ul></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>信息熵</tag>
       
     </tags>
     
@@ -2893,31 +2945,6 @@
   
   
   <entry>
-    <title>HierarchicalClustering分层集群</title>
-    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
-    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
-    
-    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>分层集群</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>K近邻算法（KNN）</title>
     <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
     <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
@@ -2935,6 +2962,31 @@
     <tags>
       
       <tag>KNN</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HierarchicalClustering分层集群</title>
+    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
+    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
+    
+    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分层集群</tag>
       
     </tags>
     
