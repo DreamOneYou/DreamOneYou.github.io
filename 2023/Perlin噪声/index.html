@@ -16,12 +16,12 @@
   <meta name="author" content="九叶草">
   <meta name="keywords" content="">
   
-    <meta name="description" content="perline基本信息Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的自然噪声生成算法，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。 由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被">
+    <meta name="description" content="perlin基本信息Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的自然噪声生成算法，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。 由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Perlin噪声">
 <meta property="og:url" content="https://dreamoneyou.github.io/2023/Perlin%E5%99%AA%E5%A3%B0/">
 <meta property="og:site_name" content="九叶草的Blog">
-<meta property="og:description" content="perline基本信息Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的自然噪声生成算法，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。 由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被">
+<meta property="og:description" content="perlin基本信息Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的自然噪声生成算法，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。 由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被单">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/Perlin%E5%99%AA%E5%A3%B0/1.jpg">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/Perlin%E5%99%AA%E5%A3%B0/2.jpg">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/Perlin%E5%99%AA%E5%A3%B0/img_perin.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2023/Perlin%E5%99%AA%E5%A3%B0/Fractal_perlin_3D.gif">
 <meta property="article:published_time" content="2023-04-18T03:10:14.000Z">
-<meta property="article:modified_time" content="2023-04-24T09:17:39.659Z">
+<meta property="article:modified_time" content="2023-04-24T10:12:09.548Z">
 <meta property="article:author" content="九叶草">
 <meta property="article:tag" content="噪声">
 <meta property="article:tag" content="perlin">
@@ -320,7 +320,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年4月24日 下午
+                    本文最后更新于：2023年4月24日 晚上
                   
                 
               </p>
@@ -328,7 +328,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="perline基本信息"><a href="#perline基本信息" class="headerlink" title="perline基本信息"></a>perline基本信息</h2><p>Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的<strong>自然噪声生成算法</strong>，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。</p>
+                <h2 id="perlin基本信息"><a href="#perlin基本信息" class="headerlink" title="perlin基本信息"></a>perlin基本信息</h2><p>Perlin噪声（Perlin noise，又称为柏林噪声）指由Ken Perlin发明的<strong>自然噪声生成算法</strong>，具有在函数上的连续性，并可在多次调用时给出一致的数值。 在电子游戏领域中可以透过使用Perlin噪声生成具连续性的地形；或是在艺术领域中使用Perlin噪声生成图样。</p>
 <p>由于一些历史原因，Simplex噪声和分形噪声（texture synthesis）都曾在学术论文中被单独称作Perlin噪声。</p>
 <h2 id="经典Perlin噪声"><a href="#经典Perlin噪声" class="headerlink" title="经典Perlin噪声"></a>经典Perlin噪声</h2><p>perline噪声是基于晶格的方法。它属于梯度噪声，其原理就是将坐标系划分成一块一块的晶格，之后在晶格的顶点出生成一个随机梯度，通过与晶格顶点到晶格内点的向量进行点乘加权计算后得到噪声。<br><img src="/2023/Perlin%E5%99%AA%E5%A3%B0/1.jpg" srcset="/img/loading.gif" lazyload></p>
 <h3 id="实现perlin噪声的过程需要插值"><a href="#实现perlin噪声的过程需要插值" class="headerlink" title="实现perlin噪声的过程需要插值"></a>实现perlin噪声的过程需要插值</h3><ul>
