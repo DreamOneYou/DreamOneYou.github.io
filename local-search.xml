@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>shadertoy特效简单总结</title>
+    <link href="/2023/shadertoy%E7%89%B9%E6%95%88%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/shadertoy%E7%89%B9%E6%95%88%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h1 id="光线追踪"><a href="#光线追踪" class="headerlink" title="光线追踪"></a>光线追踪</h1><pre><code class="hljs">利用光线追踪算法实现逼真的渲染效果，包括反射、折射、阴影等等。这些效果需要更高的计算资源，但是可以产生非常逼真的结果。</code></pre><h2 id="相关例子"><a href="#相关例子" class="headerlink" title="相关例子"></a>相关例子</h2><h3 id="1、场景漫游：https-www-shadertoy-com-view-Xls3D2"><a href="#1、场景漫游：https-www-shadertoy-com-view-Xls3D2" class="headerlink" title="1、场景漫游：https://www.shadertoy.com/view/Xls3D2"></a>1、场景漫游：<a href="https://www.shadertoy.com/view/Xls3D2">https://www.shadertoy.com/view/Xls3D2</a></h3><h3 id="2、光学迷宫：-https-www-shadertoy-com-view-4tBGWR"><a href="#2、光学迷宫：-https-www-shadertoy-com-view-4tBGWR" class="headerlink" title="2、光学迷宫：  https://www.shadertoy.com/view/4tBGWR"></a>2、光学迷宫：  <a href="https://www.shadertoy.com/view/4tBGWR">https://www.shadertoy.com/view/4tBGWR</a></h3><h3 id="3、模拟地球：-https-www-shadertoy-com-view-4lBGD7"><a href="#3、模拟地球：-https-www-shadertoy-com-view-4lBGD7" class="headerlink" title="3、模拟地球： https://www.shadertoy.com/view/4lBGD7"></a>3、模拟地球： <a href="https://www.shadertoy.com/view/4lBGD7">https://www.shadertoy.com/view/4lBGD7</a></h3><h3 id="4、星空：-https-www-shadertoy-com-view-XlfGRj"><a href="#4、星空：-https-www-shadertoy-com-view-XlfGRj" class="headerlink" title="4、星空： https://www.shadertoy.com/view/XlfGRj"></a>4、星空： <a href="https://www.shadertoy.com/view/XlfGRj">https://www.shadertoy.com/view/XlfGRj</a></h3><h3 id="5、光影追踪："><a href="#5、光影追踪：" class="headerlink" title="5、光影追踪："></a>5、光影追踪：</h3><pre><code class="hljs">是三维计算机图形学中的特殊渲染算法，追踪光线从来源开始照射到物体上，再由物体反射的光线“路径”，由于完整运算所有路径十分消耗运算资源，因此现有光线追踪技术仅运算“目所能及”的光线路径。</code></pre><p><a href="https://www.shadertoy.com/view/4dl3zr">https://www.shadertoy.com/view/4dl3zr</a></p><h1 id="粒子系统"><a href="#粒子系统" class="headerlink" title="粒子系统"></a>粒子系统</h1><pre><code class="hljs">粒子系统是一种常见的实时渲染技术，它可以创建和模拟一组小的图形元素，例如雪花、烟雾、火焰或者星星等。这些小的图形元素被称为粒子，它们可以根据一定的规则运动、变化、互相作用，以此形成出各种形态的图案和动画。</code></pre><h2 id="相关例子-1"><a href="#相关例子-1" class="headerlink" title="相关例子"></a>相关例子</h2><p><a href="https://www.shadertoy.com/view/slSBzc">https://www.shadertoy.com/view/slSBzc</a><br><a href="https://www.shadertoy.com/view/NdjBWK">https://www.shadertoy.com/view/NdjBWK</a><br><a href="https://www.shadertoy.com/view/clB3Dt">https://www.shadertoy.com/view/clB3Dt</a></p><h1 id="光效"><a href="#光效" class="headerlink" title="光效"></a>光效</h1><pre><code class="hljs">通过模拟光的传播和反射，可以实现各种光效，包括镜面反射、折射、漫反射、环境光等等。</code></pre><h2 id="相关例子-2"><a href="#相关例子-2" class="headerlink" title="相关例子"></a>相关例子</h2><p><a href="https://www.shadertoy.com/view/4tK3Wd">https://www.shadertoy.com/view/4tK3Wd</a><br><a href="https://www.shadertoy.com/view/tsXSzn">https://www.shadertoy.com/view/tsXSzn</a><br><a href="https://www.shadertoy.com/view/Mll3WB">https://www.shadertoy.com/view/Mll3WB</a></p><h1 id="音频可视化"><a href="#音频可视化" class="headerlink" title="音频可视化"></a>音频可视化</h1><pre><code class="hljs">利用音频数据实现各种可视化效果，例如频谱分析、波形动画等等。</code></pre><h2 id="相关例子-3"><a href="#相关例子-3" class="headerlink" title="相关例子"></a>相关例子</h2><p><a href="https://www.shadertoy.com/view/ldfGWf">https://www.shadertoy.com/view/ldfGWf</a><br><a href="https://www.shadertoy.com/view/XdBGzm">https://www.shadertoy.com/view/XdBGzm</a><br><a href="https://www.shadertoy.com/view/MsBXRK">https://www.shadertoy.com/view/MsBXRK</a><br><a href="https://www.shadertoy.com/view/XdG3Wc">https://www.shadertoy.com/view/XdG3Wc</a><br><a href="https://www.shadertoy.com/view/lscXzN">https://www.shadertoy.com/view/lscXzN</a><br><a href="https://www.shadertoy.com/view/Wd23Rw">https://www.shadertoy.com/view/Wd23Rw</a></p><h1 id="图形变换"><a href="#图形变换" class="headerlink" title="图形变换"></a>图形变换</h1><pre><code class="hljs">图形变换是一种将二维或三维图形进行变形、转换、调整位置的操作。在着色器程序中，可以通过一系列的数学计算和变换操作来实现图形变换。例如，平移操作可以通过将坐标系的原点移动到不同的位置来实现；旋转操作可以通过对坐标系进行旋转变换来实现。在ShaderToy中，图形变换通常与其他图形效果一起使用，例如颜色变换、光照效果、纹理映射等，从而创造出独特的视觉效果</code></pre><h2 id="相关例子-4"><a href="#相关例子-4" class="headerlink" title="相关例子"></a>相关例子</h2><p><a href="https://www.shadertoy.com/view/4s3fDH">https://www.shadertoy.com/view/4s3fDH</a><br><a href="https://www.shadertoy.com/view/XtyfDG">https://www.shadertoy.com/view/XtyfDG</a></p><h1 id="3D效果"><a href="#3D效果" class="headerlink" title="3D效果"></a>3D效果</h1><p> 通过着色器实现各种3D效果，例如球体、立方体、多边形、水面等等。</p><h2 id="相关例子-5"><a href="#相关例子-5" class="headerlink" title="相关例子"></a>相关例子</h2><p><a href="https://www.shadertoy.com/view/3lsSzf">https://www.shadertoy.com/view/3lsSzf</a><br><a href="https://www.shadertoy.com/view/WsSBzh">https://www.shadertoy.com/view/WsSBzh</a><br><a href="https://www.shadertoy.com/view/ld3Gz2">https://www.shadertoy.com/view/ld3Gz2</a><br><a href="https://www.shadertoy.com/view/4sS3zG">https://www.shadertoy.com/view/4sS3zG</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>shadertoy</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>深入GPU硬件架构及运行机制</title>
     <link href="/2023/%E6%B7%B1%E5%85%A5GPU%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/"/>
     <url>/2023/%E6%B7%B1%E5%85%A5GPU%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/</url>
