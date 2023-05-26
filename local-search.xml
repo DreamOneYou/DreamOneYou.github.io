@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>《论中国》</title>
+    <link href="/2023/%E8%AE%BA%E4%B8%AD%E5%9B%BD/"/>
+    <url>/2023/%E8%AE%BA%E4%B8%AD%E5%9B%BD/</url>
+    
+    <content type="html"><![CDATA[<p>利用闲暇时间，听完了这本书。本书是美国前国务卿、“政坛常青树”亨利·基辛格德一部中国问题专著。从一个外国人的角度更加清晰的认识了从清朝到近代的中国发展。感受颇多，从清朝的一次次狂妄自大，结果被列强轰开了国门，促使了中国近代以来悲惨的开始。随着之后国民党的失败，中国共产党执政，才使得中国的发展走向了正规。</p><p>本书是我感受到了：清政府的自大；毛主席的大开大合，高屋建瓴，富有哲学气质；周恩来总理的温文尔雅；邓小平主席的实干精神，做事直击重点；江泽明主席的睿智。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>读一本好书</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>论中国</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>shadertoy特效简单总结</title>
     <link href="/2023/shadertoy%E7%89%B9%E6%95%88%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/"/>
     <url>/2023/shadertoy%E7%89%B9%E6%95%88%E7%AE%80%E5%8D%95%E6%80%BB%E7%BB%93/</url>
@@ -3045,31 +3070,6 @@
   
   
   <entry>
-    <title>K近邻算法（KNN）</title>
-    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
-    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
-    
-    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>KNN</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>HierarchicalClustering分层集群</title>
     <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
     <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
@@ -3087,6 +3087,31 @@
     <tags>
       
       <tag>分层集群</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>K近邻算法（KNN）</title>
+    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
+    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>KNN</tag>
       
     </tags>
     
