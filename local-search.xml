@@ -8,7 +8,7 @@
     <link href="/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     <url>/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
     
-    <content type="html"><![CDATA[<h3 id="clashX打不开了"><a href="#clashX打不开了" class="headerlink" title="clashX打不开了"></a>clashX打不开了</h3><ul><li>解决方案：在命令行输入下面代码，然后到 设置-&gt;通用-&gt;登陆项  将clashx设置为自启动<br>sudo launchctl enable system&#x2F;com.west2online.ClashX.ProxyConfigHelper</li></ul><h3 id="在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案"><a href="#在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案" class="headerlink" title="在macbook air m2下，已经配置好ssh，依旧clone超时结局方案"></a>在macbook air m2下，已经配置好ssh，依旧clone超时结局方案</h3><p>在命令行下，运行下面这行代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">git config --global <span class="hljs-string">&quot;url.ssh://git@ssh.github.com:443/.insteadOf&quot;</span> git@github.com:<br></code></pre></td></tr></table></figure><h3 id="为mac配置镜像源，比如下载brew等太慢等情况"><a href="#为mac配置镜像源，比如下载brew等太慢等情况" class="headerlink" title="为mac配置镜像源，比如下载brew等太慢等情况"></a>为mac配置镜像源，比如下载brew等太慢等情况</h3><ul><li><p><a href="https://zhuanlan.zhihu.com/p/90508170">参考网址</a></p></li><li><p>如果有更换镜像源的想法，强烈推荐使用<a href="https://brew.idayer.com/guide/change-source/">镜像助手</a>获取执行脚本。</p></li><li><p>下面是我的配置</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_API_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/bottles&quot;</span><br><br><span class="hljs-comment">//安装brew</span><br>/bin/bash -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>安装完成，想要恢复默认值怎么办，可以执行下面的代码</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">git -C <span class="hljs-string">&quot;$(brew --repo)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/brew.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/core)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-core.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/cask)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-cask.git</span><br><br>brew update<br></code></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="clashX打不开了"><a href="#clashX打不开了" class="headerlink" title="clashX打不开了"></a>clashX打不开了</h3><ul><li>解决方案：在命令行输入下面代码，然后到 设置-&gt;通用-&gt;登陆项  将clashx设置为自启动<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">sudo launchctl enable system/com.west2online.ClashX.ProxyConfigHelper<br></code></pre></td></tr></table></figure></li></ul><h3 id="在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案"><a href="#在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案" class="headerlink" title="在macbook air m2下，已经配置好ssh，依旧clone超时结局方案"></a>在macbook air m2下，已经配置好ssh，依旧clone超时结局方案</h3><p>在命令行下，运行下面这行代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">git config --global <span class="hljs-string">&quot;url.ssh://git@ssh.github.com:443/.insteadOf&quot;</span> git@github.com:<br></code></pre></td></tr></table></figure><h3 id="为mac配置镜像源，比如下载brew等太慢等情况"><a href="#为mac配置镜像源，比如下载brew等太慢等情况" class="headerlink" title="为mac配置镜像源，比如下载brew等太慢等情况"></a>为mac配置镜像源，比如下载brew等太慢等情况</h3><ul><li><p><a href="https://zhuanlan.zhihu.com/p/90508170">参考网址</a></p></li><li><p>如果有更换镜像源的想法，强烈推荐使用<a href="https://brew.idayer.com/guide/change-source/">镜像助手</a>获取执行脚本。</p></li><li><p>下面是我的配置</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_API_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/bottles&quot;</span><br><br><span class="hljs-comment">//安装brew</span><br>/bin/bash -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>安装完成，想要恢复默认值怎么办，可以执行下面的代码</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">git -C <span class="hljs-string">&quot;$(brew --repo)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/brew.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/core)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-core.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/cask)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-cask.git</span><br><br>brew update<br></code></pre></td></tr></table></figure><h3 id="hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决"><a href="#hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决" class="headerlink" title="hexo Failed to connect to github.com port 443: Timed out 错误解决"></a>hexo Failed to connect to github.com port 443: Timed out 错误解决</h3><p>将hexo _config.yml里的git地址由<a href="https://github.com/xxx%E4%BF%AE%E6%94%B9%E4%B8%BAssh">https://github.com/xxx修改为ssh</a> <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:xxx&#x2F;xxx也可以。</p></li></ul>]]></content>
     
     
     <categories>
@@ -1389,11 +1389,11 @@
       
       <tag>csv文件读取</tag>
       
+      <tag>csv文件存储</tag>
+      
       <tag>3D标签</tag>
       
       <tag>RLE标签编码</tag>
-      
-      <tag>csv文件存储</tag>
       
     </tags>
     
@@ -2110,9 +2110,9 @@
     
     <tags>
       
-      <tag>pytorch环境配置</tag>
-      
       <tag>Windows</tag>
+      
+      <tag>pytorch环境配置</tag>
       
     </tags>
     
@@ -3043,31 +3043,6 @@
   
   
   <entry>
-    <title>2020MICS一些会议笔记</title>
-    <link href="/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/"/>
-    <url>/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/</url>
-    
-    <content type="html"><![CDATA[<p>目录</p><p>一、张惠茅（AI在放射科）... 1</p><p>二、练春锋... 2</p><p>三、徐军（计算病理及其数字化切片组织形态学定量分析）... 2</p><p>四、徐佳园... 2</p><p>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）... 2</p><p>六、程炜（脑影像大数据及其在精神疾病中的应用）... 3</p><p>七、李阳（多模态自适应脑网络方法及应用）... 4</p><p>八、宋彬... 6</p><p>九、周涛（多模态学习）... 6</p><p>十、于杰（人工智能在肝占位超声诊断中的研究）... 6</p><p>十一、闫平昆（Multi-X Medical Image Segmentation）... 6</p><p>十二、马建华（低剂量医学CT成像技术）... 7</p><p>十三、赵一天... 8</p><p>十四、圆桌会议... 8</p><p>十五、结束... 9</p><p>&nbsp;</p><h2>一、张惠茅（AI在放射科）</h2><p>1、发展现状：</p><p>&nbsp;&nbsp;&nbsp; （1）88%的医学影像AI在肺结节</p><p>&nbsp;&nbsp;&nbsp; （2）超过30%的研究所不能获得医院的数据</p><p>2、应用方向</p><p>&nbsp;&nbsp;&nbsp; （1）鼻咽癌靶区勾画和分割</p><p>&nbsp;&nbsp;&nbsp; （2）全栈AI（上海联影）</p><p>&nbsp;&nbsp;&nbsp; （3）质量控制</p><p>&nbsp;&nbsp;&nbsp; （4）胸片分诊</p><p>&nbsp;&nbsp;&nbsp; （5）肺结节筛查和评估系统</p><p>&nbsp;&nbsp;&nbsp; （6）儿童骨龄评价系统</p><p>3、AI合作之路（医理工合作）</p><p>&nbsp;&nbsp;&nbsp; （1）落地产品很少</p><p>&nbsp;&nbsp;&nbsp; （2）如何获得一个好的算法帮助医生进行标注</p><p>&nbsp;&nbsp;&nbsp; （3）新冠肺炎AI挑战--&mdash;标注的困境</p><p>4、结语</p><p>&nbsp;&nbsp;&nbsp; （1）界定相对独立实用的医学场景</p><p>&nbsp;</p><h2>二、练春锋</h2><p>1、（H-FCN）hierarchical fully convolution network:在阿尔兹海默症中应用</p><p>2、H-FCN改进Attention-guided Hybrid Network</p><p>3、MWAN</p><p>4、PVS</p><p>&nbsp;&nbsp;&nbsp; （1）multi-channel Multi-scale FCN(M<sup>2</sup>FCN)</p><p>&nbsp;</p><h2>三、徐军（计算病理及其数字化切片组织形态学定量分析）</h2><p>1、分割实用unet网络</p><p>2、利用混淆矩阵评估模型</p><h2>四、徐佳园</h2><p>1、通过遥感卫星观察地区变化对人脑发展的影响</p><h2>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）</h2><p>1、key points：精准病灶分割与诊断</p><p>&nbsp;</p><h2>六、程炜（脑影像大数据及其在精神疾病中的应用）</h2><p>1、脑影像数据库</p><p>&nbsp;</p><p>2、绘图：matlib</p><p>&nbsp;</p><p>&nbsp;</p><p>3、association analysis</p><p>&nbsp;</p><p>&nbsp;</p><h2>七、李阳（多模态自适应脑网络方法及应用）</h2><p>1、创新一：有向脑连接网络及弹性多层感知机</p><p>&nbsp;</p><p>2、创新二：多模态脑网络</p><p>&nbsp;</p><p>&nbsp;</p><p>3、创新三：多模态自适应网络与时空特征深度融合</p><p>&nbsp;&nbsp;&nbsp; （1）使用了SVM分类器</p><h2>八、宋彬</h2><p>1、pyRadiomics是提取影像学特征</p><h2>九、周涛（多模态学习）</h2><p>1、Latent representation learning for AD diagnosis</p><p>2、Hi-Net for Multi-modal MR Image Synthesis</p><h2>十、于杰（人工智能在肝占位超声诊断中的研究）</h2><p>1、使用超声图片，利用人工智能对图像进行分析，进而提升超声对疾病的判断，使得超声不仅仅只是用于疾病筛查，真正用于疾病的诊断。使得超声能够和CT匹配，达到诊断医生的水平。</p><p>2、输入的是静态图像</p><p>&nbsp;</p><p>&nbsp;</p><h2>十一、闫平昆（Multi-X Medical Image Segmentation）</h2><p>1、</p><p>&nbsp;</p><h2>十二、马建华（低剂量医学CT成像技术）</h2><p>1、</p><p>&nbsp;</p><p>&nbsp;</p><h2>十三、赵一天</h2><p>1、OCT-A眼底图片当前研究的很少，所以很有发展前景</p><p>2、研究的OCT-A是自己建立的数据库（全球唯一）</p><p>3、成果</p><p>&nbsp;</p><h2>十四、圆桌会议</h2><p>1、医学AI技术如何落地？</p><p>答：（1）深度学习和机器学习的医学人工智能的落地成本降低，突破了课商业投资的阈值。肺结节、骨折、乳腺、脑出血易于落地。</p><p>（2）落地阻力：技术不够，监管不够，产品价值不明晰</p><p>2、医学AI科研如何选题？项目申请有何经验？</p><p>答：（1）来源于临床，高于临床，服务于临床。</p><p>3、医学到底需要那一方面数学基础？</p><p>答：（1）最优化，现在的深度学习就是一个最优化问题。</p><p>（2）偏分法</p><p>（3）微积分和线性代数</p><p>（4）level set一种曲线拟合的方法，相比较深度学习可解释性强。比较小众。</p><p>（5）计算机视觉的基础要好，沉下心，别太着急发paper</p><p>4、青年学者应该在小领域还是大领域开始？</p><p>答：打基础，在一个具体领域先混好，先满足自己生存，之后再在大领域发展。争取将自己发展为T型人才，在某一方面扎下根，广泛涉猎各个领域。</p><h2>十五、结束</h2><p>1、每期会议链接。</p><p>&nbsp;</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>2020MICS</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>DBSCAN基于密度的聚类算法</title>
     <link href="/2018/DBSCAN%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/"/>
     <url>/2018/DBSCAN%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
@@ -3087,6 +3062,31 @@
       <tag>DBSCAN</tag>
       
       <tag>密度聚类算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>K近邻算法（KNN）</title>
+    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
+    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>KNN</tag>
       
     </tags>
     
@@ -3120,11 +3120,11 @@
   
   
   <entry>
-    <title>K近邻算法（KNN）</title>
-    <link href="/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/"/>
-    <url>/2018/K-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95%EF%BC%88KNN%EF%BC%89/</url>
+    <title>2020MICS一些会议笔记</title>
+    <link href="/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/"/>
+    <url>/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<p><span style="color: #000000;">本文来自阅读机器学习实战过程中做的笔记，可能有点多，因为写的太好了，没忍住就记录下来，方便以后电子复习。</span></p><p>1、概念：k-近邻算法采用测量不同特征值之间的距离方法进行分类。</p><p>2、原理：存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所分类的对应关系。输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）的分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k0近邻算法中k的由来。</p><p>3、优点：精度高、对异常值不敏感、无数据输入假定。</p><p>　&nbsp; 缺点：计算复杂度高、空间复杂度高。</p><p>&nbsp; &nbsp; &nbsp; 适用范围：数值型和标称型。</p><p>&nbsp;</p>]]></content>
+    <content type="html"><![CDATA[<p>目录</p><p>一、张惠茅（AI在放射科）... 1</p><p>二、练春锋... 2</p><p>三、徐军（计算病理及其数字化切片组织形态学定量分析）... 2</p><p>四、徐佳园... 2</p><p>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）... 2</p><p>六、程炜（脑影像大数据及其在精神疾病中的应用）... 3</p><p>七、李阳（多模态自适应脑网络方法及应用）... 4</p><p>八、宋彬... 6</p><p>九、周涛（多模态学习）... 6</p><p>十、于杰（人工智能在肝占位超声诊断中的研究）... 6</p><p>十一、闫平昆（Multi-X Medical Image Segmentation）... 6</p><p>十二、马建华（低剂量医学CT成像技术）... 7</p><p>十三、赵一天... 8</p><p>十四、圆桌会议... 8</p><p>十五、结束... 9</p><p>&nbsp;</p><h2>一、张惠茅（AI在放射科）</h2><p>1、发展现状：</p><p>&nbsp;&nbsp;&nbsp; （1）88%的医学影像AI在肺结节</p><p>&nbsp;&nbsp;&nbsp; （2）超过30%的研究所不能获得医院的数据</p><p>2、应用方向</p><p>&nbsp;&nbsp;&nbsp; （1）鼻咽癌靶区勾画和分割</p><p>&nbsp;&nbsp;&nbsp; （2）全栈AI（上海联影）</p><p>&nbsp;&nbsp;&nbsp; （3）质量控制</p><p>&nbsp;&nbsp;&nbsp; （4）胸片分诊</p><p>&nbsp;&nbsp;&nbsp; （5）肺结节筛查和评估系统</p><p>&nbsp;&nbsp;&nbsp; （6）儿童骨龄评价系统</p><p>3、AI合作之路（医理工合作）</p><p>&nbsp;&nbsp;&nbsp; （1）落地产品很少</p><p>&nbsp;&nbsp;&nbsp; （2）如何获得一个好的算法帮助医生进行标注</p><p>&nbsp;&nbsp;&nbsp; （3）新冠肺炎AI挑战--&mdash;标注的困境</p><p>4、结语</p><p>&nbsp;&nbsp;&nbsp; （1）界定相对独立实用的医学场景</p><p>&nbsp;</p><h2>二、练春锋</h2><p>1、（H-FCN）hierarchical fully convolution network:在阿尔兹海默症中应用</p><p>2、H-FCN改进Attention-guided Hybrid Network</p><p>3、MWAN</p><p>4、PVS</p><p>&nbsp;&nbsp;&nbsp; （1）multi-channel Multi-scale FCN(M<sup>2</sup>FCN)</p><p>&nbsp;</p><h2>三、徐军（计算病理及其数字化切片组织形态学定量分析）</h2><p>1、分割实用unet网络</p><p>2、利用混淆矩阵评估模型</p><h2>四、徐佳园</h2><p>1、通过遥感卫星观察地区变化对人脑发展的影响</p><h2>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）</h2><p>1、key points：精准病灶分割与诊断</p><p>&nbsp;</p><h2>六、程炜（脑影像大数据及其在精神疾病中的应用）</h2><p>1、脑影像数据库</p><p>&nbsp;</p><p>2、绘图：matlib</p><p>&nbsp;</p><p>&nbsp;</p><p>3、association analysis</p><p>&nbsp;</p><p>&nbsp;</p><h2>七、李阳（多模态自适应脑网络方法及应用）</h2><p>1、创新一：有向脑连接网络及弹性多层感知机</p><p>&nbsp;</p><p>2、创新二：多模态脑网络</p><p>&nbsp;</p><p>&nbsp;</p><p>3、创新三：多模态自适应网络与时空特征深度融合</p><p>&nbsp;&nbsp;&nbsp; （1）使用了SVM分类器</p><h2>八、宋彬</h2><p>1、pyRadiomics是提取影像学特征</p><h2>九、周涛（多模态学习）</h2><p>1、Latent representation learning for AD diagnosis</p><p>2、Hi-Net for Multi-modal MR Image Synthesis</p><h2>十、于杰（人工智能在肝占位超声诊断中的研究）</h2><p>1、使用超声图片，利用人工智能对图像进行分析，进而提升超声对疾病的判断，使得超声不仅仅只是用于疾病筛查，真正用于疾病的诊断。使得超声能够和CT匹配，达到诊断医生的水平。</p><p>2、输入的是静态图像</p><p>&nbsp;</p><p>&nbsp;</p><h2>十一、闫平昆（Multi-X Medical Image Segmentation）</h2><p>1、</p><p>&nbsp;</p><h2>十二、马建华（低剂量医学CT成像技术）</h2><p>1、</p><p>&nbsp;</p><p>&nbsp;</p><h2>十三、赵一天</h2><p>1、OCT-A眼底图片当前研究的很少，所以很有发展前景</p><p>2、研究的OCT-A是自己建立的数据库（全球唯一）</p><p>3、成果</p><p>&nbsp;</p><h2>十四、圆桌会议</h2><p>1、医学AI技术如何落地？</p><p>答：（1）深度学习和机器学习的医学人工智能的落地成本降低，突破了课商业投资的阈值。肺结节、骨折、乳腺、脑出血易于落地。</p><p>（2）落地阻力：技术不够，监管不够，产品价值不明晰</p><p>2、医学AI科研如何选题？项目申请有何经验？</p><p>答：（1）来源于临床，高于临床，服务于临床。</p><p>3、医学到底需要那一方面数学基础？</p><p>答：（1）最优化，现在的深度学习就是一个最优化问题。</p><p>（2）偏分法</p><p>（3）微积分和线性代数</p><p>（4）level set一种曲线拟合的方法，相比较深度学习可解释性强。比较小众。</p><p>（5）计算机视觉的基础要好，沉下心，别太着急发paper</p><p>4、青年学者应该在小领域还是大领域开始？</p><p>答：打基础，在一个具体领域先混好，先满足自己生存，之后再在大领域发展。争取将自己发展为T型人才，在某一方面扎下根，广泛涉猎各个领域。</p><h2>十五、结束</h2><p>1、每期会议链接。</p><p>&nbsp;</p>]]></content>
     
     
     <categories>
@@ -3136,7 +3136,7 @@
     
     <tags>
       
-      <tag>KNN</tag>
+      <tag>2020MICS</tag>
       
     </tags>
     
@@ -3274,31 +3274,6 @@
   
   
   <entry>
-    <title>机器学习西瓜书第二章笔记</title>
-    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
-    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    
-    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>西瓜书</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>机器学习西瓜书第五章神经网络笔记</title>
     <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/"/>
     <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20/</url>
@@ -3368,6 +3343,31 @@
       <tag>生成式模型</tag>
       
       <tag>判别式模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>机器学习西瓜书第二章笔记</title>
+    <link href="/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2018/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A5%BF%E7%93%9C%E4%B9%A6%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<div><span style="font-family: 宋体; font-size: 18px;"><strong>第二节；模型评估与选择</strong></span><br /><span style="font-family: 宋体;">1、过拟合（过配）：当学习器把训练样本学得&ldquo;<span style="color: #ff0000;">太好</span>&rdquo;了的时候，很可能已经把训练样本自身的一些特点当做了所有潜在样本都会具有的一般性质，这样就会导致泛化性能下降。</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合最常见导致原因：学习能力过于强大</span><br /><span style="font-family: 宋体;">&nbsp;　　*过拟合是<span style="color: #ff0000;">无法彻底避免</span>的，我们所能做的只是&rdquo;缓解&rdquo;，或者说减小其风险</span><br /><span style="font-family: 宋体;">2、欠拟合（欠配）：是指对训练样本的一般性质尚未学好</span><br /><span style="font-family: 宋体;">3、学习能力是否&ldquo;过于强大&ldquo;，是由学习算法和数据内涵共同决定</span><br /><span style="font-family: 宋体;">4、产生训练集S和测试集T的方法</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">留出法</span>：直接将数据集D划分为两个互斥的集合。即一个作为训练集S，一个作为测试集T。</span><br /><span style="font-family: 宋体;">&nbsp;　　*难点在于如何划分两个集合，训练集S过大会导致评估结果不够稳定准确，T过大会导致降低评估结果的保真性（fidelity）。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">交叉验证法</span>：先将数据集D划分为k个大小相似的互斥子集，每个子集都尽可能保持数据分布的一致性，然后每次用k-1个子集的并集作　　　　为训练集，余下的那一个子集作为测试集；这样就可以获得k组训练/测试集，从而可以进行k次训练和测试，最终返回的是这k个测试集结果的均值。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">自助法</span>：以自助采样法（<span style="color: #ff9900;">bootstrap sampling</span>）为基础。在给定包含m个样本的数据集D，我们对它进行采样产生数据集D`，每次随机从D中挑选一个样本，将其拷贝放入到D`,然后再将该样本放回D中，使得该样本在下次随机取样中依旧可能被采集到，将这个过程重复m次后，我们就得到了包含m个样本的数据集D`，这就是自助采样的结果。</span><br /><span style="font-family: 宋体;">5、模型的&ldquo;好坏&rdquo;是相对的，模型的好坏不仅取决于算法和数据，还取决于任务需求。</span><br /><span style="font-family: 宋体;">&nbsp;　　<span style="color: #00ff00;">*回归任务最常用的性能度量是：均方误差</span></span><br /><span style="font-family: 宋体;">6、查准率（准确率）和查全率（召回率）是一对矛盾的度量。一般时候查准率越高（低），查全率往往越低（高）。</span><br /><span style="font-family: 宋体;">&nbsp;　　*查准率:P=TP/(TP+FP)</span><br /><span style="font-family: 宋体;">&nbsp;　　*查全率:R=TP/(TP+FN)</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、若一个学习器的P-R曲线被另一个学习器的曲线完全&ldquo;包住&rdquo;，则可断言后者的性能优于前者。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、<span style="color: #ff0000;">平衡点</span>（<span style="color: #3366ff;">Break-Even Point 简称：BEP</span>）：它是&ldquo;查准率=查全率&rdquo;时的取值。</span><br /><span style="font-family: 宋体;">&nbsp;&nbsp;　　*通常不使用BEP，因为太过简化，一般使用F1度量，F1是基于查准率与查全率的<span style="color: #ff0000;">调和平均</span>（<span style="color: #3366ff;">harmonic mean</span>）定义的。</span><br /><span style="font-family: 宋体;">7、ROC与AUC</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、<span style="color: #ff0000;">截断点</span>（<span style="color: #3366ff;">cut point</span>）：将样本分为两个部分，前一部分判作正例，后一部分则判作反例。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、我们根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以他们为横，纵坐标作图，就得到<span style="color: #ff0000;">ROC曲线</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<span style="color: #ff0000;">ROC</span>全称是&ldquo;<span style="color: #ff0000;">受试者工作特征</span>&rdquo;（<span style="color: #3366ff;">Receiver Operating Characteristic</span>），其纵轴是<span style="color: #ff0000;">&ldquo;真正例率</span>&rdquo;（<span style="color: #3366ff;">True Positive Rate</span>，简称：<span style="color: #3366ff;">TPR</span>），横轴是&ldquo;<span style="color: #ff0000;">假正例率</span>&rdquo;（<span style="color: #3366ff;">False Positive Rate，简称：FPR</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　4）、与P-R图相似，若一个学习器的ROC曲线被另一个学习器的曲线完全"包住"，则可以断言后者的性能优于前者。若两个学习器曲线发生交叉，则一般难以进行判定谁优谁劣，此时若要进行比较，则比较合理的方法就是比较<span data-mce-="">ROC曲线下的面积，即<span data-mce-="">AUC（<span data-mce-="">Area Under ROC Curve）。</span></span></span></span><br /><span style="font-family: 宋体;">8、代价敏感错误率与代价曲线</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、为权衡不同类型错误所造成的不同损失，可为错误赋予&ldquo;<span style="color: #ff0000;">非均等代价</span>&rdquo;（<span style="color: #3366ff;">unequal cost</span>）</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、在非均等代价下，ROC曲线不能直接反映出学习器的期望总体代价，而&ldquo;<span style="color: #ff0000;">代价曲线</span>&rdquo;（<span style="color: #3366ff;">cost curve</span>）则可以达到该目的。</span><br /><span style="font-family: 宋体;">9、<span style="color: #ff00ff;">机器学习性能比较的几个重要因素</span>：</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、我们希望比较的是泛化性能，然而通过实验评估方法我们获得的是测试集上的性能，两者的对比结果可能未必相同。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）、测试集上的性能与测试集本身的选择有很大关系，且不论使用不同大小的测试集会得到不同的结果，即便用相同大小的测试集，所包含测试样例不同，测试结果也会有不同。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、很多机器学习算法本身有一定的随机性，即便用相同的参数设置在同一个测试集上多次运行，其结果也会有不同。</span><br /><span style="font-family: 宋体;">10、<span style="color: #ff0000;">统计假设检验</span>（<span style="color: #3366ff;">hypothesis test</span>）为我们进行学习器性能比较提供了重要依据</span><br /><span style="font-family: 宋体;">&nbsp;　　1）<span style="color: #ff0000;">&ldquo;<strong>二项检验&ldquo;和&ldquo;t检验（t-test</strong>）&rdquo;</span><span style="text-decoration: underline;">是对于单个学习器泛化性能的假设进行检验</span>。</span></div><div><span style="font-family: 宋体;">　　　　<span style="color: #ff0000;">&ldquo;</span><span style="color: #ff0000;"><strong>交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</strong></span><span style="text-decoration: underline;">是对不同学习器的性能进行比较</span>。</span><br /><span style="font-family: 宋体;">&nbsp;　　2）<span style="color: #ff0000;">交叉验证t检验</span>：其思想就是若两个学习器的性能相同，则他们使用相同的训练/测试集得到的测试错误率应相同。具体来说，就是对<span style="color: #ff0000;">k折交叉验证</span>产生的k对测试错误率，先对每队结果求差，若两个学习器性能相同，则差值理应为零，因此可以根据这些差值，计算出差值的均值和方差。</span><br /><span style="font-family: 宋体;">&nbsp;　　3）、<strong><span style="color: #ff0000;">&ldquo;交叉验证t检验&rdquo;和&ldquo;McNemar检验&rdquo;</span></strong>都是在一个数据集上比较两个算法的性能。而我们在<span style="color: #000000;">一个数据集上进行多个算法比较</span>，<span style="color: #00ff00;">则采用基于算法排序的<span style="color: #ff0000;">Friedman检验</span></span><span style="color: #ff0000;">，</span>使用Friedman检验来判断这些算法是否性能都相同，若相同，则它们的平均序值应当相同，若&ldquo;所有算法的性能相同&rdquo;这个假设被拒绝，则说明算法的性能显著不同，这是就需要进行&ldquo;<span data-mce-=""><span style="color: #ff0000;">后续检验</span>&rdquo;（<span data-mce-="">post-hoc test）来进一步区分各算法，常用的有<span data-mce-=""><span style="color: #ff0000;">Nemenyi后续检验</span>。</span></span></span></span><br /><span style="font-family: 宋体;">11、<span style="color: #ff0000;">偏差-方差分解</span>（<span style="color: #3366ff;">bias-variance decomposition</span>）是解释学习算法泛化性能的一种重要工具。</span><br /><span style="font-family: 宋体;">&nbsp;　　1）、偏差与方差分解说明，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div><div><span style="font-family: 宋体;">&nbsp;</span></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>西瓜书</tag>
       
     </tags>
     
