@@ -8,7 +8,7 @@
     <link href="/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     <url>/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
     
-    <content type="html"><![CDATA[<h3 id="clashX打不开了"><a href="#clashX打不开了" class="headerlink" title="clashX打不开了"></a>clashX打不开了</h3><ul><li>解决方案：在命令行输入下面代码，然后到 设置-&gt;通用-&gt;登陆项  将clashx设置为自启动<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">sudo launchctl enable system/com.west2online.ClashX.ProxyConfigHelper<br></code></pre></td></tr></table></figure></li></ul><h3 id="在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案"><a href="#在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案" class="headerlink" title="在macbook air m2下，已经配置好ssh，依旧clone超时结局方案"></a>在macbook air m2下，已经配置好ssh，依旧clone超时结局方案</h3><p>在命令行下，运行下面这行代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">git config --global <span class="hljs-string">&quot;url.ssh://git@ssh.github.com:443/.insteadOf&quot;</span> git@github.com:<br></code></pre></td></tr></table></figure><h3 id="为mac配置镜像源，比如下载brew等太慢等情况"><a href="#为mac配置镜像源，比如下载brew等太慢等情况" class="headerlink" title="为mac配置镜像源，比如下载brew等太慢等情况"></a>为mac配置镜像源，比如下载brew等太慢等情况</h3><ul><li><p><a href="https://zhuanlan.zhihu.com/p/90508170">参考网址</a></p></li><li><p>如果有更换镜像源的想法，强烈推荐使用<a href="https://brew.idayer.com/guide/change-source/">镜像助手</a>获取执行脚本。</p></li><li><p>下面是我的配置</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_API_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/bottles&quot;</span><br><br><span class="hljs-comment">//安装brew</span><br>/bin/bash -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>安装完成，想要恢复默认值怎么办，可以执行下面的代码</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">git -C <span class="hljs-string">&quot;$(brew --repo)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/brew.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/core)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-core.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/cask)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-cask.git</span><br><br>brew update<br></code></pre></td></tr></table></figure><h3 id="hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决"><a href="#hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决" class="headerlink" title="hexo Failed to connect to github.com port 443: Timed out 错误解决"></a>hexo Failed to connect to github.com port 443: Timed out 错误解决</h3><p>将hexo _config.yml里的git地址由<a href="https://github.com/xxx%E4%BF%AE%E6%94%B9%E4%B8%BAssh">https://github.com/xxx修改为ssh</a> <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#109;</a>:xxx&#x2F;xxx也可以。</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="clashX打不开了"><a href="#clashX打不开了" class="headerlink" title="clashX打不开了"></a>clashX打不开了</h3><ul><li>解决方案：在命令行输入下面代码，然后到 设置-&gt;通用-&gt;登陆项  将clashx设置为自启动<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">sudo launchctl enable system/com.west2online.ClashX.ProxyConfigHelper<br></code></pre></td></tr></table></figure></li></ul><h3 id="在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案"><a href="#在macbook-air-m2下，已经配置好ssh，依旧clone超时结局方案" class="headerlink" title="在macbook air m2下，已经配置好ssh，依旧clone超时结局方案"></a>在macbook air m2下，已经配置好ssh，依旧clone超时结局方案</h3><p>在命令行下，运行下面这行代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">git config --global <span class="hljs-string">&quot;url.ssh://git@ssh.github.com:443/.insteadOf&quot;</span> git@github.com:<br></code></pre></td></tr></table></figure><h3 id="为mac配置镜像源，比如下载brew等太慢等情况"><a href="#为mac配置镜像源，比如下载brew等太慢等情况" class="headerlink" title="为mac配置镜像源，比如下载brew等太慢等情况"></a>为mac配置镜像源，比如下载brew等太慢等情况</h3><ul><li><p><a href="https://zhuanlan.zhihu.com/p/90508170">参考网址</a></p></li><li><p>如果有更换镜像源的想法，强烈推荐使用<a href="https://brew.idayer.com/guide/change-source/">镜像助手</a>获取执行脚本。</p></li><li><p>下面是我的配置</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_API_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span><br><span class="hljs-keyword">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/bottles&quot;</span><br><br><span class="hljs-comment">//安装brew</span><br>/bin/bash -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>安装完成，想要恢复默认值怎么办，可以执行下面的代码</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">git -C <span class="hljs-string">&quot;$(brew --repo)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/brew.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/core)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-core.git</span><br><br>git -C <span class="hljs-string">&quot;$(brew --repo homebrew/cask)&quot;</span> remote set-url origin https:<span class="hljs-comment">//github.com/Homebrew/homebrew-cask.git</span><br><br>brew update<br></code></pre></td></tr></table></figure><h3 id="hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决"><a href="#hexo-Failed-to-connect-to-github-com-port-443-Timed-out-错误解决" class="headerlink" title="hexo Failed to connect to github.com port 443: Timed out 错误解决"></a>hexo Failed to connect to github.com port 443: Timed out 错误解决</h3><p>将hexo _config.yml里的git地址由<a href="https://github.com/xxx%E4%BF%AE%E6%94%B9%E4%B8%BAssh">https://github.com/xxx修改为ssh</a> <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:xxx&#x2F;xxx也可以。</p></li></ul>]]></content>
     
     
     <categories>
@@ -805,9 +805,9 @@
     
     <tags>
       
-      <tag>区域分割算法</tag>
-      
       <tag>传统分割算法</tag>
+      
+      <tag>区域分割算法</tag>
       
     </tags>
     
@@ -2110,9 +2110,9 @@
     
     <tags>
       
-      <tag>Windows</tag>
-      
       <tag>pytorch环境配置</tag>
+      
+      <tag>Windows</tag>
       
     </tags>
     
@@ -3043,31 +3043,6 @@
   
   
   <entry>
-    <title>2020MICS一些会议笔记</title>
-    <link href="/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/"/>
-    <url>/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/</url>
-    
-    <content type="html"><![CDATA[<p>目录</p><p>一、张惠茅（AI在放射科）... 1</p><p>二、练春锋... 2</p><p>三、徐军（计算病理及其数字化切片组织形态学定量分析）... 2</p><p>四、徐佳园... 2</p><p>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）... 2</p><p>六、程炜（脑影像大数据及其在精神疾病中的应用）... 3</p><p>七、李阳（多模态自适应脑网络方法及应用）... 4</p><p>八、宋彬... 6</p><p>九、周涛（多模态学习）... 6</p><p>十、于杰（人工智能在肝占位超声诊断中的研究）... 6</p><p>十一、闫平昆（Multi-X Medical Image Segmentation）... 6</p><p>十二、马建华（低剂量医学CT成像技术）... 7</p><p>十三、赵一天... 8</p><p>十四、圆桌会议... 8</p><p>十五、结束... 9</p><p>&nbsp;</p><h2>一、张惠茅（AI在放射科）</h2><p>1、发展现状：</p><p>&nbsp;&nbsp;&nbsp; （1）88%的医学影像AI在肺结节</p><p>&nbsp;&nbsp;&nbsp; （2）超过30%的研究所不能获得医院的数据</p><p>2、应用方向</p><p>&nbsp;&nbsp;&nbsp; （1）鼻咽癌靶区勾画和分割</p><p>&nbsp;&nbsp;&nbsp; （2）全栈AI（上海联影）</p><p>&nbsp;&nbsp;&nbsp; （3）质量控制</p><p>&nbsp;&nbsp;&nbsp; （4）胸片分诊</p><p>&nbsp;&nbsp;&nbsp; （5）肺结节筛查和评估系统</p><p>&nbsp;&nbsp;&nbsp; （6）儿童骨龄评价系统</p><p>3、AI合作之路（医理工合作）</p><p>&nbsp;&nbsp;&nbsp; （1）落地产品很少</p><p>&nbsp;&nbsp;&nbsp; （2）如何获得一个好的算法帮助医生进行标注</p><p>&nbsp;&nbsp;&nbsp; （3）新冠肺炎AI挑战--&mdash;标注的困境</p><p>4、结语</p><p>&nbsp;&nbsp;&nbsp; （1）界定相对独立实用的医学场景</p><p>&nbsp;</p><h2>二、练春锋</h2><p>1、（H-FCN）hierarchical fully convolution network:在阿尔兹海默症中应用</p><p>2、H-FCN改进Attention-guided Hybrid Network</p><p>3、MWAN</p><p>4、PVS</p><p>&nbsp;&nbsp;&nbsp; （1）multi-channel Multi-scale FCN(M<sup>2</sup>FCN)</p><p>&nbsp;</p><h2>三、徐军（计算病理及其数字化切片组织形态学定量分析）</h2><p>1、分割实用unet网络</p><p>2、利用混淆矩阵评估模型</p><h2>四、徐佳园</h2><p>1、通过遥感卫星观察地区变化对人脑发展的影响</p><h2>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）</h2><p>1、key points：精准病灶分割与诊断</p><p>&nbsp;</p><h2>六、程炜（脑影像大数据及其在精神疾病中的应用）</h2><p>1、脑影像数据库</p><p>&nbsp;</p><p>2、绘图：matlib</p><p>&nbsp;</p><p>&nbsp;</p><p>3、association analysis</p><p>&nbsp;</p><p>&nbsp;</p><h2>七、李阳（多模态自适应脑网络方法及应用）</h2><p>1、创新一：有向脑连接网络及弹性多层感知机</p><p>&nbsp;</p><p>2、创新二：多模态脑网络</p><p>&nbsp;</p><p>&nbsp;</p><p>3、创新三：多模态自适应网络与时空特征深度融合</p><p>&nbsp;&nbsp;&nbsp; （1）使用了SVM分类器</p><h2>八、宋彬</h2><p>1、pyRadiomics是提取影像学特征</p><h2>九、周涛（多模态学习）</h2><p>1、Latent representation learning for AD diagnosis</p><p>2、Hi-Net for Multi-modal MR Image Synthesis</p><h2>十、于杰（人工智能在肝占位超声诊断中的研究）</h2><p>1、使用超声图片，利用人工智能对图像进行分析，进而提升超声对疾病的判断，使得超声不仅仅只是用于疾病筛查，真正用于疾病的诊断。使得超声能够和CT匹配，达到诊断医生的水平。</p><p>2、输入的是静态图像</p><p>&nbsp;</p><p>&nbsp;</p><h2>十一、闫平昆（Multi-X Medical Image Segmentation）</h2><p>1、</p><p>&nbsp;</p><h2>十二、马建华（低剂量医学CT成像技术）</h2><p>1、</p><p>&nbsp;</p><p>&nbsp;</p><h2>十三、赵一天</h2><p>1、OCT-A眼底图片当前研究的很少，所以很有发展前景</p><p>2、研究的OCT-A是自己建立的数据库（全球唯一）</p><p>3、成果</p><p>&nbsp;</p><h2>十四、圆桌会议</h2><p>1、医学AI技术如何落地？</p><p>答：（1）深度学习和机器学习的医学人工智能的落地成本降低，突破了课商业投资的阈值。肺结节、骨折、乳腺、脑出血易于落地。</p><p>（2）落地阻力：技术不够，监管不够，产品价值不明晰</p><p>2、医学AI科研如何选题？项目申请有何经验？</p><p>答：（1）来源于临床，高于临床，服务于临床。</p><p>3、医学到底需要那一方面数学基础？</p><p>答：（1）最优化，现在的深度学习就是一个最优化问题。</p><p>（2）偏分法</p><p>（3）微积分和线性代数</p><p>（4）level set一种曲线拟合的方法，相比较深度学习可解释性强。比较小众。</p><p>（5）计算机视觉的基础要好，沉下心，别太着急发paper</p><p>4、青年学者应该在小领域还是大领域开始？</p><p>答：打基础，在一个具体领域先混好，先满足自己生存，之后再在大领域发展。争取将自己发展为T型人才，在某一方面扎下根，广泛涉猎各个领域。</p><h2>十五、结束</h2><p>1、每期会议链接。</p><p>&nbsp;</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>充电学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>2020MICS</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>DBSCAN基于密度的聚类算法</title>
     <link href="/2018/DBSCAN%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/"/>
     <url>/2018/DBSCAN%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
@@ -3087,6 +3062,31 @@
       <tag>DBSCAN</tag>
       
       <tag>密度聚类算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HierarchicalClustering分层集群</title>
+    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
+    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
+    
+    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分层集群</tag>
       
     </tags>
     
@@ -3120,6 +3120,31 @@
   
   
   <entry>
+    <title>2020MICS一些会议笔记</title>
+    <link href="/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/"/>
+    <url>/2018/2020MICS%E4%B8%80%E4%BA%9B%E4%BC%9A%E8%AE%AE%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>目录</p><p>一、张惠茅（AI在放射科）... 1</p><p>二、练春锋... 2</p><p>三、徐军（计算病理及其数字化切片组织形态学定量分析）... 2</p><p>四、徐佳园... 2</p><p>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）... 2</p><p>六、程炜（脑影像大数据及其在精神疾病中的应用）... 3</p><p>七、李阳（多模态自适应脑网络方法及应用）... 4</p><p>八、宋彬... 6</p><p>九、周涛（多模态学习）... 6</p><p>十、于杰（人工智能在肝占位超声诊断中的研究）... 6</p><p>十一、闫平昆（Multi-X Medical Image Segmentation）... 6</p><p>十二、马建华（低剂量医学CT成像技术）... 7</p><p>十三、赵一天... 8</p><p>十四、圆桌会议... 8</p><p>十五、结束... 9</p><p>&nbsp;</p><h2>一、张惠茅（AI在放射科）</h2><p>1、发展现状：</p><p>&nbsp;&nbsp;&nbsp; （1）88%的医学影像AI在肺结节</p><p>&nbsp;&nbsp;&nbsp; （2）超过30%的研究所不能获得医院的数据</p><p>2、应用方向</p><p>&nbsp;&nbsp;&nbsp; （1）鼻咽癌靶区勾画和分割</p><p>&nbsp;&nbsp;&nbsp; （2）全栈AI（上海联影）</p><p>&nbsp;&nbsp;&nbsp; （3）质量控制</p><p>&nbsp;&nbsp;&nbsp; （4）胸片分诊</p><p>&nbsp;&nbsp;&nbsp; （5）肺结节筛查和评估系统</p><p>&nbsp;&nbsp;&nbsp; （6）儿童骨龄评价系统</p><p>3、AI合作之路（医理工合作）</p><p>&nbsp;&nbsp;&nbsp; （1）落地产品很少</p><p>&nbsp;&nbsp;&nbsp; （2）如何获得一个好的算法帮助医生进行标注</p><p>&nbsp;&nbsp;&nbsp; （3）新冠肺炎AI挑战--&mdash;标注的困境</p><p>4、结语</p><p>&nbsp;&nbsp;&nbsp; （1）界定相对独立实用的医学场景</p><p>&nbsp;</p><h2>二、练春锋</h2><p>1、（H-FCN）hierarchical fully convolution network:在阿尔兹海默症中应用</p><p>2、H-FCN改进Attention-guided Hybrid Network</p><p>3、MWAN</p><p>4、PVS</p><p>&nbsp;&nbsp;&nbsp; （1）multi-channel Multi-scale FCN(M<sup>2</sup>FCN)</p><p>&nbsp;</p><h2>三、徐军（计算病理及其数字化切片组织形态学定量分析）</h2><p>1、分割实用unet网络</p><p>2、利用混淆矩阵评估模型</p><h2>四、徐佳园</h2><p>1、通过遥感卫星观察地区变化对人脑发展的影响</p><h2>五、张康（人工智能助力CT影像对新冠肺炎进行精准诊断）</h2><p>1、key points：精准病灶分割与诊断</p><p>&nbsp;</p><h2>六、程炜（脑影像大数据及其在精神疾病中的应用）</h2><p>1、脑影像数据库</p><p>&nbsp;</p><p>2、绘图：matlib</p><p>&nbsp;</p><p>&nbsp;</p><p>3、association analysis</p><p>&nbsp;</p><p>&nbsp;</p><h2>七、李阳（多模态自适应脑网络方法及应用）</h2><p>1、创新一：有向脑连接网络及弹性多层感知机</p><p>&nbsp;</p><p>2、创新二：多模态脑网络</p><p>&nbsp;</p><p>&nbsp;</p><p>3、创新三：多模态自适应网络与时空特征深度融合</p><p>&nbsp;&nbsp;&nbsp; （1）使用了SVM分类器</p><h2>八、宋彬</h2><p>1、pyRadiomics是提取影像学特征</p><h2>九、周涛（多模态学习）</h2><p>1、Latent representation learning for AD diagnosis</p><p>2、Hi-Net for Multi-modal MR Image Synthesis</p><h2>十、于杰（人工智能在肝占位超声诊断中的研究）</h2><p>1、使用超声图片，利用人工智能对图像进行分析，进而提升超声对疾病的判断，使得超声不仅仅只是用于疾病筛查，真正用于疾病的诊断。使得超声能够和CT匹配，达到诊断医生的水平。</p><p>2、输入的是静态图像</p><p>&nbsp;</p><p>&nbsp;</p><h2>十一、闫平昆（Multi-X Medical Image Segmentation）</h2><p>1、</p><p>&nbsp;</p><h2>十二、马建华（低剂量医学CT成像技术）</h2><p>1、</p><p>&nbsp;</p><p>&nbsp;</p><h2>十三、赵一天</h2><p>1、OCT-A眼底图片当前研究的很少，所以很有发展前景</p><p>2、研究的OCT-A是自己建立的数据库（全球唯一）</p><p>3、成果</p><p>&nbsp;</p><h2>十四、圆桌会议</h2><p>1、医学AI技术如何落地？</p><p>答：（1）深度学习和机器学习的医学人工智能的落地成本降低，突破了课商业投资的阈值。肺结节、骨折、乳腺、脑出血易于落地。</p><p>（2）落地阻力：技术不够，监管不够，产品价值不明晰</p><p>2、医学AI科研如何选题？项目申请有何经验？</p><p>答：（1）来源于临床，高于临床，服务于临床。</p><p>3、医学到底需要那一方面数学基础？</p><p>答：（1）最优化，现在的深度学习就是一个最优化问题。</p><p>（2）偏分法</p><p>（3）微积分和线性代数</p><p>（4）level set一种曲线拟合的方法，相比较深度学习可解释性强。比较小众。</p><p>（5）计算机视觉的基础要好，沉下心，别太着急发paper</p><p>4、青年学者应该在小领域还是大领域开始？</p><p>答：打基础，在一个具体领域先混好，先满足自己生存，之后再在大领域发展。争取将自己发展为T型人才，在某一方面扎下根，广泛涉猎各个领域。</p><h2>十五、结束</h2><p>1、每期会议链接。</p><p>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>2020MICS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Logistic回归</title>
     <link href="/2018/Logistic%E5%9B%9E%E5%BD%92/"/>
     <url>/2018/Logistic%E5%9B%9E%E5%BD%92/</url>
@@ -3137,31 +3162,6 @@
     <tags>
       
       <tag>Logistic回归</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>HierarchicalClustering分层集群</title>
-    <link href="/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/"/>
-    <url>/2018/Hierarchical%20Clustering%E5%88%86%E5%B1%82%E9%9B%86%E7%BE%A4/</url>
-    
-    <content type="html"><![CDATA[<p>主要分为两大类：agglomerative（自底向上）和 divisive（自顶向下）。首先说前者，自底向上，一开始，每个数据点各自为一个类别，然后每一次迭代选取距离最近的两个类别，把他们合并，直到最后只剩下一个类别为止，至此一棵树构造完成。</p><p>　　有两个问题：</p><ol><li>如何计算两个点的距离？这个通常是 problem dependent 的，一般情况下可以直接用一些比较通用的距离就可以了，比如欧氏距离等。</li><li value="2">如何计算两个类别之间的距离？一开始所有的类别都是一个点，计算距离只是计算两个点之间的距离，但是经过后续合并之后，一个类别里就不止一个点了，那距离又要怎样算呢？到这里又有三个变种：<ul><li>Single Linkage：又叫做 nearest-neighbor ，就是取两个集合中距离最近的两个点的距离作为这两个集合的距离，容易造成一种叫做 Chaining 的效果，两个 cluster 明明从&ldquo;大局&rdquo;上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</li><li>Complete Linkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。</li><li>Group Average：这种方法看起来相对有道理一些，也就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</li></ul></li></ol><p>总的来说，一般都不太用 Single Linkage 或者 Complete Linkage 这两种过于极端的方法。整个 agglomerative hierarchical clustering 的算法就是这个样子，描述起来还是相当简单的，不过计算起来复杂度还是比较高的，要找出距离最近的两个点，需要一个双重循环，而且 Group Average 计算距离的时候也是一个双重循环。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>分层集群</tag>
       
     </tags>
     
