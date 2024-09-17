@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>浏览器脚本-下载视频去广告</title>
+    <link href="/2024/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%84%9A%E6%9C%AC-%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%8E%BB%E5%B9%BF%E5%91%8A/"/>
+    <url>/2024/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%84%9A%E6%9C%AC-%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%8E%BB%E5%B9%BF%E5%91%8A/</url>
+    
+    <content type="html"><![CDATA[<p>因为想下载一些网站的视频，找到利用脚本进行下载的。感觉挺有用，分享出来。<br>1.找到一个<a href="https://greasyfork.org/zh-CN">脚本网址</a>,进入主页，我这里安装的谷歌浏览器的 Violentmonkey。</p><img src="/2024/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%84%9A%E6%9C%AC-%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%8E%BB%E5%B9%BF%E5%91%8A/Greasy.png" class="" title="alt text"><ol start="2"><li>找到自己想要的脚本，我这里找到的是：<img src="/2024/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%84%9A%E6%9C%AC-%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%8E%BB%E5%B9%BF%E5%91%8A/m3u8.png" class="" title="alt text">3.然后打开一个播放的视频，左上角就会出现一个链接，和download，点击就可以下载了。<img src="/2024/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%84%9A%E6%9C%AC-%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%8E%BB%E5%B9%BF%E5%91%8A/download.png" class="" title="alt text"></li></ol><p>当然还有很多实用的脚本，比如去掉视频网站里面的广告，或者加速网盘下载，以及一些其他脚本，还在探索中。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>如何利用Greasy Fork脚本实现一些功能，比如，免费下载视频，去掉网站广告等等</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>macbook Air 小问题解决</title>
     <link href="/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     <url>/2024/macbookair%E5%B0%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
