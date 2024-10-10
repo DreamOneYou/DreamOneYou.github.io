@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>onnxruntime构建项目</title>
+    <link href="/2024/onnxruntime%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/"/>
+    <url>/2024/onnxruntime%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="bug1：The-given-version-11-is-not-supported-only-version-1-to-7-is-supported-in-this-build"><a href="#bug1：The-given-version-11-is-not-supported-only-version-1-to-7-is-supported-in-this-build" class="headerlink" title="bug1：The given version [11] is not supported, only version 1 to 7 is supported in this build."></a>bug1：The given version [11] is not supported, only version 1 to 7 is supported in this build.</h2><p>应该是加载了C:\Windows\System32\onnxruntime.dll里的这个文件，因为我之前使用的是1.6版本，C盘下的onnxruntime.dll没有替换，导致了错误。可以把最新的onnxruntime.dll替换掉，或者直接将该文件放置到编译后的.exe同级目录下。</p><h2 id="windows下构建onnxruntime的c-推理环境"><a href="#windows下构建onnxruntime的c-推理环境" class="headerlink" title="windows下构建onnxruntime的c++推理环境"></a>windows下构建onnxruntime的c++推理环境</h2><p>1。下载编译好的onnxruntime库，<a href="https://github.com/microsoft/onnxruntime/releases/tag/v1.15.0">链接</a><br>2.打开VS的属性页，设定配置（我一般直接Release），平台（我直接X64），找到c&#x2F;c++ -&gt; 常规 -&gt; 附加包含目录。将onnxruntime-win-x64-gpu-1.15.0\include路径添加进去<br>3.打开VS的属性页，找到链接器-&gt;输入-&gt;附加依赖项。将onnxruntime-win-x64-gpu-1.15.0\lib\onnxruntime.lib路径添加进去<br>4.在cpp文件中，添加库：#include&lt;onnxruntime_cxx_api.h&gt;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>如何利用onnxruntime构建c++项目</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>免费视频素材音乐音效</title>
     <link href="/2024/%E5%85%8D%E8%B4%B9%E8%A7%86%E9%A2%91%E7%B4%A0%E6%9D%90%E9%9F%B3%E4%B9%90%E9%9F%B3%E6%95%88/"/>
     <url>/2024/%E5%85%8D%E8%B4%B9%E8%A7%86%E9%A2%91%E7%B4%A0%E6%9D%90%E9%9F%B3%E4%B9%90%E9%9F%B3%E6%95%88/</url>
