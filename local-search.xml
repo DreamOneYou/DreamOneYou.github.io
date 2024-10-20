@@ -4,6 +4,81 @@
   
   
   <entry>
+    <title>attention</title>
+    <link href="/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/"/>
+    <url>/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="交叉注意力机制"><a href="#交叉注意力机制" class="headerlink" title="交叉注意力机制"></a>交叉注意力机制</h2><h3 id="1-基本原理"><a href="#1-基本原理" class="headerlink" title="1. 基本原理"></a>1. 基本原理</h3><p>在交叉注意力中，输入分为两个部分：</p><ul><li><p>查询（Query）：表示当前需要处理的信息，通常来自一个输入序列。</p></li><li><p>键（Key）和值（Value）：表示需要参考的信息，通常来自另一个输入序列。</p></li><li><p>交叉注意力的计算过程如下：</p></li><li><p>相似度计算：对于每个查询向量，计算它与每个键向量的相似度（例如通过点积计算）。</p></li><li><p>权重归一化：将相似度通过 softmax 函数归一化，以得到各个键的注意力权重。</p></li><li><p>加权求和：用归一化的注意力权重对值向量进行加权求和，从而得到最终的输出。<br>这个过程使得查询可以从键值对中“提取”相关的信息，从而实现对输入序列之间的相互作用建模。</p></li></ul><h3 id="2-交叉注意力的应用"><a href="#2-交叉注意力的应用" class="headerlink" title="2. 交叉注意力的应用"></a>2. 交叉注意力的应用</h3><p>交叉注意力在许多深度学习任务中有着广泛的应用，特别是在多模态数据处理、序列对序列（Seq2Seq）任务、以及生成模型中：</p><ul><li>机器翻译：在 Transformer 模型中，交叉注意力用于编码器-解码器架构。解码器的查询是当前的翻译上下文，而键和值来自编码器输出，从而使解码器能够根据源语言的表示生成目标语言的翻译。</li><li>视觉-语言任务：在多模态模型中，交叉注意力可以用于将文本（语言描述）和图像（视觉特征）进行融合。例如，文本描述生成图像（图像生成）或根据图像回答问题（视觉问答）。</li><li>图像生成模型：如在 DALL-E 和 Stable Diffusion 等模型中，交叉注意力用于将文本描述转化为图像的生成条件。</li></ul><h3 id="3-与自注意力的比较"><a href="#3-与自注意力的比较" class="headerlink" title="3. 与自注意力的比较"></a>3. 与自注意力的比较</h3><ul><li>自注意力（Self-Attention）：查询、键和值都来自同一个输入序列，用于建模序列自身的内部依赖关系。<br>8 交叉注意力（Cross Attention）：查询来自一个输入序列，而键和值来自另一个输入序列，用于建模不同序列之间的依赖关系和信息交互。</li></ul><h3 id="4-数学表示"><a href="#4-数学表示" class="headerlink" title="4. 数学表示"></a>4. 数学表示</h3><img src="/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/image.png" class="" title="数学表示"><h3 id="5-优势和局限性"><a href="#5-优势和局限性" class="headerlink" title="5. 优势和局限性"></a>5. 优势和局限性</h3><ul><li>优势：能够灵活地对不同来源的信息进行关联，尤其在处理异质数据（例如文本和图像）时效果显著。</li><li>局限性：计算成本较高，尤其当两个输入序列都较长时，计算量会显著增加。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>注意力机制，交叉注意力机制</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>时间自动编码器TAE</title>
+    <link href="/2024/%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8TAE/"/>
+    <url>/2024/%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8TAE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="时间自动编码器（TAE）"><a href="#时间自动编码器（TAE）" class="headerlink" title="时间自动编码器（TAE）"></a>时间自动编码器（TAE）</h2><p>对于TAE，先了解自动编码器（VAE），我们首先要知道它的作用是什么：</p><ul><li>自动编码器旨在学习输入数据的压缩表示或编码， 自动编码器的目标是将输入数据映射到低维潜在空间，然后从编码表示重建输入数据。</li><li>所谓TAE，其实就是加上时间序列。时间序列数据由时间点上的连续观测值组成，时间在其中起到一个关键作用<ul><li>时间作为特征的序列性<ul><li>时间序列数据中的观测值是按时间顺序排列的。例如，股票价格、传感器数据、气温记录等。这种序列性意味着数据的前后顺序非常重要，不能被打乱，因为时间步之间的依赖关系决定了数据的动态变化。</li></ul></li><li>时间间隔的重要性<ul><li>在时间自动编码器中，时间步之间的间隔可能是均匀的（例如每分钟、每小时、每天的采样数据），也可能是不均匀的（事件驱动型数据）。时间间隔可以影响模型的结构和训练方式。对于不均匀的时间间隔，需要在模型中显式地考虑时间差异，而均匀时间间隔的数据则不需要处理这种复杂性。</li></ul></li><li>时间作为隐含变量<ul><li>在一些时间自动编码器中，时间被看作是影响系统状态的隐含变量。通过对序列进行编码和解码，模型可以自动捕捉时间的影响，如周期性、趋势性和季节性特征。这种方法可以用于发现时间序列中的潜在模式和规律</li></ul></li><li>时间的因果性和时序依赖<ul><li>时间自动编码器在处理数据时，通常会考虑时间的因果性，即当前时间点的观测值只能受到之前时间点观测值的影响，而不会受到未来值的影响。这种因果性约束对于许多时间序列任务（如预测未来）非常重要。同时，时序依赖性可以通过递归神经网络（RNN）、长短期记忆（LSTM）、变分自编码器（VAE）等时间序列建模技术来捕捉。</li></ul></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>VAE，TAE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MovieGen A Cast of Media Foundation Models技术报告整理</title>
+    <link href="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/"/>
+    <url>/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h2><ul><li><p>模型大小：30B</p></li><li><p>训练数据：2B低分辨率图像，400M低分辨率视频， 70M高分辨率视频</p></li><li><p>训练资源：最高使用6144张H100</p></li><li><p>支持的视频时长和FPS： 可以生成16s视频，每秒16帧；最高可生成1080p画质（通过超分，视频本身最高到768分辨率）</p><img src="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/trainStep.png" class="" title="train_step"></li><li><p>三阶段训练：</p><ul><li>1.图片和视频是联合训练，图片被视为只有1帧的视频来生成。预训练三个阶段用的是原始的FPS，后面fine-tune的时候只使用16和24两个fps的videos</li><li>2.预训练阶段分为三个部分，首先只训练256分辨率的图片，然后是256分辨率图片和视频一起训练，最后768分辨率的图片和视频一起训练。后面则是是fine-tune 和 个性化生成与视频编辑的训练</li></ul></li></ul><h2 id="预训练模型设计"><a href="#预训练模型设计" class="headerlink" title="预训练模型设计"></a>预训练模型设计</h2><p><img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/overview%20pipeline.png" alt="Overview of the joint image and video generatio npipeline"><br>对于TAE的解释，<a href="%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8TAE.md">可以看看这个</a></p><h3 id="temporal-autoencoder-model-TAE"><a href="#temporal-autoencoder-model-TAE" class="headerlink" title="temporal autoencoder model (TAE)"></a>temporal autoencoder model (TAE)</h3><ul><li>VAE上增加了 惩罚异常项的loss 来避免 dot artifacts 。其中损失函数中 <strong>r</strong> ： 是一个比例因子，表示潜在值需要超出标准偏差多远才能收到惩罚（实践中：r&#x3D;4和loss weight&#x3D;1e5作为异常值损失）<ul><li><img src="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/fig5.png" class="" title="fig5"><img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier%20penalty%20loss.png" alt="OPL"></li></ul></li><li>图像和视频在训练的比例为 1:3</li><li>和SD3一样，训练是（对数正态分布）logit-normal distribution 进行采样。<ul><li>对数正态分布：任意随机变量的对数服从正态分布,则这个随机变量服从的分布称为对数正态分布<ul><li><img src="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/logit_normal.png" class="" title="alt text"></li></ul></li></ul></li><li>patchify 的时候采取的是3D 卷积，空间上2*2大小，时间上大小为1</li><li>pos embed用的是factorized learnable positional embedding，factorized 指的是x和y分开编码。位置编码为绝对位置编码，直接用绝对index去映射embeddings。和navit一样，作者最后加起来两个编码。此外，作者发现，在图像编辑训练期间单纯使用第一帧的pos embed会导致在视频编辑上测试模型时输出完全失真。通过使用随机采样的时间pos embed作为图像的pos embed来解决这个问题，可以有效地减少时间维度上的 __变形和失真__（distortion and morphing artifacts）</li><li>Transformer 和 llama3 一样，RMSNorm + SwiGLU，只不过这里不再是 causal的了。此外text的注入是<a href="%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B.md">cross attention</a>方式，timestep的注入是 adaln方式，这个和已有的sd模型一样。<ul><li>causal：GPT的训练方法是使用因果掩码（causal mask），让模型在预测当前token时不能看到未来的token</li><li>cross attention：与自注意力（Self-Attention）不同，交叉注意力的查询（query）和键值（key-value）来自不同的源，这使得它适用于需要对两个不同数据源进行建模的任务。</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>充电学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文生视频，图生视频，论文阅读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>onnxruntime构建项目</title>
     <link href="/2024/onnxruntime%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/"/>
     <url>/2024/onnxruntime%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/</url>
