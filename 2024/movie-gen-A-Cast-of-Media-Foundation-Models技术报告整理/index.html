@@ -24,14 +24,14 @@
 <meta property="og:description" content="简单总结 模型大小：30B  训练数据：2B低分辨率图像，400M低分辨率视频， 70M高分辨率视频  训练资源：最高使用6144张H100  支持的视频时长和FPS： 可以生成16s视频，每秒16帧；最高可生成1080p画质（通过超分，视频本身最高到768分辨率）   三阶段训练：  1.图片和视频是联合训练，图片被视为只有1帧的视频来生成。预训练三个阶段用的是原始的FPS，后面fine-tun">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/trainStep.png">
-<meta property="og:image" content="https://dreamoneyou.github.io/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/overview%20pipeline.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/overviewpipeline.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/fig5.png">
-<meta property="og:image" content="https://dreamoneyou.github.io/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier%20penalty%20loss.png">
+<meta property="og:image" content="https://dreamoneyou.github.io/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier_penalty_loss.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/logit_normal.png">
-<meta property="og:image" content="https://dreamoneyou.github.io/%5B%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B.md%5D(https:/dreamoneyou.github.io/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/)">
+<meta property="og:image" content="https://dreamoneyou.github.io/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/">
 <meta property="og:image" content="https://dreamoneyou.github.io/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/CA%20Posiiton.png">
 <meta property="article:published_time" content="2024-10-20T09:55:35.000Z">
-<meta property="article:modified_time" content="2024-10-20T14:48:04.206Z">
+<meta property="article:modified_time" content="2024-10-20T14:53:05.316Z">
 <meta property="article:author" content="九叶草">
 <meta property="article:tag" content="文生视频，图生视频，论文阅读">
 <meta name="twitter:card" content="summary_large_image">
@@ -344,11 +344,12 @@
 </ul>
 </li>
 </ul>
-<h2 id="预训练模型设计"><a href="#预训练模型设计" class="headerlink" title="预训练模型设计"></a>预训练模型设计</h2><p><img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/overview%20pipeline.png" srcset="/img/loading.gif" lazyload alt="Overview of the joint image and video generatio npipeline"><br>对于TAE的解释，<a href="%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8TAE.md">可以看看这个</a></p>
+<h2 id="预训练模型设计"><a href="#预训练模型设计" class="headerlink" title="预训练模型设计"></a>预训练模型设计</h2>  <img src="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/overviewpipeline.png" srcset="/img/loading.gif" lazyload class="" title="image">
+<p>对于TAE的解释，<a href="%E6%97%B6%E9%97%B4%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8TAE.md">可以看看这个</a></p>
 <h3 id="temporal-autoencoder-model-TAE"><a href="#temporal-autoencoder-model-TAE" class="headerlink" title="temporal autoencoder model (TAE)"></a>temporal autoencoder model (TAE)</h3><ul>
 <li>VAE上增加了 惩罚异常项的loss 来避免 dot artifacts 。其中损失函数中 <strong>r</strong> ： 是一个比例因子，表示潜在值需要超出标准偏差多远才能收到惩罚（实践中：r&#x3D;4和loss weight&#x3D;1e5作为异常值损失）<ul>
 <li><img src="/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/fig5.png" srcset="/img/loading.gif" lazyload class="" title="fig5">
-<img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier%20penalty%20loss.png" srcset="/img/loading.gif" lazyload alt="OPL"></li>
+<img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier_penalty_loss.png" srcset="/img/loading.gif" lazyload alt="OPL"></li>
 </ul>
 </li>
 <li>图像和视频在训练的比例为 1:3</li>
@@ -361,7 +362,7 @@
 </li>
 <li>patchify 的时候采取的是3D 卷积，空间上2*2大小，时间上大小为1</li>
 <li>pos embed用的是factorized learnable positional embedding，factorized 指的是x和y分开编码。位置编码为绝对位置编码，直接用绝对index去映射embeddings。和navit一样，作者最后加起来两个编码。此外，作者发现，在图像编辑训练期间单纯使用第一帧的pos embed会导致在视频编辑上测试模型时输出完全失真。通过使用随机采样的时间pos embed作为图像的pos embed来解决这个问题，可以有效地减少时间维度上的 __变形和失真__（distortion and morphing artifacts）</li>
-<li>Transformer 和 llama3 一样，RMSNorm + SwiGLU，只不过这里不再是 causal的了。此外text的注入是<img src="/%5B%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B.md%5D(https:/dreamoneyou.github.io/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/)" srcset="/img/loading.gif" lazyload alt="cross attention">方式，timestep的注入是 Adaptive Layer Norm (adaLN) 方式，这个和已有的sd模型一样。<ul>
+<li>Transformer 和 llama3 一样，RMSNorm + SwiGLU，只不过这里不再是 causal的了。此外text的注入是<img src="https://dreamoneyou.github.io/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/" srcset="/img/loading.gif" lazyload alt="cross attention">方式，timestep的注入是 Adaptive Layer Norm (adaLN) 方式，这个和已有的sd模型一样。<ul>
 <li>Movie Gen Video Transformer 主干<ul>
 <li><img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/CA%20Posiiton.png" srcset="/img/loading.gif" lazyload alt="cross attention所处位置"></li>
 </ul>
