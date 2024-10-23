@@ -28,9 +28,8 @@
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/fig5.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/outlier_penalty_loss.png">
 <meta property="og:image" content="https://dreamoneyou.github.io/2024/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/logit_normal.png">
-<meta property="og:image" content="https://dreamoneyou.github.io/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/CA%20Posiiton.png">
 <meta property="article:published_time" content="2024-10-20T09:55:35.000Z">
-<meta property="article:modified_time" content="2024-10-23T13:22:50.771Z">
+<meta property="article:modified_time" content="2024-10-23T13:24:40.902Z">
 <meta property="article:author" content="九叶草">
 <meta property="article:tag" content="文生视频，图生视频，论文阅读">
 <meta name="twitter:card" content="summary_large_image">
@@ -365,7 +364,7 @@
 <li>pos embed用的是factorized learnable positional embedding，factorized 指的是x和y分开编码。位置编码为绝对位置编码，直接用绝对index去映射embeddings。和navit一样，作者最后加起来两个编码。此外，作者发现，在图像编辑训练期间单纯使用第一帧的pos embed会导致在视频编辑上测试模型时输出完全失真。通过使用随机采样的时间pos embed作为图像的pos embed来解决这个问题，可以有效地减少时间维度上的 __变形和失真__（distortion and morphing artifacts）</li>
 <li>Transformer 和 llama3 一样，RMSNorm + SwiGLU，只不过这里不再是 causal的了。此外text的注入是<a href="https://dreamoneyou.github.io/2024/%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B/">cross attention</a>方式，timestep的注入是 Adaptive Layer Norm (adaLN) 方式，这个和已有的sd模型一样。<ul>
 <li>Movie Gen Video Transformer 主干<ul>
-<li><img src="/movie-gen-A-Cast-of-Media-Foundation-Models%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/CA%20Posiiton.png" srcset="/img/loading.gif" lazyload alt="cross attention所处位置"></li>
+<li></li>
 </ul>
 </li>
 <li>causal：LLM 使用结构化的因果注意掩码来强制执行标记因果关系，让模型在预测当前token时不能看到未来的token</li>
